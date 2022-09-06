@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\StasiunController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::resource('/stasiun', StasiunController::class);
+
+Route::resource('/customer', CustomerController::class);
