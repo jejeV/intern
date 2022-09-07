@@ -12,9 +12,13 @@ class StasiunController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Stasiun::paginate(25);
+        if($request->has('search')){
+            $data = Stasiun::where('nama_stasiun','LIKE', '%' . $request->search. '%')->orWhere('kodkod', 'LIKE', '%' . $request->search . '%')->paginate(25);
+        }else{
+            $data = Stasiun::paginate(25);
+        }
         return view('stasiun.stasiun', compact('data'));
     }
 
