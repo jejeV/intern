@@ -8,10 +8,20 @@
                 </div>
                 <div class="col-6 p-3 d-flex justify-content-end">
                   <div class="me-2">
+                    <div class="d-flex align-items-center">
+                        {{-- Search --}}
+                        <form action="{{ url('/stasiun') }}" method="GET" class="me-2 me-lg-3">
+                          <div class="input-group input-group-merge">
+                            <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+                            <input type="search" name="search" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" value="{{ request('search') }}"/>
+                          </div>
+                        </form>
+                        {{-- End Search --}}
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCenter">
                           Add
                         </button>
+                    </div>
 
                         <!-- Modal -->
                         <form method="POST" action="{{ url('stasiun') }}">
