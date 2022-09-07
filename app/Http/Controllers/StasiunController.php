@@ -14,7 +14,7 @@ class StasiunController extends Controller
      */
     public function index()
     {
-        $data = Stasiun::all();
+        $data = Stasiun::paginate(25);
         return view('stasiun.stasiun', compact('data'));
     }
 
