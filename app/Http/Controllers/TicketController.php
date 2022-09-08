@@ -46,7 +46,7 @@ class TicketController extends Controller
             'tt_stat' => 'required',
         ]);
         $data = Ticket::create($request->all());
-        return redirect()->route('ticket.index');
+        return redirect()->route('ticket.index')->with('success', 'Create Success !!');
     }
 
     /**
@@ -83,7 +83,7 @@ class TicketController extends Controller
         $data = Ticket::find($id);
         $data->update($request->all());
 
-        return redirect()->route('ticket.index');
+        return redirect()->route('ticket.index')->with('edit', 'Edit Success !!');
     }
 
     /**
@@ -96,6 +96,6 @@ class TicketController extends Controller
     {
         $data = Ticket::find($id);
         $data->delete();
-        return redirect()->route('ticket.index');
+        return redirect()->route('ticket.index')->with('delete', 'Delete Success !!');
     }
 }
