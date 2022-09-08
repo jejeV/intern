@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customer;
-use App\Http\Requests\StorecustomerRequest;
-use App\Http\Requests\UpdatecustomerRequest;
+use App\Models\Customer;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -15,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer.customer');
+      $data = Customer::all();
+        return view('customer.customer', compact('data'));
     }
 
     /**
@@ -34,9 +34,34 @@ class CustomerController extends Controller
      * @param  \App\Http\Requests\StorecustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorecustomerRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'inputdate' => 'required',
+            'companyname' => 'required',
+            'companyaddress' => 'required',
+            'phone' => 'required',
+            'npwp' => 'required',
+            'dealname' => 'required',
+            'position' => 'required',
+            'nohandphone' => 'required',
+            'emaildealname' => 'required',
+            'pictechnicalname' => 'required',
+            'position_pict' => 'required',
+            'phone_pict' => 'required',
+            'email_pict' => 'required',
+            'picfinacename' => 'required',
+            'position_picf' => 'required',
+            'phone_picf' => 'required',
+            'email_picf' => 'required',
+            'service' => 'required',
+            'project' => 'required',
+            'bandwidth' => 'required',
+            'node_a' => 'required',
+            'node_b' => 'required',
+        ]);
+        $data = Customer::create($request->all());
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -56,7 +81,7 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(customer $customer)
+    public function edit(Request $request, $id)
     {
         //
     }
@@ -68,9 +93,12 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatecustomerRequest $request, customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Customer::find($id);
+        $data->update($request->all());
+
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -79,8 +107,10 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer $customer)
+    public function destroy($id)
     {
-        //
+        $data = Customer::find($id);
+        $data->delete();
+        return redirect()->route('customer.index');
     }
 }
