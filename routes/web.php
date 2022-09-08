@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/user', function () {
-//     return view('user.user');
-// });
+Route::get('/', function () {
+    return view('dashboard');
+});
 
 Route::resource('/stasiun', StasiunController::class);
 
