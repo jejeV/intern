@@ -1,0 +1,290 @@
+@extends('layouts.partials.main')
+
+@section('container')
+<div class="card">
+    <div class="row">
+        <div class="col-6">
+            <h5 class="card-header">Customer</h5>
+        </div>
+        <div class="col-6 p-3 d-flex justify-content-end">
+            <div class="me-2">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal">
+                    Add Customer
+                </button>
+
+                <!-- Modal -->
+                <form method="POST" action="{{ url('customer') }}">
+                    @csrf
+                    <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel3">Add Customer</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nameLarge" class="form-label">Input Date</label>
+                                            <input type="date" name="inputdate" class="form-control"
+                                                placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nameLarge" class="form-label">Company Name</label>
+                                            <input type="text" name="companyname" class="form-control"
+                                                placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nameLarge" class="form-label">Company Address</label>
+                                            <input type="text" name="companyaddress" class="form-control"
+                                                placeholder="Company Address">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">Phone</label>
+                                            <input type="text" name="phone" class="form-control" placeholder="081234567">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">NPWP</label>
+                                            <input type="text" name="npwp" class="form-control" placeholder="NPWP">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">Deal Name</label>
+                                            <input type="text" name="dealname" class="form-control"
+                                                placeholder="Deal Name">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">Position</label>
+                                            <input type="text" name="position" class="form-control"
+                                                placeholder="Position">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">No Handphone</label>
+                                            <input type="text" name="nohandphone" class="form-control" placeholder="081234567">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">Email Deal Name</label>
+                                            <input type="text" name="emaildealname" class="form-control"
+                                                placeholder="dealname@gmail.com">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">Pic Technical Name</label>
+                                            <input type="text" name="pictechnicalname" class="form-control"
+                                                placeholder="Pict Name">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">Pic Finace Name</label>
+                                            <input type="text" name="picfinacename" class="form-control"
+                                                placeholder="Picf Name">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">Position PICT</label>
+                                            <input type="text" name="position_pict" class="form-control"
+                                                placeholder="Position Pict">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">Position PICF</label>
+                                            <input type="text" name="position_picf" class="form-control"
+                                                placeholder="Position Picf">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">Phone PICT</label>
+                                            <input type="text" name="phone_pict" class="form-control"
+                                                placeholder="081234567">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">Phone PICF</label>
+                                            <input type="text" name="phone_picf" class="form-control"
+                                                placeholder="081234567">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">Email PICT</label>
+                                            <input type="text" name="email_pict" class="form-control"
+                                                placeholder="pict@gmail.com">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">Email PICF</label>
+                                            <input type="text" name="email_picf" class="form-control"
+                                                placeholder="picf@gmail.com">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nameLarge" class="form-label">Service</label>
+                                            <input type="text" name="service" class="form-control" placeholder="Service">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nameLarge" class="form-label">Project</label>
+                                            <input type="text" name="project" class="form-control" placeholder="Project">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nameLarge" class="form-label">Bandwidth</label>
+                                            <input type="text" name="bandwidth" class="form-control"
+                                                placeholder="Bandwidth">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <label for="emailBackdrop" class="form-label">Node A</label>
+                                            <input type="text" name="node_a" class="form-control" placeholder="Bandung">
+                                        </div>
+                                        <div class="col mb-0">
+                                            <label for="dobBackdrop" class="form-label">Node B</label>
+                                            <input type="text" name="node_b" class="form-control" placeholder="Jakarta">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-label-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>CID</th>
+                    <th>Company Name</th>
+                    <th>Company Address</th>
+                    {{-- <th>Phone</th>
+                    <th>NPWP</th>
+                    <th>Deal Name</th>
+                    <th>Position</th>
+                    <th>No Handphone</th>
+                    <th>Email Deal Name</th>
+                    <th>Pic Technical Name</th>
+                    <th>Positon PICT</th>
+                    <th>Phone PICT</th>
+                    <th>Email PICT</th>
+                    <th>Pic Finance Name</th>
+                    <th>Position PICF</th>
+                    <th>Phone PICF</th>
+                    <th>Email PICF </th>
+                    <th>Service</th>
+                    <th>Project</th>
+                    <th>Bandwidth</th> --}}
+                    <th>Node A</th>
+                    <th>Node B</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach ($data as $row)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $row->companyname }}</td>
+                    <td>{{ $row->companyaddress }}</td>
+                    {{-- <td>{{ $row->phone }}</td>
+                    <td>{{ $row->kmtsta }}</td>
+                    <td>{{ $row->npwp }}</td>
+                    <td>{{ $row->dealname }}</td>
+                    <td>{{ $row->position }}</td>
+                    <td>{{ $row->nohandphone }}</td>
+                    <td>{{ $row->emaildealname }}</td>
+                    <td>{{ $row->service }}</td>
+                    <td>{{ $row->project }}</td>
+                    <td>{{ $row->bandwidth }}</td> --}}
+                    <td>{{ $row->node_a }}</td>
+                    <td>{{ $row->node_b }}</td>
+                    <td class="d-flex">
+                        <div class="me-2">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#modalCenter2-{{ $row->id }}">
+                                <i class='bx bxs-edit-alt'></i>
+                            </button>
+                        </div>
+                        <form method="POST" action="{{ url('customer/'.$row->id) }}">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger btn-sm"><i class='bx bx-trash'></i></button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@foreach ($data as $customer)
+
+<!-- Modal -->
+<form method="POST" action="{{ url('customer/'.$customer->id) }}">
+    @csrf
+    @method('put')
+    <div class="modal fade" id="modalCenter2-{{ $customer->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Edit Customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-lg-2 mb-1">
+                            <label for="nameWithTitle" class="form-label">Company Name</label>
+                            <input type="text" name="companyname" value="{{ $customer->companyname }}" id="nameWithTitle"
+                                class="form-control" placeholder="Enter Name" autofocus />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-lg-2 mb-1">
+                            <label for="nameWithTitle" class="form-label">Company Address</label>
+                            <input type="text" name="companyaddress" value="{{ $customer->companyaddress }}"
+                                id="nameWithTitle" class="form-control" placeholder="Enter Name" />
+                        </div>
+                        <div class="col-6 mb-lg-2 mb-1">
+                            <label for="nameWithTitle" class="form-label">Node A</label>
+                            <input type="text" name="node_a" value="{{ $customer->node_a }}" id="nameWithTitle"
+                                class="form-control" placeholder="Enter Name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-lg-2 mb-1">
+                            <label for="nameWithTitle" class="form-label">Node B</label>
+                            <input type="text" name="node_b" value="{{ $customer->node_b }}" id="nameWithTitle"
+                                class="form-control" placeholder="Enter Name" />
+                        </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@endforeach
+</div>
+@endsection
