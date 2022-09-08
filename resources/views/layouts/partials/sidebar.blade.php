@@ -31,8 +31,8 @@
               </a>
             </li>
 
-            <li class="menu-item {{ Request::is('user*') ? 'active' : '' }}">
-              <a href="/user" class="menu-link">
+            <li class="menu-item {{ Request::is('customer*') ? 'active' : '' }}">
+              <a href="/customer" class="menu-link">
                 <i class='bx bx-user mr-2' style="margin-right: 10px"></i>
                 <div data-i18n="Analytics">Customer</div>
               </a>
