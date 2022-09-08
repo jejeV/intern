@@ -52,7 +52,7 @@ class StasiunController extends Controller
             'segmen' => 'required',
         ]);
         $data = Stasiun::create($request->all());
-        return redirect()->route('stasiun.index');
+        return redirect()->route('stasiun.index')->with('success', 'Create Success !!');
     }
 
     /**
@@ -89,7 +89,7 @@ class StasiunController extends Controller
         $data = Stasiun::find($id);
         $data->update($request->all());
 
-        return redirect()->route('stasiun.index');
+        return redirect()->route('stasiun.index')->with('edit', 'Edit Success !!');
     }
 
     /**
@@ -102,6 +102,6 @@ class StasiunController extends Controller
     {
         $data = Stasiun::find($id);
         $data->delete();
-        return redirect()->route('stasiun.index');
+        return redirect()->route('stasiun.index')->with('delete', 'Delete Success !!');
     }
 }

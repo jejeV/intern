@@ -65,7 +65,7 @@ class CustomerController extends Controller
             'node_b' => 'required',
         ]);
         $data = Customer::create($request->all());
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.index')->with('success', 'Create Success !!');
     }
 
     /**
@@ -102,7 +102,7 @@ class CustomerController extends Controller
         $data = Customer::find($id);
         $data->update($request->all());
 
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.index')->with('edit', 'Edit Success !!');
     }
 
     /**
@@ -115,6 +115,6 @@ class CustomerController extends Controller
     {
         $data = Customer::find($id);
         $data->delete();
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.index')->with('delete', 'Delete Success !!');
     }
 }

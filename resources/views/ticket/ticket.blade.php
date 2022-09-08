@@ -1,6 +1,24 @@
 @extends('layouts.partials.main')
 
 @section('container')
+@if (session()->has('success'))
+<div class="alert alert-success alert-dismissible" role="alert">
+  {{ session('success') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+@if (session()->has('edit'))
+<div class="alert alert-warning alert-dismissible" role="alert">
+  {{ session('edit') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+@if (session()->has('delete'))
+<div class="alert alert-danger alert-dismissible" role="alert">
+  {{ session('delete') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="card">
     <div class="row">
         <div class="col-6">
