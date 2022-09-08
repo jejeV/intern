@@ -12,9 +12,13 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $data = Customer::all();
+        if ($request->has('search')) {
+            $data = Customer::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
+        } else {
+            $data = Customer::paginate(25);
+        }
         return view('customer.customer', compact('data'));
     }
 
