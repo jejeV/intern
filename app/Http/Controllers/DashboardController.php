@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stasiun;
+use App\Models\Customer;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
-class StasiunController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->has('search')){
-            $data = Stasiun::where('nama_stasiun','LIKE', '%' . $request->search. '%')->orWhere('kodkod', 'LIKE', '%' . $request->search . '%')->paginate(25);
-        }else{
-            $data = Stasiun::paginate(25);
-        }
-        return view('stasiun.stasiun', compact('data'));
+        $stasiun = Stasiun::count();
+        $customer = Customer::count();
+        $ticket = Ticket::count();
+        return view('dashboard', compact('stasiun', 'customer', 'ticket'));
     }
 
     /**
@@ -40,19 +40,7 @@ class StasiunController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'daop' => 'required',
-            'nama_stasiun' => 'required',
-            'kodkod' => 'required',
-            'kmtsta' => 'required',
-            'line' => 'required',
-            'remark' => 'required',
-            'rel_aktif_no_bb' => 'required',
-            'ring' => 'required',
-            'segmen' => 'required',
-        ]);
-        $data = Stasiun::create($request->all());
-        return redirect()->route('stasiun.index')->with('success', 'Create Success !!');
+        //
     }
 
     /**
@@ -84,12 +72,9 @@ class StasiunController extends Controller
      * @param  \App\Models\Stasiun  $stasiun
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Stasiun $stasiun)
     {
-        $data = Stasiun::find($id);
-        $data->update($request->all());
-
-        return redirect()->route('stasiun.index')->with('edit', 'Edit Success !!');
+        //
     }
 
     /**
@@ -98,10 +83,8 @@ class StasiunController extends Controller
      * @param  \App\Models\Stasiun  $stasiun
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Stasiun $stasiun)
     {
-        $data = Stasiun::find($id);
-        $data->delete();
-        return redirect()->route('stasiun.index')->with('delete', 'Delete Success !!');
+        //
     }
 }

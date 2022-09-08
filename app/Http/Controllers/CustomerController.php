@@ -12,9 +12,13 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $data = Customer::all();
+        if ($request->has('search')) {
+            $data = Customer::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
+        } else {
+            $data = Customer::paginate(25);
+        }
         return view('customer.customer', compact('data'));
     }
 
@@ -61,7 +65,7 @@ class CustomerController extends Controller
             'node_b' => 'required',
         ]);
         $data = Customer::create($request->all());
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.index')->with('success', 'Create Success !!');
     }
 
     /**
@@ -98,7 +102,7 @@ class CustomerController extends Controller
         $data = Customer::find($id);
         $data->update($request->all());
 
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.index')->with('edit', 'Edit Success !!');
     }
 
     /**
@@ -111,6 +115,6 @@ class CustomerController extends Controller
     {
         $data = Customer::find($id);
         $data->delete();
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.index')->with('delete', 'Delete Success !!');
     }
 }

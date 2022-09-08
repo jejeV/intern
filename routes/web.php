@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TicketController;
@@ -18,9 +20,8 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('login.register');
-});
+
+Route::resource('/', DashboardController::class);
 
 Route::resource('/stasiun', StasiunController::class);
 
