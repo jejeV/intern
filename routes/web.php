@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\StasiunController;
-use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\StasiunController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('ticket.ticket');
-// });
+Route::get('/', function () {
+    return view('login.register');
+});
 
 Route::resource('/stasiun', StasiunController::class);
 
 Route::resource('/ticket', TicketController::class);
 
 Route::resource('/customer', CustomerController::class);
+
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
