@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Center;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -18,8 +19,9 @@ class CustomerController extends Controller
             $data = Customer::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
             $data = Customer::paginate(25);
+            $center = Center::all();
         }
-        return view('customer.customer', compact('data'));
+        return view('customer.customer', compact('data','center'));
     }
 
     /**
@@ -61,7 +63,7 @@ class CustomerController extends Controller
             'service' => 'required',
             'project' => 'required',
             'bandwidth' => 'required',
-            'node_a' => 'required',
+            'center_id' => 'required',
             'node_b' => 'required',
         ]);
         $data = Customer::create($request->all());
