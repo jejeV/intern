@@ -5,20 +5,20 @@
 @section('container')
 @if (session()->has('success'))
 <div class="alert alert-success alert-dismissible" role="alert">
-  {{ session('success') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 @if (session()->has('edit'))
 <div class="alert alert-warning alert-dismissible" role="alert">
-  {{ session('edit') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{ session('edit') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 @if (session()->has('delete'))
 <div class="alert alert-danger alert-dismissible" role="alert">
-  {{ session('delete') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{ session('delete') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 <div class="card">
@@ -183,8 +183,15 @@
                                     </div>
                                     <div class="row g-2">
                                         <div class="col mb-3">
-                                            <label for="emailBackdrop" class="form-label">Node A</label>
-                                            <input type="text" name="node_a" class="form-control" placeholder="Bandung">
+                                            <label for="exampleFormControlSelect1" class="form-label">Node A</label>
+                                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="center_id">
+                                                <option selected>Option</option>
+                                                @foreach ($center as $data1)
+                                                {{-- @if ($data->level == 'guru')    --}}
+                                                <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
+                                                {{-- @endif --}}
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="col mb-3">
                                             <label for="dobBackdrop" class="form-label">Node B</label>
@@ -248,7 +255,7 @@
                     <td>{{ $row->service }}</td>
                     <td>{{ $row->project }}</td>
                     <td>{{ $row->bandwidth }}</td> --}}
-                    <td>{{ $row->node_a }}</td>
+                    <td>{{ $row->center->data_center }}</td>
                     <td>{{ $row->node_b }}</td>
                     <td class="d-flex">
                         <div class="me-2">
@@ -422,9 +429,13 @@
                     </div>
                     <div class="row g-2">
                         <div class="col mb-3">
-                            <label for="emailBackdrop" class="form-label">Node A</label>
-                            <input type="text" name="node_a" value="{{ $customer->node_a }}" class="form-control"
-                                placeholder="Bandung">
+                            <label for="exampleFormControlSelect1" class="form-label">Node A</label>
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="center_id">
+                                <option selected>{{ $customer->center->data_center }}</option>
+                                @foreach ($center as $data1)
+                                <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col mb-3">
                             <label for="dobBackdrop" class="form-label">Node B</label>
@@ -585,7 +596,7 @@
                     <div class="row g-2">
                         <div class="col mb-3">
                             <label for="emailBackdrop" class="form-label">Node A</label>
-                            <input type="text" name="node_a" value="{{ $customer->node_a }}" class="form-control"
+                            <input type="text" name="node_a" value="{{ $customer->center->data_center }}" class="form-control"
                                 placeholder="Bandung" disabled>
                         </div>
                         <div class="col mb-3">
