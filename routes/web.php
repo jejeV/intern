@@ -1,13 +1,14 @@
 <?php
 
 
-use App\Http\Controllers\DashboardController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\StasiunController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::resource('/customer', CustomerController::class);
 Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
