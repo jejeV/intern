@@ -1,7 +1,7 @@
 @extends('layouts.partials.main')
 
 @section('container')
-@if (session()->has('success'))
+    @if (session()->has('success'))
 <div class="alert alert-success alert-dismissible" role="alert">
   {{ session('success') }}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -28,7 +28,7 @@
             <div class="me-2">
                 <div class="d-flex align-items-center">
                     {{-- Search --}}
-                    <form action="{{ url('/ticket') }}" method="GET" class="me-2 me-lg-3">
+                    <form action="{{ url('/data-center') }}" method="GET" class="me-2 me-lg-3">
                         <div class="input-group input-group-merge">
                             <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
                             <input type="search" name="search" class="form-control" placeholder="Search..."
@@ -38,14 +38,14 @@
                     </form>
                     {{-- End Search --}}
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary text-uppercase" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#modalCenter">
                         Add
                     </button>
                 </div>
 
                 <!-- Modal -->
-                <form method="POST" action="{{ url('ticket') }}">
+                <form method="POST" action="{{ url('data-center') }}">
                     @csrf
                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -58,22 +58,15 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Ticket</label>
-                                            <input type="text" name="t_ticket" id="nameWithTitle" class="form-control"
+                                            <label for="nameWithTitle" class="form-label">Data Center</label>
+                                            <input type="text" name="data_center" id="nameWithTitle" class="form-control"
                                                 placeholder="Enter Name" autofocus />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Posting</label>
-                                            <input type="text" name="posting" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" autofocus />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Ticket Trouble Status</label>
-                                            <input type="text" name="tt_stat" id="nameWithTitle" class="form-control"
+                                            <label for="nameWithTitle" class="form-label">Area</label>
+                                            <input type="text" name="area" id="nameWithTitle" class="form-control"
                                                 placeholder="Enter Name" autofocus />
                                         </div>
                                     </div>
@@ -96,9 +89,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Ticket Trouble</th>
-                    <th>Posting</th>
-                    <th>Ticket Status</th>
+                    <th>Data Center</th>
+                    <th>Area</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -106,9 +98,8 @@
                 @foreach ($data as $index => $row)
                 <tr>
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
-                    <td>{{ $row->t_ticket }}</td>
-                    <td>{{ $row->posting }}</td>
-                    <td>{{ $row->tt_stat }}</td>
+                    <td>{{ $row->data_center }}</td>
+                    <td>{{ $row->area }}</td>
                     <td class="d-flex">
                         <div class="me-2">
                             <!-- Button trigger modal -->
@@ -117,7 +108,7 @@
                                 <i class='bx bxs-edit-alt'></i>
                             </button>
                         </div>
-                        <form method="POST" action="{{ url('ticket/'.$row->id) }}">
+                        <form method="POST" action="{{ url('data-center/'.$row->id) }}">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger btn-sm"><i class='bx bx-trash'></i></button>
@@ -134,12 +125,12 @@
 </div>
 
 {{-- Edit --}}
-@foreach ($data as $ticket)
+@foreach ($data as $center)
 <!-- Modal -->
-<form method="POST" action="{{ url('ticket/'.$ticket->id) }}">
+<form method="POST" action="{{ url('data-center/'.$center->id) }}">
     @csrf
     @method('put')
-    <div class="modal fade" id="modalCenter2-{{ $ticket->id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalCenter2-{{ $center->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -150,21 +141,14 @@
                     <div class="row">
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Ticket Trouble</label>
-                            <input type="text" name="t_ticket" value="{{ $ticket->t_ticket }}" id="nameWithTitle"
+                            <input type="text" name="data_center" value="{{ $center->data_center }}" id="nameWithTitle"
                                 class="form-control" placeholder="Enter Name" autofocus />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Posting</label>
-                            <input type="text" name="posting" value="{{ $ticket->posting }}"
-                                id="nameWithTitle" class="form-control" placeholder="Enter Name" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-lg-2 mb-1">
-                            <label for="nameWithTitle" class="form-label">Ticket Status</label>
-                            <input type="text" name="tt_stat" value="{{ $ticket->tt_stat }}"
+                            <input type="text" name="area" value="{{ $center->area }}"
                                 id="nameWithTitle" class="form-control" placeholder="Enter Name" />
                         </div>
                     </div>

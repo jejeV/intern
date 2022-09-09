@@ -39,7 +39,7 @@
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary text-uppercase" data-bs-toggle="modal"
                     data-bs-target="#largeModal">
-                    Add Customer
+                    Add
                 </button>
 
                 <!-- Modal Create -->
@@ -273,7 +273,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="d-flex justify-content-end mt-2">
+        <div class="d-flex justify-content-end mt-2 me-lg-3 me-2">
             {{ $data->onEachSide(1)->links() }}
         </div>
     </div>

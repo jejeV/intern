@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stasiun;
 use App\Models\Customer;
 use App\Models\Ticket;
+use App\Models\Center;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -19,7 +20,8 @@ class DashboardController extends Controller
         $stasiun = Stasiun::count();
         $customer = Customer::count();
         $ticket = Ticket::count();
-        return view('dashboard', compact('stasiun', 'customer', 'ticket'));
+        $center = Center::count();
+        return view('dashboard', compact('stasiun', 'customer', 'ticket','center'));
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\CenterController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -24,6 +24,8 @@ use App\Http\Controllers\RegisterController;
 Route::resource('/', DashboardController::class);
 
 Route::resource('/stasiun', StasiunController::class);
+
+Route::resource('/data-center', CenterController::class);
 
 Route::resource('/ticket', TicketController::class);
 

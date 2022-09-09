@@ -59,5 +59,24 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card card-stats mb-4 mb-xl-0 bg-info">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <a href="/ticket">
+                            <h5 class="card-title text-uppercase mb-2 text-white">Data Center</h5>
+                        </a>
+                        <span class="h2 font-weight-bold text-white">{{ $center }}</span>
+                    </div>
+                    <div class="col-auto">
+                        <div class="icon">
+                            <i class='bx bx-data text-white'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Center extends Model
 {
     use HasFactory;
 
-    protected $table = 'customers';
+    protected $table = 'centers';
 
     protected $guarded = ['id'];
 
-    public function center()
+    public function customer()
     {
-        return $this->belongsTo(Center::class);
+        return $this->hasMany(Stasiun::class);
     }
 }
