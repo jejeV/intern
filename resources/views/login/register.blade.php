@@ -154,6 +154,19 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlSelect1" class="form-label">Example select</label>
+                                <select class="form-select @error('level') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="level">
+                                    <option selected>Select</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="customer">Customer</option></option>
+                                </select>
+                                @error('level')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
                             <button class="btn btn-primary d-grid w-100" type="submit">
                                 Register
                             </button>
