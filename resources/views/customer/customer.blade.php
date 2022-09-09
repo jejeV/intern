@@ -1,5 +1,7 @@
 @extends('layouts.partials.main')
 
+@section('title', 'Customer')
+
 @section('container')
 @if (session()->has('success'))
 <div class="alert alert-success alert-dismissible" role="alert">

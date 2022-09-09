@@ -1,5 +1,7 @@
 @extends('layouts.partials.main')
 
+@section('title', 'Data Center')
+
 @section('container')
     @if (session()->has('success'))
 <div class="alert alert-success alert-dismissible" role="alert">
@@ -38,7 +40,7 @@
                     </form>
                     {{-- End Search --}}
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-primary text-uppercase" data-bs-toggle="modal"
                         data-bs-target="#modalCenter">
                         Add
                     </button>
