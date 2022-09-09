@@ -1,14 +1,13 @@
 <?php
 
-
-
+use App\Http\Controllers\CenterController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\StasiunController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +24,8 @@ use App\Http\Controllers\DashboardController;
 Route::resource('/', DashboardController::class);
 
 Route::resource('/stasiun', StasiunController::class);
+
+Route::resource('/data-center', CenterController::class);
 
 Route::resource('/ticket', TicketController::class);
 

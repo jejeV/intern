@@ -45,6 +45,13 @@
               </a>
             </li>
 
+            <li class="menu-item {{ Request::is('data-center*') ? 'active' : '' }}">
+              <a href="/data-center" class="menu-link">
+                <i class='bx bx-data' style="margin-right: 10px;"></i>
+                <div data-i18n="Analytics">Data Center</div>
+              </a>
+            </li>
+
             {{-- <!-- Layouts -->
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Pages</span>
