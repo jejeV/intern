@@ -66,7 +66,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <a href="/ticket">
+                        <a href="/data-center">
                             <h5 class="card-title text-uppercase mb-2 text-white">Data Center</h5>
                         </a>
                         <span class="h2 font-weight-bold text-white">{{ $center }}</span>
