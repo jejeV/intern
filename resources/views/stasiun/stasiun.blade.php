@@ -1,5 +1,7 @@
 @extends('layouts.partials.main')
 
+@section('title', 'Stasiun')
+
 @section('container')
 @if (session()->has('success'))
 <div class="alert alert-success alert-dismissible" role="alert">
@@ -38,7 +40,7 @@
                     </form>
                     {{-- End Search --}}
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-primary text-uppercase" data-bs-toggle="modal"
                         data-bs-target="#modalCenter">
                         Add
                     </button>
@@ -178,7 +180,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="d-flex justify-content-end mt-2">
+        <div class="d-flex justify-content-end mt-2 me-lg-3 me-2">
             {{ $data->onEachSide(1)->links() }}
         </div>
     </div>
