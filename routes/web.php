@@ -21,17 +21,19 @@ use App\Http\Controllers\RegisterController;
 */
 
 
-Route::resource('/', DashboardController::class);
+Route::resource('/', DashboardController::class)->except('show','create','store','edit','update','destroy')->middleware('auth');
 
-Route::resource('/stasiun', StasiunController::class);
+Route::resource('/stasiun', StasiunController::class)->except('create','show','edit')->middleware('auth');
 
-Route::resource('/data-center', CenterController::class);
+Route::resource('/data-center', CenterController::class)->except('create', 'show', 'edit')->middleware('auth');
 
-Route::resource('/ticket', TicketController::class);
+Route::resource('/ticket', TicketController::class)->except('create', 'show', 'edit')->middleware('auth');
 
-Route::resource('/customer', CustomerController::class);
+Route::resource('/customer', CustomerController::class)->except('create', 'show', 'edit')->middleware('auth');
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('postlogout');
 
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
