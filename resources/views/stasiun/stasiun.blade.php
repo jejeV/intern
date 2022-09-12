@@ -132,7 +132,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Daop</th>
+                    <th>Daop</th> 
                     <th>Nama Stasiun</th>
                     <th>Kodkod</th>
                     <th>Kmtsta</th>
@@ -144,7 +144,7 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                @foreach ($data as $index => $row)
+                @foreach   ($data as $index => $row)
                 <tr>
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->daop }}</td>
