@@ -47,7 +47,7 @@
                 <!-- Modal Create -->
                 <form method="POST" action="{{ url('customer') }}">
                     @csrf
-                    <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal fade" id="largeModal" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -75,6 +75,24 @@
                                             <label for="nameLarge" class="form-label">Company Address</label>
                                             <input type="text" name="companyaddress" class="form-control"
                                                 placeholder="Company Address">
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col mb-3">
+                                            <label for="exampleFormControlSelect1" class="form-label">Node A</label>
+                                            <select class="form-select" id="node_a" aria-label="Default select example"
+                                                name="center_id">
+                                                <option value=""></option>
+                                                @foreach ($center as $data1)
+                                                {{-- @if ($data->level == 'guru')    --}}
+                                                <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
+                                                {{-- @endif --}}
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="dobBackdrop" class="form-label">Node B</label>
+                                            <input type="text" name="node_b" class="form-control" placeholder="Jakarta">
                                         </div>
                                     </div>
                                     <div class="row g-2">
@@ -179,23 +197,6 @@
                                             <label for="nameLarge" class="form-label">Bandwidth</label>
                                             <input type="text" name="bandwidth" class="form-control"
                                                 placeholder="Bandwidth">
-                                        </div>
-                                    </div>
-                                    <div class="row g-2">
-                                        <div class="col mb-3">
-                                            <label for="exampleFormControlSelect1" class="form-label">Node A</label>
-                                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="center_id">
-                                                <option selected>Option</option>
-                                                @foreach ($center as $data1)
-                                                {{-- @if ($data->level == 'guru')    --}}
-                                                <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
-                                                {{-- @endif --}}
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="dobBackdrop" class="form-label">Node B</label>
-                                            <input type="text" name="node_b" class="form-control" placeholder="Jakarta">
                                         </div>
                                     </div>
                                 </div>
@@ -324,6 +325,23 @@
                     </div>
                     <div class="row g-2">
                         <div class="col mb-3">
+                            <label for="exampleFormControlSelect1" class="form-label">Node A</label>
+                            <select class="form-select" id="edit_a" aria-label="Default select example" name="center_id">
+                                <option selected>{{ $customer->center->data_center }}</option>
+                                @foreach ($center as $data1)
+                                {{-- @if ($data->level == 'guru')    --}}
+                                <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
+                                {{-- @endif --}}
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="dobBackdrop" class="form-label">Node B</label>
+                            <input type="text" name="node_b" class="form-control" placeholder="Jakarta" value="{{ $customer->node_b }}">
+                        </div>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col mb-3">
                             <label for="emailBackdrop" class="form-label">Phone</label>
                             <input type="text" name="phone" value="{{ $customer->phone }}" class="form-control"
                                 placeholder="081234567">
@@ -425,22 +443,6 @@
                             <label for="nameLarge" class="form-label">Bandwidth</label>
                             <input type="text" name="bandwidth" value="{{ $customer->bandwidth }}" class="form-control"
                                 placeholder="Bandwidth">
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col mb-3">
-                            <label for="exampleFormControlSelect1" class="form-label">Node A</label>
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="center_id">
-                                <option selected>{{ $customer->center->data_center }}</option>
-                                @foreach ($center as $data1)
-                                <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col mb-3">
-                            <label for="dobBackdrop" class="form-label">Node B</label>
-                            <input type="text" name="node_b" value="{{ $customer->node_b }}" class="form-control"
-                                placeholder="Jakarta">
                         </div>
                     </div>
                 </div>
@@ -596,8 +598,8 @@
                     <div class="row g-2">
                         <div class="col mb-3">
                             <label for="emailBackdrop" class="form-label">Node A</label>
-                            <input type="text" name="node_a" value="{{ $customer->center->data_center }}" class="form-control"
-                                placeholder="Bandung" disabled>
+                            <input type="text" name="node_a" value="{{ $customer->center->data_center }}"
+                                class="form-control" placeholder="Bandung" disabled>
                         </div>
                         <div class="col mb-3">
                             <label for="dobBackdrop" class="form-label">Node B</label>
@@ -608,7 +610,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -619,3 +620,28 @@
 
 </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    $("#node_a").select2({
+        width: '100%',
+        height: '5px',
+        dropdownParent: $("#largeModal"),
+        placeholder: "Select a Option",
+        allowClear: true
+    });
+
+    $("#edit_a").select2({
+        width: '100%',
+        height: '5px',
+        dropdownParent: $("#modalCenter2-{{ $customer->id }}"),
+        // theme: "bootstrap"
+    });
+
+    // $('#node_a').select2({
+    // dropdownParent: $('#largeModal'),
+    // selectOnClose: true
+    // });
+
+</script>
+@endpush

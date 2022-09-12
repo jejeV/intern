@@ -16,6 +16,7 @@
 
     <title>Weave | @yield('title')</title>
 
+
     <meta name="description" content="" />
 
     <!-- Favicon -->
@@ -41,8 +42,6 @@
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
 
-    
-
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -51,6 +50,10 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   </head>
 
   <body>
@@ -118,6 +121,7 @@
     </div>
     <!-- / Layout wrapper -->
 
+    @stack('scripts')
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -140,5 +144,6 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   </body>
 </html>
