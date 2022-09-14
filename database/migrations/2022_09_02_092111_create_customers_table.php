@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->date('inputdate');
             $table->string('companyname');
             $table->string('companyaddress');
             $table->string('phone');
@@ -36,7 +35,7 @@ return new class extends Migration
             $table->string('project');
             $table->string('bandwidth');
             $table->foreignId('center_id');
-            $table->string('node_b');
+            $table->foreignId('stasiun_id');
             $table->timestamps();
         });
     }
