@@ -24,4 +24,9 @@ class Customer extends Model
     {
         return $this->belongsTo(Stasiun::class);
     }
+
+    public function service()
+    {
+        return $this->hasMany(Service::class);
+    }
 }

@@ -35,7 +35,7 @@ class CustomerController extends Controller
     {
         $center = Center::all();
         $stasiun = Stasiun::all();
-        return view('customer.tambahcustomer', compact('data', 'center', 'stasiun'));
+        return view('customer.tambahcustomer', compact('center', 'stasiun'));
     }
 
     /**
