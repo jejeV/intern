@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Center;
+use App\Models\Stasiun;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -18,10 +19,11 @@ class CustomerController extends Controller
         if ($request->has('search')) {
             $data = Customer::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
-            $data = Customer::paginate(25);
             $center = Center::all();
+            $stasiun = Stasiun::all();
+            $data = Customer::paginate(25);
         }
-        return view('customer.customer', compact('data','center'));
+        return view('customer.customer', compact('data'));
     }
 
     /**
@@ -31,7 +33,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $center = Center::all();
+        $stasiun = Stasiun::all();
+        return view('customer.tambahcustomer', compact('data', 'center', 'stasiun'));
     }
 
     /**
@@ -43,7 +47,6 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'inputdate' => 'required',
             'companyname' => 'required',
             'companyaddress' => 'required',
             'phone' => 'required',
@@ -64,7 +67,7 @@ class CustomerController extends Controller
             'project' => 'required',
             'bandwidth' => 'required',
             'center_id' => 'required',
-            'node_b' => 'required',
+            'stasiun_id' => 'required',
         ]);
         $data = Customer::create($request->all());
         return redirect()->route('customer.index')->with('success', 'Create Success !!');
@@ -87,9 +90,12 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        //
+        $data = Customer::find($id);
+        $center = Center::all();
+        $stasiun = Stasiun::all();
+        return view('customer.editcustomer', compact('data','center','stasiun'));
     }
 
     /**
