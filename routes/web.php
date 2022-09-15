@@ -29,7 +29,7 @@ Route::resource('/data-center', CenterController::class)->except('create', 'show
 
 Route::resource('/ticket', TicketController::class)->except('create', 'show', 'edit')->middleware('auth');
 
-Route::resource('/customer', CustomerController::class)->except('create', 'show', 'edit')->middleware('auth');
+Route::resource('/customer', CustomerController::class)->except('show')->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
