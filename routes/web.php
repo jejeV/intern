@@ -9,6 +9,7 @@ use App\Http\Controllers\StasiunController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PerangkatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::resource('/ticket', TicketController::class)->except('create', 'show', 'e
 Route::resource('/customer', CustomerController::class)->except('show')->middleware('auth');
 
 Route::resource('/service', ServiceController::class);
+
+Route::resource('/perangkat', PerangkatController::class)->except('create', 'show', 'edit')->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);

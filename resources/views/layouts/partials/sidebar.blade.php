@@ -51,5 +51,13 @@
                 <div data-i18n="Analytics">Data Center</div>
               </a>
             </li>
+
+             <li class="menu-item {{ Request::is('perangkat*') ? 'active' : '' }}">
+              <a href="/data-center" class="menu-link">
+                <i class='bx bxs-devices' style="margin-right: 10px"></i>
+                <div data-i18n="Analytics">Perangkat</div>
+              </a>
+            </li>
+          </ul>
           </ul>
         </aside>
