@@ -52,12 +52,18 @@
               </a>
             </li>
 
-             <li class="menu-item {{ Request::is('perangkat*') ? 'active' : '' }}">
-              <a href="/data-center" class="menu-link">
-                <i class='bx bxs-devices' style="margin-right: 10px"></i>
-                <div data-i18n="Analytics">Perangkat</div>
+            <li class="menu-item {{ Request::is('service*') ? 'active' : '' }}">
+              <a href="/service" class="menu-link">
+                <i class='bx bx-station' style="margin-right: 10px;"></i>
+                <div data-i18n="Analytics">Service</div>
               </a>
             </li>
-          </ul>
+
+            <li class="menu-item {{ Request::is('perangkat*') ? 'active' : '' }}">
+              <a href="/perangkat" class="menu-link">
+                <i class='bx bxs-devices' style="margin-right: 10px"></i>
+                <div data-i18n="Analytics">Service</div>
+              </a>
+            </li>
           </ul>
         </aside>

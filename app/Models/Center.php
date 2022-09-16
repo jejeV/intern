@@ -15,6 +15,11 @@ class Center extends Model
 
     public function customer()
     {
-        return $this->hasMany(Stasiun::class);
+        return $this->hasMany(Customer::class);
+    }
+
+    public function service()
+    {
+        return $this->hasMany(Service::class);
     }
 }
