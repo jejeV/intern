@@ -147,17 +147,39 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="emailBackdrop" class="form-label">Cable Lenght Node A</label>
-                                    <input type="text" name="cable_lenght_node_a" class="form-control" placeholder="Cable Lenght Node A">
+                                    <select class="form-select" id="cable_a" aria-label="Default select example" name="cable_lenght_node_a">
+                                        <option value=""></option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="35">35</option>
+                                        <option value="40">40</option>
+                                        <option value="45">45</option>
+                                        <option value="50">50</option>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">Cable Lenght Node B</label>
-                                    <input type="text" name="cable_lenght_node_b" class="form-control" placeholder="Cable Lenght Node B">
+                                    <select class="form-select" id="cable_b" aria-label="Default select example" name="cable_lenght_node_b">
+                                        <option value=""></option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="35">35</option>
+                                        <option value="40">40</option>
+                                        <option value="45">45</option>
+                                        <option value="50">50</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-
                         <button type="submit" class="btn btn-primary d-flex justify-content-end">Submit</button>
-
                     </form>
                 </div>
             </form>
@@ -199,6 +221,20 @@
         width: '100%',
         height: '20px',
         placeholder: "Select a Status Node B",
+        allowClear: true
+    });
+
+    $("#cable_a").select2({
+        width: '100%',
+        height: '20px',
+        placeholder: "Select a Cable Lenght Node A",
+        allowClear: true
+    });
+
+    $("#cable_b").select2({
+        width: '100%',
+        height: '20px',
+        placeholder: "Select a Cable Lenght Node A",
         allowClear: true
     });
 
