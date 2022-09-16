@@ -15,23 +15,25 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('status_nodea');
-            $table->string('detail_status_nodea');
-            $table->string('location_nodea');
-            $table->string('rack_nodea');
-            $table->string('swicth_nodea');
-            $table->string('request_number_nodea');
-            $table->string('label_nodea');
-            $table->string('cable_lenght_nodea');
-            $table->string('status_nodeb');
-            $table->string('detail_status_nodeb');
-            $table->string('location_nodeb');
-            $table->string('rack_nodeb');
-            $table->string('switch_nodeb');
-            $table->string('request_number_nodeb');
-            $table->string('label_nodeb');
-            $table->string('cable_lenght_nodeb');
+            $table->foreignId('center_id');
+            $table->foreignId('stasiun_id');
+            $table->foreignId('customer_id');
+            $table->enum('status_node_a',['submit interkoneksi diportal apjii', 'aproved nni by partner (isp)', 'pre survey by apjii, update cable length', 'drop kabel patchcord', 'penarikan kabel patchcord by apjii', 'konfirmasi jadwal aktivasi by customer', 'penjadwalan aktivasi by ije', 'node a aktif']);
+            $table->string('detail_status_node_a');
+            $table->string('location_node_a');
+            $table->string('rack_node_a');
+            $table->string('swicth_node_a');
+            $table->string('request_number_node_a');
+            $table->string('label_node_a');
+            $table->string('cable_lenght_node_a');
+            $table->enum('status_node_b',['pre survey by isp & ije', 'penarikan kabel interkoneksi stasiun', 'konfirmasi jadwal aktivasi by customer', 'penjadwalan aktivasi by ije', 'node b aktif']);
+            $table->string('detail_status_node_b');
+            $table->string('location_node_b');
+            $table->string('rack_node_b');
+            $table->string('switch_node_b');
+            $table->string('request_number_node_b');
+            $table->string('label_node_b');
+            $table->string('cable_lenght_node_b');
             $table->timestamps();
         });
     }
