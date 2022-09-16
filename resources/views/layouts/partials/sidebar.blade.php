@@ -62,7 +62,7 @@
             <li class="menu-item {{ Request::is('perangkat*') ? 'active' : '' }}">
               <a href="/perangkat" class="menu-link">
                 <i class='bx bxs-devices' style="margin-right: 10px"></i>
-                <div data-i18n="Analytics">Service</div>
+                <div data-i18n="Analytics">Perangkat</div>
               </a>
             </li>
           </ul>

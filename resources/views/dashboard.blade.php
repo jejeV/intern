@@ -107,13 +107,13 @@
                 <div class="row">
                     <div class="col-xl-10 col-12">
                         <a href="/customer">
-                            <h5 class="card-title text-uppercase mb-2 text-white">customer</h5>
+                            <h5 class="card-title text-uppercase mb-2 text-white">Perangkat</h5>
                         </a>
                         <span class="h2 font-weight-bold text-white">{{ $customer }}</span>
                     </div>
                     <div class="col-xl-2 col-12">
                         <div class="icon">
-                            <i class='bx bx-user text-white'></i>
+                            <i class='bx bxs-devices text-white'></i>
                         </div>
                     </div>
                 </div>
@@ -121,19 +121,34 @@
         </div>
     </div>
     <div class="col-xl-6 col-12">
-        <div class="card card-stats mb-4 mb-xl-0 bg-white">
+        <div class="card card-stats mb-4 mb-xl-0 bg-primary">
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-10 col-12">
-                        <h5 class="card-title text-uppercase mb-2" style="color: #000">Aktifitas Log</h5>
+                        <h5 class="card-title text-bold mb-2 text-white">Aktifitas Log</h5>
                     </div>
                     <div class="col-xl-2 col-12">
                         <div class="icon">
-                            <i class='bx bx-user' style="color: #000"></i>
+                            <i class='bx bx-user text-white'></i>
                         </div>
                     </div>
                     <hr class="mt-1 mb-1">
-                    {{-- <span class="h2 font-weight-bold text-dark">{{ $customer }}</span> --}}
+                    <div class="col-md">
+                        <div class="card mt-3">
+                            <div class="row g-0">
+                                <div class="col">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Noc 1</h5>
+                                        <p class="card-text">
+                                           Update Status From On Progress To Done
+                                        </p>
+                                        <p class="card-text"><small class="text-muted">2022-09-13</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
