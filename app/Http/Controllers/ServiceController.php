@@ -18,11 +18,9 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $data = Service::where('data_center', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            // $data = Service::where('customer_id', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $data = Service::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
-            $stasiun = Stasiun::all();
-            $center = Center::all();
-            $customer = Customer::all();
             $data = Service::paginate(25);
         }
         return view('service.service', compact('data'));
@@ -35,7 +33,10 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        $customer = Customer::all();
+        $center = Center::all();
+        $stasiun = Stasiun::all();
+        return view('service.tambahservice', compact('center', 'stasiun','customer'));
     }
 
     /**
@@ -46,7 +47,29 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'center_id' => 'required',
+            'stasiun_id' => 'required',
+            'customer_id' => 'required',
+            'status_node_a' => 'required',
+            'detail_status_node_a' => 'required',
+            'location_node_a' => 'required',
+            'rack_node_a' => 'required',
+            'swicth_node_a' => 'required',
+            'request_number_node_a' => 'required',
+            'label_node_a' => 'required',
+            'cable_lenght_node_a' => 'required',
+            'status_node_b' => 'required',
+            'detail_status_node_b' => 'required',
+            'location_node_b' => 'required',
+            'rack_node_b' => 'required',
+            'switch_node_b' => 'required',
+            'request_number_node_b' => 'required',
+            'label_node_b' => 'required',
+            'cable_lenght_node_b' => 'required',
+        ]);
+        $data = Service::create($request->all());
+        return redirect()->route('service.index')->with('success', 'Create Success !!');
     }
 
     /**
@@ -68,7 +91,11 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Service::find($id);
+        $center = Center::all();
+        $stasiun = Stasiun::all();
+        $customer = Customer::all();
+        return view('service.editservice', compact('data', 'center', 'stasiun', 'customer'));
     }
 
     /**
@@ -80,7 +107,10 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Service::find($id);
+        $data->update($request->all());
+
+        return redirect()->route('service.index')->with('edit', 'Edit Success !!');
     }
 
     /**
@@ -91,6 +121,8 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Service::find($id);
+        $data->delete();
+        return redirect()->route('service.index')->with('delete', 'Delete Success !!');
     }
 }

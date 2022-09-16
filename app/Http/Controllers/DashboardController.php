@@ -21,7 +21,8 @@ class DashboardController extends Controller
         $customer = Customer::count();
         $ticket = Ticket::count();
         $center = Center::count();
-        return view('dashboard', compact('stasiun', 'customer', 'ticket','center'));
+        $service = Center::count();
+        return view('dashboard', compact('stasiun', 'customer', 'ticket','center','service'));
     }
 
     /**
