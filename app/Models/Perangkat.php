@@ -11,5 +11,10 @@ class Perangkat extends Model
 
     protected $table = 'perangkats';
 
-    protected $guarded = ['id',];
+    protected $guarded = ['id'];
+
+    public function service()
+    {
+        return $this->hasMany(Service::class);
+    }
 }
