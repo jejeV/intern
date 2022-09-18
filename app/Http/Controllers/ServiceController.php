@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\Stasiun;
 use App\Models\Center;
 use App\Models\Customer;
+use App\Models\Perangkat;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -36,7 +37,8 @@ class ServiceController extends Controller
         $customer = Customer::all();
         $center = Center::all();
         $stasiun = Stasiun::all();
-        return view('service.tambahservice', compact('center', 'stasiun','customer'));
+        $perangkat = Perangkat::all();
+        return view('service.tambahservice', compact('center', 'stasiun','customer','perangkat'));
     }
 
     /**
@@ -95,7 +97,8 @@ class ServiceController extends Controller
         $center = Center::all();
         $stasiun = Stasiun::all();
         $customer = Customer::all();
-        return view('service.editservice', compact('data', 'center', 'stasiun', 'customer'));
+        $perangkat = Perangkat::all();
+        return view('service.editservice', compact('data', 'center', 'stasiun', 'customer','perangkat'));
     }
 
     /**

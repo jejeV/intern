@@ -6,6 +6,8 @@ use App\Models\Stasiun;
 use App\Models\Customer;
 use App\Models\Ticket;
 use App\Models\Center;
+use App\Models\Perangkat;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -21,8 +23,9 @@ class DashboardController extends Controller
         $customer = Customer::count();
         $ticket = Ticket::count();
         $center = Center::count();
-        $service = Center::count();
-        return view('dashboard', compact('stasiun', 'customer', 'ticket','center','service'));
+        $service = Service::count();
+        $perangkat = Perangkat::count();
+        return view('dashboard', compact('stasiun', 'customer', 'ticket','center','service','perangkat'));
     }
 
     /**

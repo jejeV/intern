@@ -106,10 +106,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-10 col-12">
-                        <a href="/customer">
+                        <a href="/perangkat">
                             <h5 class="card-title text-uppercase mb-2 text-white">Perangkat</h5>
                         </a>
-                        <span class="h2 font-weight-bold text-white">{{ $customer }}</span>
+                        <span class="h2 font-weight-bold text-white">{{ $perangkat }}</span>
                     </div>
                     <div class="col-xl-2 col-12">
                         <div class="icon">
