@@ -6,6 +6,8 @@ use App\Models\Center;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCenterRequest;
 use App\Http\Requests\UpdateCenterRequest;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 
 class CenterController extends Controller
 {
@@ -46,6 +48,7 @@ class CenterController extends Controller
             'data_center' => 'required',
             'area' => 'required',
         ]);
+        Log::createLog(Auth::user()->id, 'Menambah data Center');
         $data = Center::create($request->all());
         return redirect()->route('data-center.index')->with('success', 'Create Success !!');
     }
@@ -84,6 +87,7 @@ class CenterController extends Controller
         $data = Center::find($id);
         $data->update($request->all());
 
+        Log::createLog(Auth::user()->id, 'Mengubah data Center');
         return redirect()->route('data-center.index')->with('edit', 'Edit Success !!');
     }
 

@@ -6,8 +6,10 @@ use App\Models\Stasiun;
 use App\Models\Customer;
 use App\Models\Ticket;
 use App\Models\Center;
+use App\Models\Log;
 use App\Models\Perangkat;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -25,7 +27,19 @@ class DashboardController extends Controller
         $center = Center::count();
         $service = Service::count();
         $perangkat = Perangkat::count();
-        return view('dashboard', compact('stasiun', 'customer', 'ticket','center','service','perangkat'));
+
+        $logs = [];
+        $logQuery = Log::all();
+
+        foreach ($logQuery as $key => $log) {
+            $logs[] = [
+                'name' => User::where('id', $log->users_id)->get()[0]->name,
+                'keterangan' => $log->keterangan,
+                'created_at' => $log->created_at
+            ];
+        }
+
+        return view('dashboard', compact('stasiun', 'customer', 'ticket','center','service','perangkat', 'logs'));
     }
 
     /**
