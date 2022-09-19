@@ -131,12 +131,12 @@
                         </ul>
                     </div><!-- /.card-header -->
                     <div class="card-body"
-                        style="overflow-y: auto; max-height: 300px !important;height: 300px !important;">
+                        style="overflow-y: auto; max-height: 200px !important;height: 200px !important;">
                         <div class="tab-content p-0">
-                            <div class="tab-pane active">
+                        <div class="tab-pane active mt-2">
                                 @foreach ($logs as $log)
-                                    <div class="callout callout-info">
-                                        <p>{{ $log['keterangan'] }}</p>
+                                    <div class="callout callout-info mt-2">
+                                        <p style="margin: 0 !important;">{{ $log['keterangan'] }}</p>
                                         <small>Pengubah : {{ $log['name'] }}<br>{{ $log['created_at'] }}</small>
                                     </div>
                                 @endforeach
