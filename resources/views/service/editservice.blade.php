@@ -112,11 +112,21 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="emailBackdrop" class="form-label">Swicth Node A</label>
-                                    <input type="text" name="swicth_node_a" class="form-control" placeholder="Swicth Node A" value="{{ $data->swicth_node_a }}">
+                                    <select class="form-select" id="swicth_a" aria-label="Default select example" name="swicth_node_a">
+                                        <option value="{{ $data->swicth_node_a }}">{{ $data->swicth_node_a }}<option>
+                                        @foreach ($perangkat as $prkt)
+                                        <option value="{{$prkt->perangkat}}">{{ $prkt->perangkat }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">Swicth Node B</label>
-                                    <input type="text" name="switch_node_b" class="form-control" placeholder="Swicth Node B" value="{{ $data->switch_node_b }}">
+                                    <select class="form-select" id="swicth_b" aria-label="Default select example" name="switch_node_b">
+                                        <option value="{{ $data->switch_node_b }}">{{ $data->switch_node_b }}<option>
+                                        @foreach ($perangkat as $prkt)
+                                        <option value="{{$prkt->perangkat}}">{{ $prkt->perangkat }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -135,24 +145,36 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Label Node A</label>
-                                    <input type="text" name="label_node_a" class="form-control" placeholder="Label Node A" value="{{ $data->label_node_a }}">
-                                </div>
-                                <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Label Node B</label>
-                                    <input type="text" name="label_node_b" class="form-control" placeholder="Label Node B" value="{{ $data->label_node_b }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
                                     <label for="emailBackdrop" class="form-label">Cable Lenght Node A</label>
-                                    <input type="text" name="cable_lenght_node_a" class="form-control" placeholder="Cable Lenght Node A" value="{{ $data->cable_lenght_node_a }}">
+                                    <select class="form-select" id="cable_a" aria-label="Default select example" name="cable_lenght_node_a">
+                                        <option value="{{ $data->cable_lenght_node_a }}">{{ $data->cable_lenght_node_a }}</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="35">35</option>
+                                        <option value="40">40</option>
+                                        <option value="45">45</option>
+                                        <option value="50">50</option>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">Cable Lenght Node B</label>
-                                    <input type="text" name="cable_lenght_node_b" class="form-control" placeholder="Cable Lenght Node B" value="{{ $data->cable_lenght_node_b }}">
+                                    <select class="form-select" id="cable_b" aria-label="Default select example" name="cable_lenght_node_b">
+                                        <option value="{{ $data->cable_lenght_node_b }}">{{ $data->cable_lenght_node_b }}</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="35">35</option>
+                                        <option value="40">40</option>
+                                        <option value="45">45</option>
+                                        <option value="50">50</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -191,6 +213,30 @@
     });
     
     $("#status_b").select2({
+        width: '100%',
+        height: '20px',
+        allowClear: true
+    });
+
+    $("#cable_a").select2({
+        width: '100%',
+        height: '20px',
+        allowClear: true
+    });
+
+    $("#cable_b").select2({
+        width: '100%',
+        height: '20px',
+        allowClear: true
+    });
+
+    $("#swicth_a").select2({
+        width: '100%',
+        height: '20px',
+        allowClear: true
+    });
+
+    $("#swicth_b").select2({
         width: '100%',
         height: '20px',
         allowClear: true

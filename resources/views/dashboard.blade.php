@@ -106,10 +106,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-10 col-12">
-                        <a href="/customer">
+                        <a href="/perangkat">
                             <h5 class="card-title text-uppercase mb-2 text-white">Perangkat</h5>
                         </a>
-                        <span class="h2 font-weight-bold text-white">{{ $customer }}</span>
+                        <span class="h2 font-weight-bold text-white">{{ $perangkat }}</span>
                     </div>
                     <div class="col-xl-2 col-12">
                         <div class="icon">
@@ -121,37 +121,31 @@
         </div>
     </div>
     <div class="col-xl-6 col-12">
-        <div class="card card-stats mb-4 mb-xl-0 bg-primary">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-xl-10 col-12">
-                        <h5 class="card-title text-bold mb-2 text-white">Aktifitas Log</h5>
-                    </div>
-                    <div class="col-xl-2 col-12">
-                        <div class="icon">
-                            <i class='bx bx-user text-white'></i>
-                        </div>
-                    </div>
-                    <hr class="mt-1 mb-1">
-                    <div class="col-md">
-                        <div class="card mt-3">
-                            <div class="row g-0">
-                                <div class="col">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Noc 1</h5>
-                                        <p class="card-text">
-                                           Update Status From On Progress To Done
-                                        </p>
-                                        <p class="card-text"><small class="text-muted">2022-09-13</small>
-                                        </p>
+        <div class="card">
+                    <div class="card-header" style="background-color: #263238">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link text-white active"><i class="bi bi-card-heading mr-1"></i>Log
+                                    Pengguna</a>
+                            </li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body"
+                        style="overflow-y: auto; max-height: 300px !important;height: 300px !important;">
+                        <div class="tab-content p-0">
+                            <div class="tab-pane active">
+                                @foreach ($logs as $log)
+                                    <div class="callout callout-info">
+                                        <p>{{ $log['keterangan'] }}</p>
+                                        <small>Pengubah : {{ $log['name'] }}<br>{{ $log['created_at'] }}</small>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
+
+                    </div><!-- /.card-body -->
                 </div>
-            </div>
-        </div>
+
     </div>
 </div>
 @endsection

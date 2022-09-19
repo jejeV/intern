@@ -110,12 +110,24 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Swicth Node A</label>
-                                    <input type="text" name="swicth_node_a" class="form-control" placeholder="Swicth Node A">
+                                    <label for="exampleFormControlSelect1" class="form-label">Swicth Node A</label>
+                                    <select class="form-select" id="swicth_a" aria-label="Default select example" name="swicth_node_a">
+                                        <option value=""></option>
+                                        @foreach ($perangkat as $prkt)
+                                        <option value="{{$prkt->perangkat}}">{{ $prkt->perangkat }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col">
+                                    <div class="col">
                                     <label for="dobBackdrop" class="form-label">Swicth Node B</label>
-                                    <input type="text" name="switch_node_b" class="form-control" placeholder="Swicth Node B">
+                                    <select class="form-select" id="swicth_b" aria-label="Default select example" name="switch_node_b">
+                                        <option value=""></option>
+                                        @foreach ($perangkat as $prkt)
+                                        <option value="{{$prkt->perangkat}}">{{ $prkt->perangkat }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -232,6 +244,20 @@
     });
 
     $("#cable_b").select2({
+        width: '100%',
+        height: '20px',
+        placeholder: "Select a Cable Lenght Node A",
+        allowClear: true
+    });
+
+    $("#swicth_a").select2({
+        width: '100%',
+        height: '20px',
+        placeholder: "Select a Cable Lenght Node A",
+        allowClear: true
+    });
+
+    $("#swicth_b").select2({
         width: '100%',
         height: '20px',
         placeholder: "Select a Cable Lenght Node A",
