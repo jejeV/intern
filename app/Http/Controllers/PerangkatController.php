@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Models\Perangkat;
-
+use Illuminate\Support\Facades\Auth;
 
 class PerangkatController extends Controller
 {
@@ -45,6 +46,7 @@ class PerangkatController extends Controller
             'lokasi' => 'required',
             'perangkat' => 'required',
         ]);
+        Log::createLog(Auth::user()->id, 'Menambah Perangkat');
         $data = Perangkat::create($request->all());
         return redirect()->route('perangkat.index')->with('success', 'Create Success !!');
     }
@@ -82,7 +84,7 @@ class PerangkatController extends Controller
     {
         $data = Perangkat::find($id);
         $data->update($request->all());
-
+        Log::createLog(Auth::user()->id, 'Mengubah Perangkat');
         return redirect()->route('perangkat.index')->with('edit', 'Edit Success !!');
     }
 
@@ -96,6 +98,7 @@ class PerangkatController extends Controller
     {
         $data = Perangkat::find($id);
         $data->delete();
+        Log::createLog(Auth::user()->id, 'Menghapus Perangkat');
         return redirect()->route('perangkat.index')->with('delete', 'Delete Success !!');
     }
 }
