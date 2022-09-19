@@ -24,7 +24,7 @@
 <div class="card">
     <div class="row">
         <div class="col-6">
-            <h5 class="card-header">Stasiun</h5>
+            <h5 class="card-header">Data Center</h5>
         </div>
         <div class="col-6 p-3 d-flex justify-content-end">
             <div class="me-2">
@@ -62,14 +62,14 @@
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Data Center</label>
                                             <input type="text" name="data_center" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" autofocus />
+                                                placeholder="Enter Data Center" autofocus />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Area</label>
                                             <input type="text" name="area" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" autofocus />
+                                                placeholder="Enter Area" autofocus />
                                         </div>
                                     </div>
                                 </div>
@@ -145,14 +145,14 @@
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Ticket Trouble</label>
                             <input type="text" name="data_center" value="{{ $center->data_center }}" id="nameWithTitle"
-                                class="form-control" placeholder="Enter Name" autofocus />
+                                class="form-control" placeholder="Edit Ticket Trouble" autofocus />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Posting</label>
                             <input type="text" name="area" value="{{ $center->area }}"
-                                id="nameWithTitle" class="form-control" placeholder="Enter Name" />
+                                id="nameWithTitle" class="form-control" placeholder="Edit Posting" />
                         </div>
                     </div>
                 </div>
