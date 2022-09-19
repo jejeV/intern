@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -18,8 +19,19 @@ class TicketController extends Controller
             $data = Ticket::where('t_ticket', 'LIKE', '%' . $request->search . '%')->orWhere('tt_stat', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
             $data = Ticket::paginate(25);
+
+            $ti = DB::table('tickets')->select(DB::raw('MAX(RIGHT(t_ticket,7)) as kode'));
+            $tt = "";
+            if($ti->count()>0){
+                foreach($ti->get() as $t){
+                    $tkt = ((int)$t->kode)+1;
+                    $tt = sprintf("%07s", $tkt);
+                }
+            }else{
+                $tt = "0000001";
+            }
         }
-        return view('ticket.ticket', compact('data'));
+        return view('ticket.ticket', compact('data','tt'));
     }
 
     /**
