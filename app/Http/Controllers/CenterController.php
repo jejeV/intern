@@ -101,6 +101,7 @@ class CenterController extends Controller
     {
         $data = Center::find($id);
         $data->delete();
-        return redirect()->route('data-center.index')->with('delete', 'Delete Success !!');
+        Log::createLog(Auth::user()->id, 'Menghapus data Center');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }

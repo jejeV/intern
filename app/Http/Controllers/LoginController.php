@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +22,9 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            Log::createLog(Auth::user()->id, 'Login');
             return redirect()->intended('/')->with('login', 'Login Success !!');
         }
-
         return back()->with('loginError', 'Login Faile!!');
     }
 
@@ -34,7 +35,6 @@ class LoginController extends Controller
         request()->session()->invalidate();
 
         request()->session()->regenerateToken();
-
         return redirect('login')->with('logout', 'Logout Success !!');
     }
 }

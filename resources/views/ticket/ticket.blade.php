@@ -63,7 +63,7 @@
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Ticket</label>
                                             <input type="text" name="t_ticket" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Ticket" autofocus />
+                                             placeholder="Enter Name" autofocus readonly value="{{ 'TT-'.$tt }}" />
                                         </div>
                                     </div>
                                     <div class="row">

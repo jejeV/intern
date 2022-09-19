@@ -6,8 +6,10 @@ use App\Models\Service;
 use App\Models\Stasiun;
 use App\Models\Center;
 use App\Models\Customer;
+use App\Models\Log;
 use App\Models\Perangkat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -70,6 +72,7 @@ class ServiceController extends Controller
             'label_node_b' => 'required',
             'cable_lenght_node_b' => 'required',
         ]);
+        Log::createLog(Auth::user()->id, 'Menambah Service');
         $data = Service::create($request->all());
         return redirect()->route('service.index')->with('success', 'Create Success !!');
     }
@@ -112,7 +115,7 @@ class ServiceController extends Controller
     {
         $data = Service::find($id);
         $data->update($request->all());
-
+        Log::createLog(Auth::user()->id, 'Mengubah Service');
         return redirect()->route('service.index')->with('edit', 'Edit Success !!');
     }
 
@@ -126,6 +129,7 @@ class ServiceController extends Controller
     {
         $data = Service::find($id);
         $data->delete();
-        return redirect()->route('service.index')->with('delete', 'Delete Success !!');
+        Log::createLog(Auth::user()->id, 'Menghapus Service');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }
