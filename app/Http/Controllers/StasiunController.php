@@ -106,6 +106,6 @@ class StasiunController extends Controller
         $data = Stasiun::find($id);
         $data->delete();
         Log::createLog(Auth::user()->id, 'Menghapus Stasiun');
-        return redirect()->route('stasiun.index')->with('delete', 'Delete Success !!');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }

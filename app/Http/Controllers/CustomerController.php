@@ -127,6 +127,6 @@ class CustomerController extends Controller
         $data = Customer::find($id);
         $data->delete();
         Log::createLog(Auth::user()->id, 'Menghapus Customer');
-        return redirect()->route('customer.index')->with('delete', 'Delete Success !!');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }

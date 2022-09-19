@@ -99,6 +99,7 @@
             <tbody class="table-border-bottom-0">
                 @foreach ($data as $index => $row)
                 <tr>
+                    <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->data_center }}</td>
                     <td>{{ $row->area }}</td>
@@ -113,7 +114,7 @@
                         <form method="POST" action="{{ url('data-center/'.$row->id) }}">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class='bx bx-trash'></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
                         </form>
                     </td>
                 </tr>
@@ -169,3 +170,56 @@
 {{-- End Edit --}}
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.btndelete').click(function (e) {
+            e.preventDefault();
+
+            var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+            swal({
+                    title: "Apakah anda yakin?",
+                    text: "Setelah dihapus, Anda tidak dapat memulihkan Data ini lagi!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        var data = {
+                            "_token": $('input[name=_token]').val(),
+                            'id': deleteid,
+                        };
+                        $.ajax({
+                            type: "DELETE",
+                            url: 'data-center/' + deleteid,
+                            data: data,
+                            success: function (response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                    } else {
+                        swal("Data tidak akan tehapus!!");
+                    }
+                });
+        });
+
+    });
+
+</script>
+@endpush

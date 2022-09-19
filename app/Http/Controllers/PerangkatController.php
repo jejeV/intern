@@ -99,6 +99,6 @@ class PerangkatController extends Controller
         $data = Perangkat::find($id);
         $data->delete();
         Log::createLog(Auth::user()->id, 'Menghapus Perangkat');
-        return redirect()->route('perangkat.index')->with('delete', 'Delete Success !!');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }

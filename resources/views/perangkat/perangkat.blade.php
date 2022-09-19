@@ -38,8 +38,8 @@
                 {{-- End Search --}}
                 <!-- Button  create -->
                 <button type="button" class="btn btn-primary text-uppercase" data-bs-toggle="modal"
-                        data-bs-target="#modalCenter">
-                        Add
+                    data-bs-target="#modalCenter">
+                    Add
                 </button>
             </div>
         </div>
@@ -93,11 +93,12 @@
             <tbody class="table-border-bottom-0">
                 @foreach ($data as $index => $row)
                 <tr>
+                    <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->lokasi }}</td>
                     <td>{{ $row->perangkat }}</td>
                     <td class="d-flex">
-                          <div class="me-2">
+                        <div class="me-2">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalCenter2-{{ $row->id }}">
@@ -107,7 +108,8 @@
                         <form method="POST" action="{{ url('perangkat/'.$row->id) }}">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class='bx bx-trash'></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm btndelete"><i
+                                    class='bx bx-trash'></i></button>
                         </form>
                     </td>
                 </tr>
@@ -143,8 +145,8 @@
                     <div class="row">
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Perangkat</label>
-                            <input type="text" name="perangkat" value="{{ $perangkat->perangkat }}"
-                                id="nameWithTitle" class="form-control" placeholder="Nama Perangkat" />
+                            <input type="text" name="perangkat" value="{{ $perangkat->perangkat }}" id="nameWithTitle"
+                                class="form-control" placeholder="Nama Perangkat" />
                         </div>
                     </div>
                 </div>
@@ -161,3 +163,56 @@
 @endforeach
 {{-- End Edit --}}
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.btndelete').click(function (e) {
+            e.preventDefault();
+
+            var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+            swal({
+                    title: "Apakah anda yakin?",
+                    text: "Setelah dihapus, Anda tidak dapat memulihkan Data ini lagi!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        var data = {
+                            "_token": $('input[name=_token]').val(),
+                            'id': deleteid,
+                        };
+                        $.ajax({
+                            type: "DELETE",
+                            url: 'perangkat/' + deleteid,
+                            data: data,
+                            success: function (response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                    } else {
+                        swal("Data tidak akan tehapus!!");
+                    }
+                });
+        });
+
+    });
+
+</script>
+@endpush

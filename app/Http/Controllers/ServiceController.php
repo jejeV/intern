@@ -130,6 +130,6 @@ class ServiceController extends Controller
         $data = Service::find($id);
         $data->delete();
         Log::createLog(Auth::user()->id, 'Menghapus Service');
-        return redirect()->route('service.index')->with('delete', 'Delete Success !!');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }
