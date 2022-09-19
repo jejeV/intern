@@ -21,6 +21,7 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+{{-- Ticket --}}
 <div class="card">
     <div class="row">
         <div class="col-6">
@@ -62,21 +63,21 @@
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Ticket</label>
                                             <input type="text" name="t_ticket" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" autofocus />
+                                                placeholder="Enter Ticket" autofocus />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Posting</label>
                                             <input type="text" name="posting" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" autofocus />
+                                                placeholder="Enter Posting" autofocus />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Ticket Trouble Status</label>
                                             <input type="text" name="tt_stat" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" autofocus />
+                                                placeholder="Enter Ticket Status" autofocus />
                                         </div>
                                     </div>
                                 </div>
@@ -134,6 +135,7 @@
         </div>
     </div>
 </div>
+{{-- End Ticket --}}
 
 {{-- Edit --}}
 @foreach ($data as $ticket)
@@ -153,21 +155,21 @@
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Ticket Trouble</label>
                             <input type="text" name="t_ticket" value="{{ $ticket->t_ticket }}" id="nameWithTitle"
-                                class="form-control" placeholder="Enter Name" autofocus />
+                                class="form-control" placeholder="Edit Ticket Trouble" autofocus />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Posting</label>
                             <input type="text" name="posting" value="{{ $ticket->posting }}"
-                                id="nameWithTitle" class="form-control" placeholder="Enter Name" />
+                                id="nameWithTitle" class="form-control" placeholder="Edit Posting" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Ticket Status</label>
                             <input type="text" name="tt_stat" value="{{ $ticket->tt_stat }}"
-                                id="nameWithTitle" class="form-control" placeholder="Enter Name" />
+                                id="nameWithTitle" class="form-control" placeholder="Edit Ticket Status" />
                         </div>
                     </div>
                 </div>

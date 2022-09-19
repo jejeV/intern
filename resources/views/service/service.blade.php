@@ -120,107 +120,107 @@
                         <div class="row g-2">
                             <div class="col mb-3">
                                 <label for="emailBackdrop" class="form-label">Node A</label>
-                                <input type="text" name="center_id" value="{{ $service->center->data_center }}" class="form-control" placeholder="081234567" disabled>
+                                <input type="text" name="center_id" value="{{ $service->center->data_center }}" class="form-control" placeholder="Node A" disabled>
                             </div>
                             <div class="col mb-3">
                                 <label for="dobBackdrop" class="form-label">Node B</label>
-                                <input type="text" name="stasiun_id" value="{{ $service->stasiun->nama_stasiun }}" class="form-control" placeholder="NPWP" disabled>
+                                <input type="text" name="stasiun_id" value="{{ $service->stasiun->nama_stasiun }}" class="form-control" placeholder="Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
                                 <label for="emailBackdrop" class="form-label">Status Node A</label>
                                 <input type="text" name="status_node_a" value="{{ $service->status_node_a }}" class="form-control"
-                                    placeholder="Deal Name" disabled>
+                                    placeholder="Status Node A" disabled>
                             </div>
                             <div class="col mb-3">
                                 <label for="dobBackdrop" class="form-label">Status Node B</label>
                                 <input type="text" name="position" value="{{ $service->status_node_a }}" class="form-control"
-                                    placeholder="Position" disabled>
+                                    placeholder="Status Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
                                 <label for="emailBackdrop" class="form-label">Detail Status Node A</label>
                                 <input type="text" name="nohandphone" value="{{ $service->detail_status_node_a }}" class="form-control"
-                                    placeholder="081234567" disabled>
+                                    placeholder="Detail Status Node A" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">DETAIL STATUS NODE B</label>
+                                <label for="dobBackdrop" class="form-label">Detail Status Node B</label>
                                 <input type="text" name="emaildealname" value="{{ $service->detail_status_node_b }}"
-                                    class="form-control" placeholder="dealname@gmail.com" disabled>
+                                    class="form-control" placeholder="Detail Status Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">LOCATION NODE A</label>
+                                <label for="emailBackdrop" class="form-label">Location Node A</label>
                                 <input type="text" name="pictechnicalname" value="{{ $service->location_node_a }}"
-                                    class="form-control" placeholder="Pict Name" disabled>
+                                    class="form-control" placeholder="Location Node A" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">LOCATION NODE B</label>
+                                <label for="dobBackdrop" class="form-label">Location Node B</label>
                                 <input type="text" name="picfinacename" value="{{ $service->location_node_b }}"
-                                    class="form-control" placeholder="Picf Name" disabled>
+                                    class="form-control" placeholder="Location Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">RACK NODE A</label>
+                                <label for="emailBackdrop" class="form-label">Rack Node A</label>
                                 <input type="text" name="position_pict" value="{{ $service->rack_node_a }}"
-                                    class="form-control" placeholder="Position Pict" disabled>
+                                    class="form-control" placeholder="Rack Node A" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">RACK NODE B</label>
+                                <label for="dobBackdrop" class="form-label">Rack Node B</label>
                                 <input type="text" name="position_picf" value="{{ $service->rack_node_b }}"
-                                    class="form-control" placeholder="Position Picf" disabled>
+                                    class="form-control" placeholder="Rack Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">SWICTH NODE A</label>
+                                <label for="emailBackdrop" class="form-label">Swicth Node A</label>
                                 <input type="text" name="position_pict" value="{{ $service->swicth_node_a }}"
-                                    class="form-control" placeholder="Position Pict" disabled>
+                                    class="form-control" placeholder="Switch Node A" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">SWICTH NODE B</label>
+                                <label for="dobBackdrop" class="form-label">Swicth Node B</label>
                                 <input type="text" name="position_picf" value="{{ $service->switch_node_b }}"
-                                    class="form-control" placeholder="Position Picf" disabled>
+                                    class="form-control" placeholder="Switch Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">REQUEST NUMBER NODE A</label>
+                                <label for="emailBackdrop" class="form-label">Request Number Node A</label>
                                 <input type="text" name="position_pict" value="{{ $service->request_number_node_a }}"
-                                    class="form-control" placeholder="Position Pict" disabled>
+                                    class="form-control" placeholder="Request Number Node A" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">REQUEST NUMBER NODE B</label>
+                                <label for="dobBackdrop" class="form-label">Request Number Node B</label>
                                 <input type="text" name="position_picf" value="{{ $service->request_number_node_b }}"
-                                    class="form-control" placeholder="d" disabled>
+                                    class="form-control" placeholder="Request Number Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">LABEL NODE A</label>
+                                <label for="emailBackdrop" class="form-label">Label Node A</label>
                                 <input type="text" name="center_id" value="{{ $service->label_node_a }}"
                                     class="form-control" placeholder="Bandung" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">LABEL NODE B</label>
+                                <label for="dobBackdrop" class="form-label">Label Node B</label>
                                 <input type="text" name="stasiun_id" value="{{ $service->label_node_b }}"
                                     class="form-control" placeholder="Jakarta" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">CABLE LENGHT NODE A</label>
+                                <label for="emailBackdrop" class="form-label">Cable Lenght Node A</label>
                                 <input type="text" name="center_id" value="{{ $service->cable_lenght_node_a }}"
-                                    class="form-control" placeholder="Bandung" disabled>
+                                    class="form-control" placeholder="Cable Lenght Node A" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">CABLE LENGHT NODE B</label>
+                                <label for="dobBackdrop" class="form-label">Cable Lenght Node B</label>
                                 <input type="text" name="stasiun_id" value="{{ $service->cable_lenght_node_b }}"
-                                    class="form-control" placeholder="Jakarta" disabled>
+                                    class="form-control" placeholder="Cable Lenght Node B" disabled>
                             </div>
                         </div>
                     </div>

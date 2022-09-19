@@ -58,14 +58,14 @@
                                 <div class="col mb-lg-2 mb-1">
                                     <label for="nameWithTitle" class="form-label">Lokasi</label>
                                     <input type="text" name="lokasi" id="nameWithTitle" class="form-control"
-                                        placeholder="Enter Name" autofocus />
+                                        placeholder="Lokasi" autofocus />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col mb-lg-2 mb-1">
                                     <label for="nameWithTitle" class="form-label">Perangkat</label>
                                     <input type="text" name="perangkat" id="nameWithTitle" class="form-control"
-                                        placeholder="Enter Name" autofocus />
+                                        placeholder="Perangkat" autofocus />
                                 </div>
                             </div>
                         </div>

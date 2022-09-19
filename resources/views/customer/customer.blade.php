@@ -19,6 +19,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+
 <div class="card">
     <div class="row">
         <div class="col-6">
@@ -99,7 +100,8 @@
                         </div>
                         <div class="me-2">
                             <!-- Button trigger modal -->
-                            <a href="{{ ('customer/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
+                            <a href="{{ ('customer/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i
+                                    class='bx bxs-edit-alt'></i></a>
                         </div>
                         <form method="POST" action="{{ url('customer/'.$row->id) }}">
                             @csrf
@@ -116,7 +118,7 @@
         </div>
     </div>
     @foreach ($data as $customer)
-<!-- Modal -->
+    <!-- Modal -->
     <form method="GET">
         <div class="modal fade" id="modalCenter3-{{ $customer->id }}" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -155,13 +157,13 @@
                         <div class="row g-2">
                             <div class="col mb-3">
                                 <label for="emailBackdrop" class="form-label">Deal Name</label>
-                                <input type="text" name="dealname" value="{{ $customer->dealname }}" class="form-control"
-                                    placeholder="Deal Name" disabled>
+                                <input type="text" name="dealname" value="{{ $customer->dealname }}"
+                                    class="form-control" placeholder="Deal Name" disabled>
                             </div>
                             <div class="col mb-3">
                                 <label for="dobBackdrop" class="form-label">Position</label>
-                                <input type="text" name="position" value="{{ $customer->position }}" class="form-control"
-                                    placeholder="Position" disabled>
+                                <input type="text" name="position" value="{{ $customer->position }}"
+                                    class="form-control" placeholder="Position" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
@@ -232,8 +234,8 @@
                             </div>
                             <div class="col mb-3">
                                 <label for="dobBackdrop" class="form-label">Node B</label>
-                                <input type="text" name="stasiun_id" value="{{ $customer->stasiun->nama_stasiun }}" class="form-control"
-                                    placeholder="Jakarta" disabled>
+                                <input type="text" name="stasiun_id" value="{{ $customer->stasiun->nama_stasiun }}"
+                                    class="form-control" placeholder="Jakarta" disabled>
                             </div>
                         </div>
                         <div class="row">
@@ -253,8 +255,8 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameLarge" class="form-label">Bandwidth</label>
-                                <input type="text" name="bandwidth" value="{{ $customer->bandwidth }}" class="form-control"
-                                    placeholder="Bandwidth" disabled>
+                                <input type="text" name="bandwidth" value="{{ $customer->bandwidth }}"
+                                    class="form-control" placeholder="Bandwidth" disabled>
                             </div>
                         </div>
                     </div>
@@ -269,4 +271,3 @@
 </div>
 </div>
 @endsection
-

@@ -60,57 +60,57 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">daop</label>
+                                            <label for="nameWithTitle" class="form-label">Daop</label>
                                             <input type="text" name="daop" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" autofocus />
+                                                placeholder="Daop" autofocus />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6 mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">nama stasiun</label>
+                                            <label for="nameWithTitle" class="form-label">Nama Stasiun</label>
                                             <input type="text" name="nama_stasiun" id="nameWithTitle"
-                                                class="form-control" placeholder="Enter Name" />
+                                                class="form-control" placeholder="Stasiun" />
                                         </div>
                                         <div class="col-6 mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">kodkod</label>
+                                            <label for="nameWithTitle" class="form-label">Kodkod</label>
                                             <input type="text" name="kodkod" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" />
+                                                placeholder="Kodkod" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">kmtsta</label>
+                                            <label for="nameWithTitle" class="form-label">Kmsta</label>
                                             <input type="text" name="kmtsta" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" />
+                                                placeholder="Kmsta" />
                                         </div>
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">line</label>
+                                            <label for="nameWithTitle" class="form-label">Line</label>
                                             <input type="text" name="line" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" />
+                                                placeholder="Line" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">remark</label>
+                                            <label for="nameWithTitle" class="form-label">Remark</label>
                                             <input type="text" name="remark" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" />
+                                                placeholder="Remark" />
                                         </div>
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">rel aktif no bb</label>
+                                            <label for="nameWithTitle" class="form-label">Rel Aktif No BB</label>
                                             <input type="text" name="rel_aktif_no_bb" id="nameWithTitle"
-                                                class="form-control" placeholder="Enter Name" />
+                                                class="form-control" placeholder="Rel Aktif No BB" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">ring</label>
+                                            <label for="nameWithTitle" class="form-label">Ring</label>
                                             <input type="text" name="ring" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" />
+                                                placeholder="Ring" />
                                         </div>
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">segmen</label>
+                                            <label for="nameWithTitle" class="form-label">Segmen</label>
                                             <input type="text" name="segmen" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Name" />
+                                                placeholder="Segmen" />
                                         </div>
                                     </div>
                                 </div>

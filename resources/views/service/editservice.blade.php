@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">Location Node B</label>
-                                    <input type="text" name="location_node_b" class="form-control" placeholder="dealname@gmail.com" value="{{ $data->location_node_b }}">
+                                    <input type="text" name="location_node_b" class="form-control" placeholder="Location Node B" value="{{ $data->location_node_b }}">
                                 </div>
                             </div>
                         </div>
@@ -156,9 +156,7 @@
                                 </div>
                             </div>
                         </div>
-
                         <button type="submit" class="btn btn-primary d-flex justify-content-end">Submit</button>
-
                     </form>
                 </div>
             </form>

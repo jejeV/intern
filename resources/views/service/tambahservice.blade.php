@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">Location Node B</label>
-                                    <input type="text" name="location_node_b" class="form-control" placeholder="dealname@gmail.com">
+                                    <input type="text" name="location_node_b" class="form-control" placeholder="Location Node B">
                                 </div>
                             </div>
                         </div>
