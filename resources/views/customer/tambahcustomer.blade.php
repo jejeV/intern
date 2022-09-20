@@ -137,8 +137,7 @@
                             <label for="nameLarge" class="form-label">Bandwidth</label>
                             <input type="text" name="bandwidth" class="form-control" placeholder="Bandwidth">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-
+                        <button type="submit" class="btn btn-primary ">Submit</button>
                     </form>
                 </div>
             </form>
