@@ -156,10 +156,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlSelect1" class="form-label">Example select</label>
-                                <select class="form-select @error('level') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="level">
+                                <select class="form-select @error('level') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="role">
                                     <option selected>Select</option>
                                     <option value="admin">Admin</option>
-                                    <option value="customer">Customer</option></option>
+                                    <option value="pegawai">Pegawai</option>
                                 </select>
                                 @error('level')
                                 <div class="invalid-feedback">

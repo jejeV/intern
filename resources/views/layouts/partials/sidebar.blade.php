@@ -58,12 +58,19 @@
                 <div data-i18n="Analytics">Service</div>
               </a>
             </li>
-
             <li class="menu-item {{ Request::is('perangkat*') ? 'active' : '' }}">
               <a href="/perangkat" class="menu-link">
                 <i class='bx bxs-devices' style="margin-right: 10px"></i>
                 <div data-i18n="Analytics">Perangkat</div>
               </a>
             </li>
+            @can('admin')
+            <li class="menu-item {{ Request::is('user*') ? 'active' : '' }}">
+              <a href="/user" class="menu-link">
+                <i class='bx bx-user' style="margin-right: 10px"></i>
+                <div data-i18n="Analytics">User</div>
+              </a>
+            </li>
+            @endcan
           </ul>
         </aside>
