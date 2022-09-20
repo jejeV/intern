@@ -24,7 +24,7 @@
 <div class="card">
     <div class="row">
         <div class="col-6">
-            <h5 class="card-header">Stasiun</h5>
+            <h5 class="card-header">Ceneter</h5>
         </div>
         <div class="col-6 p-3 d-flex justify-content-end">
             <div class="me-2">
