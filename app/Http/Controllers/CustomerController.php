@@ -129,4 +129,22 @@ class CustomerController extends Controller
         Log::createLog(Auth::user()->id, 'Menghapus Customer');
         return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
+
+    public function status($id)
+    {
+        $data = Customer::where('id',$id)->first();
+
+        $status_sekarang = $data->status;
+
+        if($status_sekarang == 1){
+            Customer::where('id',$id)->update([
+                'status'=>0
+            ]);
+        }else{
+            Customer::where('id',$id)->update([
+                'status'=>1
+            ]);
+        }
+        return redirect()->route('customer.index');
+    }
 }

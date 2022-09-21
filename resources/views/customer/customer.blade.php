@@ -48,7 +48,9 @@
                 <tr>
                     <th>No</th>
                     <th>Date</th>
+                    <th>Status</th>
                     <th>Company Name</th>
+                    <th>Status</th>
                     {{-- <th>Company Address</th> --}}
                     <th>Phone</th>
                     {{-- <th>NPWP</th> --}}
@@ -78,7 +80,15 @@
                     <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->created_at->format('D M Y') }}</td>
+                    <td>
+                        @if ($row->status == 1)
+                            <a href="{{ url('customer/status/'.$row->id) }}" class="btn btn-xs btn-danger">Non-Aktifkan</a>
+                        @else
+                        <a href="{{ url('customer/status/'.$row->id) }}" class="btn btn-xs btn-success">Aktifkan</a>
+                        @endif
+                    </td>
                     <td>{{ $row->companyname }}</td>
+                    <td><span class="{{ ($row->status == 1)? 'badge bg-label-success' : 'badge bg-label-danger' }}">{{ ($row->status == 1)? 'Aktif' : 'Tidak Aktif' }}</span></td>
                     {{-- <td>{{ $row->companyaddress }}</td> --}}
                     <td>{{ $row->phone }}</td>
                     {{-- <td>{{ $row->npwp }}</td> --}}

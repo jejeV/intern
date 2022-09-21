@@ -65,7 +65,7 @@
             <button class="btn btn-outline-primary" id="btn-komentar"><i class='bx bxs-chat me-2'></i>Komentar</button>
             <div class="card" style="display: ;" id="komentar-utama">
                 <div class="card-body bg-default" style="overflow-y: auto; max-height: 500px !important;height: 500px !important; background-color: #f0f2f5;">
-                    @foreach ($data->koemntar()->where('parent',0)->orderBy('created_at', 'desc')->get() as $komentar)    
+                    @foreach ($data->komentar()->where('parent',0)->orderBy('created_at', 'desc')->get() as $komentar)    
                         <div class="card mb-2 shadow">
                             <div class="card-body">
                                 <p>{{ $komentar->komentar }}</p>
