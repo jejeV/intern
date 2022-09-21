@@ -130,8 +130,7 @@
                             </li>
                         </ul>
                     </div><!-- /.card-header -->
-                    <div class="card-body"
-                        style="overflow-y: auto; max-height: 200px !important;height: 200px !important;">
+                    <div class="card-body" style="overflow-y: auto; max-height: 200px !important;height: 200px !important;">
                         <div class="tab-content p-0">
                             <div class="tab-pane active mt-1">
                                     @foreach ($logs as $log)

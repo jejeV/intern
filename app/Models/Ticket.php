@@ -12,4 +12,8 @@ class Ticket extends Model
     protected $table = 'tickets';
 
     protected $guarded = ['id',];
+
+    public function koemntar(){
+        return $this->hasMany(Komentar::class);
+    }
 }

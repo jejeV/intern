@@ -30,7 +30,8 @@ Route::resource('/stasiun', StasiunController::class)->except('create','show','e
 
 Route::resource('/data-center', CenterController::class)->except('create', 'show', 'edit')->middleware('auth');
 
-Route::resource('/ticket', TicketController::class)->except('create', 'show', 'edit')->middleware('auth');
+Route::resource('/ticket', TicketController::class)->except('create','edit')->middleware('auth');
+Route::post('ticket/{id}', [TicketController::class,'post']);
 
 Route::resource('/customer', CustomerController::class)->except('show')->middleware('auth');
 

@@ -101,8 +101,7 @@
                         </div>
                         <div class="me-2">
                             <!-- Button trigger modal -->
-                            <a href="{{ ('customer/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i
-                                    class='bx bxs-edit-alt'></i></a>
+                            <a href="{{ ('customer/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
                         </div>
                         <form method="POST" action="{{ url('customer/'.$row->id) }}">
                             @csrf

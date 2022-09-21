@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('komentars', function (Blueprint $table) {
             $table->id();
-            $table->string('t_ticket');
-            $table->string('status');
-            $table->string('customer');
-            $table->string('node_a');
-            $table->string('node_b');
+            $table->text('komentar');
+            $table->integer('user_id');
+            $table->integer('ticket_id');
+            $table->integer('parent');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('komentars');
     }
 };

@@ -69,14 +69,33 @@
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Posting</label>
-                                            <input type="text" name="posting" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Posting" autofocus />
+                                            <select class="form-select" id="status" aria-label="Default select example" name="status">
+                                                <option value=""></option>
+                                                <option value="open">open</option>
+                                                <option value="wait for respone">wait for respone</option>
+                                                <option value="hold">hold</option>
+                                                <option value="close">close</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Ticket Trouble Status</label>
-                                            <input type="text" name="tt_stat" id="nameWithTitle" class="form-control"
+                                            <label for="nameWithTitle" class="form-label">Customer</label>
+                                            <input type="text" name="customer" id="nameWithTitle" class="form-control"
+                                                placeholder="Enter Ticket Status" autofocus />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-lg-2 mb-1">
+                                            <label for="nameWithTitle" class="form-label">Node A</label>
+                                            <input type="text" name="node_a" id="nameWithTitle" class="form-control"
+                                                placeholder="Enter Ticket Status" autofocus />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-lg-2 mb-1">
+                                            <label for="nameWithTitle" class="form-label">Node B</label>
+                                            <input type="text" name="node_b" id="nameWithTitle" class="form-control"
                                                 placeholder="Enter Ticket Status" autofocus />
                                         </div>
                                     </div>
@@ -100,8 +119,8 @@
                 <tr>
                     <th>No</th>
                     <th>Ticket Trouble</th>
-                    <th>Posting</th>
-                    <th>Ticket Status</th>
+                    <th>Customer</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -110,13 +129,16 @@
                 <tr>
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->t_ticket }}</td>
-                    <td>{{ $row->posting }}</td>
-                    <td>{{ $row->tt_stat }}</td>
+                    <td>{{ $row->customer }}</td>
+                    <td>{{ $row->status }}</td>
                     <td class="d-flex">
                         <div class="me-2">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalCenter2-{{ $row->id }}">
+                            <a href="{{ ('ticket/'.$row->id) }}" class="btn btn-primary btn-sm"><i class='bx bxs-show'></i></a>
+                        </div>
+                        <div class="me-2">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalCenter2-{{ $row->id }}">
                                 <i class='bx bxs-edit-alt'></i>
                             </button>
                         </div>
@@ -187,3 +209,15 @@
 {{-- End Edit --}}
 </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    $("#status").select2({
+    width: '100%',
+    height: '10px',
+    placeholder: "Select a Status",
+    dropdownParent: $("#modalCenter"),
+});
+
+</script>
+@endpush
