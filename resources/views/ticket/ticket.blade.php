@@ -61,42 +61,24 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Ticket</label>
-                                            <input type="text" name="t_ticket" id="nameWithTitle" class="form-control"
+                                            <input type="hidden" name="t_ticket" id="nameWithTitle" class="form-control"
                                              placeholder="Enter Name" autofocus readonly value="{{ 'TT-'.$tt }}" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Posting</label>
-                                            <select class="form-select" id="status" aria-label="Default select example" name="status">
-                                                <option value=""></option>
-                                                <option value="open">open</option>
-                                                <option value="wait for respone">wait for respone</option>
-                                                <option value="hold">hold</option>
-                                                <option value="close">close</option>
-                                            </select>
+                                            <input type="hidden" class="form-control" value="open" name="status">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Customer</label>
-                                            <input type="text" name="customer" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Ticket Status" autofocus />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Node A</label>
-                                            <input type="text" name="node_a" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Ticket Status" autofocus />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Node B</label>
-                                            <input type="text" name="node_b" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Ticket Status" autofocus />
+                                            <select class="form-select" id="status" aria-label="Default select example" name="status">
+                                                <option value=""></option>
+                                                @foreach ($customer->where('status',1) as $data2)
+                                                <option value="{{$data2->id}}">{{ $data2->companyname }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +111,7 @@
                 <tr>
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->t_ticket }}</td>
-                    <td>{{ $row->customer }}</td>
+                    <td>{{ $row->customer->companyname }}</td>
                     <td>{{ $row->status }}</td>
                     <td class="d-flex">
                         <div class="me-2">

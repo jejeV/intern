@@ -15,32 +15,10 @@
                             <label class="form-label" for="basic-default-fullname">Company Name</label>
                             <select class="form-select" id="customer_id" aria-label="Default select example" name="customer_id">
                                 <option value=""></option>
-                                @foreach ($customer as $data2)
+                                @foreach ($customer->where('status',0) as $data2)
                                 <option value="{{$data2->id}}">{{ $data2->companyname }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="exampleFormControlSelect1" class="form-label">Node A</label>
-                                    <select class="form-select" id="node_a" aria-label="Default select example" name="center_id">
-                                        <option value=""></option>
-                                        @foreach ($center as $data1)
-                                        <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlSelect1" class="form-label">Node B</label>
-                                    <select class="form-select" id="node_b" aria-label="Default select example" name="stasiun_id">
-                                        <option value=""></option>
-                                        @foreach ($stasiun as $data2)
-                                        <option value="{{$data2->id}}">{{ $data2->nama_stasiun }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">

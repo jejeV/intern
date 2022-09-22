@@ -19,7 +19,7 @@
                                 <td>
                                     <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Customer</strong>
                                 </td>
-                                <td>{{ $data->customer }}</td>
+                                <td>{{ $data->customer->companyname }}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -31,13 +31,13 @@
                                 <td>
                                     <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Node A</strong>
                                 </td>
-                                <td>{{ $data->node_a }}</td>
+                                <td>{{ $data->customer->center->data_center }}</td>
                             </tr>
                             <tr>
                                 <td>
                                     <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Node B</strong>
                                 </td>
-                                <td>{{ $data->node_b }}</td>
+                                <td>{{ $data->customer->stasiun->nama_stasiun }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -68,7 +68,6 @@
                     @foreach ($data->komentar()->where('parent',0)->orderBy('created_at', 'desc')->get() as $komentar)    
                         <div class="card mb-2 shadow">
                             <div class="card-body">
-                                <p>{{ $komentar->komentar }}</p>
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex flex-row align-items-center">
                                         <i class='bx bxs-user'></i>
@@ -78,6 +77,7 @@
                                         <p class="small text-muted mb-0">{{ $komentar->created_at->diffForHumans() }}</p>
                                     </div>
                                 </div>
+                                <p class="mt-2">{{ $komentar->komentar }}</p>
                                 <div class="d-flex justify-content-end mt-2">
                                     <button class="btn btn-primary btn-xs" id="btn-balas">Balas</button>
                                 </div>
@@ -92,13 +92,14 @@
                                 @foreach ($komentar->childs()->orderBy('created_at', 'desc')->get() as $child)
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex flex-row align-items-center">
-                                            <p class="me-2 text-primary">{{ $child->user->name }}</p>
-                                            <p>{{ $child->komentar }}</p>
+                                            <i class='bx bxs-user'></i>
+                                            <p class="small mb-0 ms-2 text-primary">{{ $komentar->user->name }}</p>
                                         </div>
                                         <div class="d-flex flex-row align-items-center">
-                                            <p class="small text-muted">{{ $child->created_at->diffForHumans() }}</p>
+                                            <p class="small text-muted d-flex justify-content-end">{{ $child->created_at->diffForHumans() }}</p>
                                         </div>
                                     </div>
+                                    <p class="">{{ $child->komentar }}</p>
                                 @endforeach
                             </div>
                         </div>

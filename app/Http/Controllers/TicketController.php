@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Komentar;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -17,9 +18,10 @@ class TicketController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $data = Ticket::where('t_ticket', 'LIKE', '%' . $request->search . '%')->orWhere('tt_stat', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $data = Ticket::where('customer', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
             $data = Ticket::orderBy('created_at','desc')->paginate(25);
+            $customer = Customer::all();
 
             $ti = DB::table('tickets')->select(DB::raw('MAX(RIGHT(t_ticket,7)) as kode'));
             $tt = "";
@@ -32,7 +34,7 @@ class TicketController extends Controller
                 $tt = "0000001";
             }
         }
-        return view('ticket.ticket', compact('data','tt'));
+        return view('ticket.ticket', compact('data','tt','customer'));
     }
 
     /**
@@ -56,9 +58,7 @@ class TicketController extends Controller
         $this->validate($request, [
             't_ticket' => 'required',
             'status' => 'required',
-            'customer' => 'required',
-            'node_a' => 'required',
-            'node_b' => 'required',
+            'customer_id' => 'required',
         ]);
         $data = Ticket::create($request->all());
         return redirect()->route('ticket.index')->with('success', 'Create Success !!');

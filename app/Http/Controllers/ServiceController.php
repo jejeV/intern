@@ -52,8 +52,6 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'center_id' => 'required',
-            'stasiun_id' => 'required',
             'customer_id' => 'required',
             'status_node_a' => 'required',
             'detail_status_node_a' => 'required',

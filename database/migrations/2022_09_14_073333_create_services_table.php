@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('center_id');
-            $table->foreignId('stasiun_id');
             $table->foreignId('customer_id');
             $table->enum('status_node_a',['submit interkoneksi diportal apjii', 'aproved nni by partner (isp)', 'pre survey by apjii, update cable length', 'drop kabel patchcord', 'penarikan kabel patchcord by apjii', 'konfirmasi jadwal aktivasi by customer', 'penjadwalan aktivasi by ije', 'node a aktif']);
             $table->string('detail_status_node_a');

@@ -17,9 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('t_ticket');
             $table->string('status');
-            $table->string('customer');
-            $table->string('node_a');
-            $table->string('node_b');
+            $table->integer('customer_id');
             $table->timestamps();
         });
     }

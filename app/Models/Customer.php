@@ -29,4 +29,9 @@ class Customer extends Model
     {
         return $this->hasMany(Service::class);
     }
+
+    public function ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

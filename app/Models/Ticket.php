@@ -13,7 +13,11 @@ class Ticket extends Model
 
     protected $guarded = ['id',];
 
-    public function koemntar(){
+    public function komentar(){
         return $this->hasMany(Komentar::class);
+    }
+
+    public function customer(){
+        return $this->belongsTo(Customer::class);
     }
 }

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Center;
+use App\Models\Stasiun;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -29,6 +31,23 @@ class DatabaseSeeder extends Seeder
         	'email' => 'admin@admin.com',
         	'password' => bcrypt('12345'),
         	'role' => 'admin',
+        ]);
+
+        Center::create([
+            'data_center' => 'jakarta',
+        	'area' => 'jakarta',
+        ]);
+
+        Stasiun::create([
+            'daop' => 'jakarta',
+        	'nama_stasiun' => 'jakarta',
+        	'kodkod' => 'jakarta',
+        	'kmtsta' => 'jakarta',
+        	'line' => 'jakarta',
+        	'remark' => 'jakarta',
+        	'rel_aktif_no_bb' => 'jakarta',
+        	'ring' => 'jakarta',
+        	'segmen' => 'jakarta',
         ]);
     }
 }

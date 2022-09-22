@@ -71,9 +71,9 @@
                     <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->customer->companyname }}</td>
-                    <td>{{ $row->center->data_center }}</td>
+                    <td>{{ $row->customer->center->data_center }}</td>
                     <td>{{ $row->status_node_a }}</td>
-                    <td>{{ $row->stasiun->nama_stasiun }}</td>
+                    <td>{{ $row->customer->stasiun->nama_stasiun }}</td>
                     <td>{{ $row->status_node_b }}</td>
                     <td class="d-flex">
                         <div class="me-2">
@@ -121,11 +121,11 @@
                         <div class="row g-2">
                             <div class="col mb-3">
                                 <label for="emailBackdrop" class="form-label">Node A</label>
-                                <input type="text" name="center_id" value="{{ $service->center->data_center }}" class="form-control" placeholder="Node A" disabled>
+                                <input type="text" name="center_id" value="{{ $service->customer->center->data_center }}" class="form-control" placeholder="Node A" disabled>
                             </div>
                             <div class="col mb-3">
                                 <label for="dobBackdrop" class="form-label">Node B</label>
-                                <input type="text" name="stasiun_id" value="{{ $service->stasiun->nama_stasiun }}" class="form-control" placeholder="Node B" disabled>
+                                <input type="text" name="stasiun_id" value="{{ $service->customer->stasiun->nama_stasiun }}" class="form-control" placeholder="Node B" disabled>
                             </div>
                         </div>
                         <div class="row g-2">

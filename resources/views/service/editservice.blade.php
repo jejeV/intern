@@ -24,28 +24,6 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="exampleFormControlSelect1" class="form-label">Node A</label>
-                                    <select class="form-select" id="node_a" aria-label="Default select example" name="center_id">
-                                        <option value="{{ $data->center_id }}">{{ $data->center->data_center }}</option>
-                                        @foreach ($center as $data1)
-                                        <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlSelect1" class="form-label">Node B</label>
-                                    <select class="form-select" id="node_b" aria-label="Default select example" name="stasiun_id">
-                                        <option value="{{ $data->stasiun_id }}">{{ $data->stasiun->nama_stasiun }}<option>
-                                        @foreach ($stasiun as $data2)
-                                        <option value="{{$data2->id}}">{{ $data2->nama_stasiun }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
                                     <label class="form-label" for="basic-default-phone">Status Node A</label>
                                     <select class="form-select" id="status_a" aria-label="Default select example" name="status_node_a">
                                         <option value="{{ $data->status_node_a }}">{{ $data->status_node_a }}</option>
