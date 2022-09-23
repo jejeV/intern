@@ -73,7 +73,7 @@
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="nameWithTitle" class="form-label">Customer</label>
-                                            <select class="form-select" id="status" aria-label="Default select example" name="status">
+                                            <select class="form-select" id="status" aria-label="Default select example" name="customer_id">
                                                 <option value=""></option>
                                                 @foreach ($customer->where('status',1) as $data2)
                                                 <option value="{{$data2->id}}">{{ $data2->companyname }}</option>
@@ -109,25 +109,22 @@
             <tbody class="table-border-bottom-0">
                 @foreach ($data as $index => $row)
                 <tr>
+                    <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->t_ticket }}</td>
                     <td>{{ $row->customer->companyname }}</td>
                     <td>{{ $row->status }}</td>
                     <td class="d-flex">
+                        @if ($row->status == 'close')                            
+                        @else
                         <div class="me-2">
-                            <!-- Button trigger modal -->
                             <a href="{{ ('ticket/'.$row->id) }}" class="btn btn-primary btn-sm"><i class='bx bxs-show'></i></a>
                         </div>
-                        <div class="me-2">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalCenter2-{{ $row->id }}">
-                                <i class='bx bxs-edit-alt'></i>
-                            </button>
-                        </div>
+                        @endif
                         <form method="POST" action="{{ url('ticket/'.$row->id) }}">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class='bx bx-trash'></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
                         </form>
                     </td>
                 </tr>
@@ -194,11 +191,59 @@
 
 @push('scripts')
 <script type="text/javascript">
-    $("#status").select2({
-    width: '100%',
-    height: '10px',
-    placeholder: "Select a Status",
-    dropdownParent: $("#modalCenter"),
+//     $("#status").select2({
+//     width: '100%',
+//     height: '10px',
+//     placeholder: "Select a Status",
+//     dropdownParent: $("#modalCenter"),
+// });
+
+$(document).ready(function () {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('.btndelete').click(function (e) {
+        e.preventDefault();
+
+        var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+        swal({
+                title: "Apakah anda yakin?",
+                text: "Setelah dihapus, Anda tidak dapat memulihkan Data ini lagi!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                    var data = {
+                        "_token": $('input[name=_token]').val(),
+                        'id': deleteid,
+                    };
+                    $.ajax({
+                        type: "DELETE",
+                        url: 'ticket/' + deleteid,
+                        data: data,
+                        success: function (response) {
+                            swal(response.status, {
+                                    icon: "success",
+                                })
+                                .then((result) => {
+                                    location.reload();
+                                });
+                        }
+                    });
+                } else {
+                    swal("Data tidak akan tehapus!!");
+                }
+            });
+    });
+
 });
 
 </script>

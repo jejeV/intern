@@ -99,7 +99,7 @@ class TicketController extends Controller
         $data = Ticket::find($id);
         $data->update($request->all());
 
-        return redirect()->route('ticket.index')->with('edit', 'Edit Success !!');
+        return redirect('ticket/'.$id)->with('edit', 'Edit Success !!');
     }
 
     /**
@@ -112,7 +112,7 @@ class TicketController extends Controller
     {
         $data = Ticket::find($id);
         $data->delete();
-        return redirect()->route('ticket.index')->with('delete', 'Delete Success !!');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 
     public function post(Request $request){

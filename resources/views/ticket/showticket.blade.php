@@ -41,6 +41,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-end mt-2">
+                        <a href="../ticket" class="btn btn-secondary btn-sm me-4">back</a>
+                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalCenter2">
+                            <i class='bx bxs-edit-alt'></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -109,6 +115,45 @@
         </div>
     </div>
 </div>
+
+@foreach ($data as $ticket)
+<!-- Modal -->
+<form method="POST" action="{{ url('ticket/'.$data->id) }}">
+    @csrf
+    @method('put')
+    <div class="modal fade" id="modalCenter2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Edit Stasiun</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="t_ticket" value="{{ $data->t_ticket }}" id="nameWithTitle" class="form-control" placeholder="Edit Ticket Trouble" autofocus />
+                    <input type="hidden" name="customer" value="{{ $data->customer->companyname }}" id="nameWithTitle" class="form-control" placeholder="Edit Posting" />
+                    <div class="row">
+                        <div class="col mb-lg-2 mb-1">
+                            <label for="nameWithTitle" class="form-label">Ticket Status</label>
+                            <select class="form-select" id="status_a" aria-label="Default select example" name="status">
+                                <option value="{{ $data->status }}">{{ $data->status }}</option>
+                                <option value="open">Open</option>
+                                <option value="hold">Hold</option>
+                                <option value="close">Close</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@endforeach
 </div>
 @endsection
 

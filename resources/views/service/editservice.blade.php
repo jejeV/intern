@@ -156,7 +156,9 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary d-flex justify-content-end">Submit</button>
+                        <div class="d-flex justify-content-end mt-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </form>
