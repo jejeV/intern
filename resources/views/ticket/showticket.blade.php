@@ -61,7 +61,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="card-body" style="overflow-y: auto; max-height: 200px !important;height: 200px !important;">
+            <div class="card-body" style="overflow-y: auto; max-height: 261px !important;height: 261px !important;">
                 <div class="tab-content p-0">
                     <div class="tab-pane active">
                             @foreach ($logs as $log)
@@ -92,7 +92,9 @@
                     <input type="hidden" name="ticket_id" value="{{ $data->id }}">
                     <input type="hidden" name="parent" value="0">
                     <textarea style="" class="form-control mb-2" rows="3" name="komentar"></textarea>
-                    <button type="submit" class="btn btn-primary mb-3">Kirim</button>
+                    <div class="d-flex justify-content-end mt-2">
+                        <button type="submit" class="btn btn-primary mb-3">Kirim</button>
+                    </div>
                 </div>
             </form>
             <button class="btn btn-outline-primary" id="btn-komentar"><i class='bx bxs-chat me-2'></i>Komentar</button>
