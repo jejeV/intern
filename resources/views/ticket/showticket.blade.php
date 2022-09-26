@@ -67,8 +67,9 @@
                             @foreach ($logs as $log)
                                 <div class="callout callout-info mt-2">
                                     <p style="margin: 0 !important;">{{ $log['keterangan'] }}</p>
+                                    <small>No Ticket : {{ $log['t_ticket'] }}</small>
+                                    <br>
                                     <small>Name : {{ $log['name'] }}<br>{{ $log['created_at'] }}</small>
-                                    <small>Name : {{ $log['t_ticket'] }}</small>
                                     <hr>
                                 </div>
                             @endforeach
