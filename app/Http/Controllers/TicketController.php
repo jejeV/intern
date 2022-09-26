@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Komentar;
+use App\Models\LogTicket;
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
@@ -73,7 +76,18 @@ class TicketController extends Controller
     public function show($id)
     {
         $data = Ticket::find($id);
-        return view('ticket.showticket', compact('data'));
+        $logs = [];
+        $logQuery = LogTicket::where('ticket_id', $id)->get();
+
+        foreach ($logQuery as $key => $log) {
+            $logs[] = [
+                'name' => User::where('id', $log->users_id)->get()[0]->name,
+                'keterangan' => $log->keterangan,
+                't_ticket' => Ticket::where('id', $log->ticket_id)->get()[0]->t_ticket,
+                'created_at' => $log->created_at
+            ];
+        }
+        return view('ticket.showticket', compact('data','logs'));
     }
 
     /**
@@ -97,6 +111,7 @@ class TicketController extends Controller
     public function update(Request $request, $id)
     {
         $data = Ticket::find($id);
+        LogTicket::createLogTicket(Auth::user()->id, 'Mengubah Status',$id);
         $data->update($request->all());
 
         return redirect('ticket/'.$id)->with('edit', 'Edit Success !!');

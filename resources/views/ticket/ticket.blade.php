@@ -191,12 +191,12 @@
 
 @push('scripts')
 <script type="text/javascript">
-//     $("#status").select2({
-//     width: '100%',
-//     height: '10px',
-//     placeholder: "Select a Status",
-//     dropdownParent: $("#modalCenter"),
-// });
+    $("#status").select2({
+    width: '100%',
+    height: '10px',
+    placeholder: "Select a Company",
+    dropdownParent: $("#modalCenter"),
+});
 
 $(document).ready(function () {
 

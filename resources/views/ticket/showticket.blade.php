@@ -51,6 +51,33 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header" style="background-color: #263238">
+                <ul class="nav nav-pills">
+                    <li class="nav-item d-flex">
+                        <i class='bx bxs-user text-white align-self-center'></i>
+                        <a class="nav-link text-white">Log Pengguna</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body" style="overflow-y: auto; max-height: 261px !important;height: 261px !important;">
+                <div class="tab-content p-0">
+                    <div class="tab-pane active">
+                            @foreach ($logs as $log)
+                                <div class="callout callout-info mt-2">
+                                    <p style="margin: 0 !important;">{{ $log['keterangan'] }}</p>
+                                    <small>No Ticket : {{ $log['t_ticket'] }}</small>
+                                    <br>
+                                    <small>Name : {{ $log['name'] }}<br>{{ $log['created_at'] }}</small>
+                                    <hr>
+                                </div>
+                            @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row mt-lg-3">
     <div class="col-lg-7">
@@ -65,7 +92,9 @@
                     <input type="hidden" name="ticket_id" value="{{ $data->id }}">
                     <input type="hidden" name="parent" value="0">
                     <textarea style="" class="form-control mb-2" rows="3" name="komentar"></textarea>
-                    <button type="submit" class="btn btn-primary mb-3">Kirim</button>
+                    <div class="d-flex justify-content-end mt-2">
+                        <button type="submit" class="btn btn-primary mb-3">Kirim</button>
+                    </div>
                 </div>
             </form>
             <button class="btn btn-outline-primary" id="btn-komentar"><i class='bx bxs-chat me-2'></i>Komentar</button>

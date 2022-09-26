@@ -92,17 +92,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $data = User::find($id);
-        $validateData = $request->validate([
-            'name'=> 'required|max:225',
-            'username' => ['required', 'min:3', 'max:225', 'unique:users'],
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255',
-            'role' => 'required'
-            ]);
-    
-            $validateData['password'] = Hash::make($validateData['password']);
-            $data->update($request->all(),$validateData);
-            return redirect()->route('user.index')->with('edit', 'Edit Success !!');
+        $request['password'] = Hash::make($request['password']);
+        $data->update($request->all());
+        return redirect()->route('user.index')->with('edit', 'Edit Success !!');
     }
 
     /**
