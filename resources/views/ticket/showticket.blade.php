@@ -51,13 +51,13 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-5 mt-4 mt-lg-0">
         <div class="card">
-            <div class="card-header" style="background-color: #263238">
+            <div class="card-header bg-primary" style="">
                 <ul class="nav nav-pills">
                     <li class="nav-item d-flex">
                         <i class='bx bxs-user text-white align-self-center'></i>
-                        <a class="nav-link text-white">Log Pengguna</a>
+                        <a class="nav-link text-white text-uppercase">Log Ticket</a>
                     </li>
                 </ul>
             </div>
@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-<div class="row mt-lg-3">
+<div class="row mt-lg-3 mt-4 mt-lg-0">
     <div class="col-lg-7">
         <div class="card">
             <div class="d-flex">

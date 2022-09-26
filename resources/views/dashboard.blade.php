@@ -122,11 +122,11 @@
     </div>
     <div class="col-xl-6 col-12">
         <div class="card">
-            <div class="card-header" style="background-color: #263238">
+            <div class="card-header bg-dark" style="">
                         <ul class="nav nav-pills">
                             <li class="nav-item d-flex">
                                 <i class='bx bxs-user text-white align-self-center'></i>
-                                <a class="nav-link text-white">Log Pengguna</a>
+                                <a class="nav-link text-white text-uppercase">Log Pengguna</a>
                             </li>
                         </ul>
             </div><!-- /.card-header -->
