@@ -138,8 +138,9 @@
                             <label for="nameLarge" class="form-label">Bandwidth</label>
                             <input type="text" name="bandwidth" class="form-control" placeholder="Bandwidth"value="{{ $data->bandwidth }}">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-
+                        <div class="d-flex justify-content-end mt-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </form>

@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PerangkatController;
 use App\Http\Controllers\UserController;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,11 @@ Route::resource('/stasiun', StasiunController::class)->except('create','show','e
 
 Route::resource('/data-center', CenterController::class)->except('create', 'show', 'edit')->middleware('auth');
 
-Route::resource('/ticket', TicketController::class)->except('create', 'show', 'edit')->middleware('auth');
+Route::resource('/ticket', TicketController::class)->except('create','edit')->middleware('auth');
+Route::post('ticket/{id}', [TicketController::class,'post']);
 
 Route::resource('/customer', CustomerController::class)->except('show')->middleware('auth');
+Route::get('customer/status/{id}', [CustomerController::class, 'status']);
 
 Route::resource('/service', ServiceController::class);
 

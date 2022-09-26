@@ -61,23 +61,24 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Ticket</label>
-                                            <input type="text" name="t_ticket" id="nameWithTitle" class="form-control"
+                                            <input type="hidden" name="t_ticket" id="nameWithTitle" class="form-control"
                                              placeholder="Enter Name" autofocus readonly value="{{ 'TT-'.$tt }}" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Posting</label>
-                                            <input type="text" name="posting" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Posting" autofocus />
+                                            <input type="hidden" class="form-control" value="open" name="status">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
-                                            <label for="nameWithTitle" class="form-label">Ticket Trouble Status</label>
-                                            <input type="text" name="tt_stat" id="nameWithTitle" class="form-control"
-                                                placeholder="Enter Ticket Status" autofocus />
+                                            <label for="nameWithTitle" class="form-label">Customer</label>
+                                            <select class="form-select" id="status" aria-label="Default select example" name="customer_id">
+                                                <option value=""></option>
+                                                @foreach ($customer->where('status',1) as $data2)
+                                                <option value="{{$data2->id}}">{{ $data2->companyname }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -100,30 +101,30 @@
                 <tr>
                     <th>No</th>
                     <th>Ticket Trouble</th>
-                    <th>Posting</th>
-                    <th>Ticket Status</th>
+                    <th>Customer</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
                 @foreach ($data as $index => $row)
                 <tr>
+                    <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->t_ticket }}</td>
-                    <td>{{ $row->posting }}</td>
-                    <td>{{ $row->tt_stat }}</td>
+                    <td>{{ $row->customer->companyname }}</td>
+                    <td>{{ $row->status }}</td>
                     <td class="d-flex">
+                        @if ($row->status == 'close')                            
+                        @else
                         <div class="me-2">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalCenter2-{{ $row->id }}">
-                                <i class='bx bxs-edit-alt'></i>
-                            </button>
+                            <a href="{{ ('ticket/'.$row->id) }}" class="btn btn-primary btn-sm"><i class='bx bxs-show'></i></a>
                         </div>
+                        @endif
                         <form method="POST" action="{{ url('ticket/'.$row->id) }}">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class='bx bx-trash'></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
                         </form>
                     </td>
                 </tr>
@@ -187,3 +188,63 @@
 {{-- End Edit --}}
 </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+//     $("#status").select2({
+//     width: '100%',
+//     height: '10px',
+//     placeholder: "Select a Status",
+//     dropdownParent: $("#modalCenter"),
+// });
+
+$(document).ready(function () {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('.btndelete').click(function (e) {
+        e.preventDefault();
+
+        var deleteid = $(this).closest("tr").find('.delete_id').val();
+
+        swal({
+                title: "Apakah anda yakin?",
+                text: "Setelah dihapus, Anda tidak dapat memulihkan Data ini lagi!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                    var data = {
+                        "_token": $('input[name=_token]').val(),
+                        'id': deleteid,
+                    };
+                    $.ajax({
+                        type: "DELETE",
+                        url: 'ticket/' + deleteid,
+                        data: data,
+                        success: function (response) {
+                            swal(response.status, {
+                                    icon: "success",
+                                })
+                                .then((result) => {
+                                    location.reload();
+                                });
+                        }
+                    });
+                } else {
+                    swal("Data tidak akan tehapus!!");
+                }
+            });
+    });
+
+});
+
+</script>
+@endpush

@@ -12,4 +12,12 @@ class Ticket extends Model
     protected $table = 'tickets';
 
     protected $guarded = ['id',];
+
+    public function komentar(){
+        return $this->hasMany(Komentar::class);
+    }
+
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+    }
 }
