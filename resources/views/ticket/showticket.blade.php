@@ -51,6 +51,32 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header" style="background-color: #263238">
+                <ul class="nav nav-pills">
+                    <li class="nav-item d-flex">
+                        <i class='bx bxs-user text-white align-self-center'></i>
+                        <a class="nav-link text-white">Log Pengguna</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body" style="overflow-y: auto; max-height: 200px !important;height: 200px !important;">
+                <div class="tab-content p-0">
+                    <div class="tab-pane active">
+                            @foreach ($logs as $log)
+                                <div class="callout callout-info mt-2">
+                                    <p style="margin: 0 !important;">{{ $log['keterangan'] }}</p>
+                                    <small>Name : {{ $log['name'] }}<br>{{ $log['created_at'] }}</small>
+                                    <small>Name : {{ $log['t_ticket'] }}</small>
+                                    <hr>
+                                </div>
+                            @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row mt-lg-3">
     <div class="col-lg-7">

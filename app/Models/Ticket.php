@@ -17,6 +17,10 @@ class Ticket extends Model
         return $this->hasMany(Komentar::class);
     }
 
+    public function logticket(){
+        return $this->hasMany(LogTicket::class);
+    }
+
     public function customer(){
         return $this->belongsTo(Customer::class);
     }

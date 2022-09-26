@@ -122,15 +122,15 @@
     </div>
     <div class="col-xl-6 col-12">
         <div class="card">
-                    <div class="card-header" style="background-color: #263238">
+            <div class="card-header" style="background-color: #263238">
                         <ul class="nav nav-pills">
                             <li class="nav-item d-flex">
                                 <i class='bx bxs-user text-white align-self-center'></i>
                                 <a class="nav-link text-white">Log Pengguna</a>
                             </li>
                         </ul>
-                    </div><!-- /.card-header -->
-                    <div class="card-body" style="overflow-y: auto; max-height: 200px !important;height: 200px !important;">
+            </div><!-- /.card-header -->
+            <div class="card-body" style="overflow-y: auto; max-height: 200px !important;height: 200px !important;">
                         <div class="tab-content p-0">
                             <div class="tab-pane active mt-1">
                                     @foreach ($logs as $log)
@@ -143,9 +143,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!-- /.card-body -->
-                </div>
-
+            </div><!-- /.card-body -->
+        </div>
     </div>
 </div>
 @endsection
