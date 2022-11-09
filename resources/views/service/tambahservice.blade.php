@@ -65,7 +65,8 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="emailBackdrop" class="form-label">Location Node A</label>
-                                    <input type="text" name="location_node_a" class="form-control" placeholder="Location Node A">
+                                    <input type="text" name="location_node_a" class="form-control" placeholder="Location Node A" value="{{ $customer[1]->companyname }}" readonly> 
+                                    {{-- belom fix --}}
                                 </div>
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">Location Node B</label>

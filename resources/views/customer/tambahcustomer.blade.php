@@ -127,16 +127,52 @@
                         </div>
                         <div class="mb-3">
                             <label for="nameLarge" class="form-label">Service</label>
-                            <input type="text" name="service" class="form-control" placeholder="Service">
+                            <select class="form-select select-pilihan" id="Service" aria-label="Default select example" name="service">
+                                <option value="belum">Select Service</option>
+                                <option value="Lease Line">Lease Line</option>
+                                <option value="Clear Channel">Clear Channel</option>
+                                <option value="Dark Fiber">Dark Fiber</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="nameLarge" class="form-label">Project</label>
                             <input type="text" name="project" class="form-control" placeholder="Project">
                         </div>
-                        <div class="mb-3">
+
+                        <div class="mb-3 input-leaseline">
                             <label for="nameLarge" class="form-label">Bandwidth</label>
-                            <input type="text" name="bandwidth" class="form-control" placeholder="Bandwidth">
+                            <select class="form-select input-leaseline" id="bandwidth" aria-label="Default select example" name="bandwidth">
+                                <option value="" selected>Select to Bandwidth</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
+
+                        <div class="mb-3 input-darkline" style="display: none">
+                            <label for="nameLarge" class="form-label">Jarak</label>
+                            <select class="form-select" id="bandwidth" aria-label="Default select example" name="bandwidth">
+                                <option value="-" selected>Select to Jarak</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        
                         <div class="d-flex justify-content-end mt-2">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -163,5 +199,21 @@
         allowClear: true
     });
 
+    // Option Bandwidth
+    const inputBandwidth = document.querySelector('.input-leaseline');
+    const inputJarak = document.querySelector('.input-darkline');
+    let sebelum;
+
+    const selectPilihan = document.querySelector('.select-pilihan');
+    selectPilihan.addEventListener('change', function(){
+        if (selectPilihan.value == 'Dark Fiber'){
+            inputJarak.style.display = 'block';
+            inputBandwidth.style.display = 'none';
+            // inputJarak.style.display = 'none';
+        }else{
+            inputBandwidth.style.display = 'block';
+            inputJarak.style.display = 'none';
+        }
+    });
 </script>
 @endpush

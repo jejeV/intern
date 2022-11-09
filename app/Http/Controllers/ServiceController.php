@@ -24,7 +24,7 @@ class ServiceController extends Controller
             // $data = Service::where('customer_id', 'LIKE', '%' . $request->search . '%')->paginate(25);
             $data = Service::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
-            $data = Service::paginate(25);
+            $data = Service::orderBy('created_at','desc')->paginate(25);
         }
         return view('service.service', compact('data'));
     }
@@ -70,6 +70,7 @@ class ServiceController extends Controller
             'label_node_b' => 'required',
             'cable_lenght_node_b' => 'required',
         ]);
+        // dd($request->all());
         Log::createLog(Auth::user()->id, 'Menambah Service');
         $data = Service::create($request->all());
         return redirect()->route('service.index')->with('success', 'Create Success !!');

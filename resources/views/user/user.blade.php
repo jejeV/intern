@@ -75,7 +75,14 @@
                             <div class="row">
                                 <div class="col mb-lg-2 mb-1">
                                     <label for="nameWithTitle" class="form-label">Password</label>
-                                    <input type="password" name="password" id="nameWithTitle" class="form-control" placeholder="Enter Password" autofocus />
+                                    <div class="form-password-toggle">
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="password" class="form-control" name="password"
+                                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                aria-describedby="password" required />
+                                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
