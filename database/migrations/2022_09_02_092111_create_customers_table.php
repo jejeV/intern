@@ -35,8 +35,8 @@ return new class extends Migration
             $table->string('service');
             $table->string('project');
             $table->string('bandwidth');
-            $table->foreignId('center_id');
-            $table->foreignId('stasiun_id');
+            $table->string('center_id');
+            $table->string('stasiun_id');
             $table->timestamps();
         });
     }

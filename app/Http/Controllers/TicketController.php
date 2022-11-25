@@ -111,8 +111,10 @@ class TicketController extends Controller
     public function update(Request $request, $id)
     {
         $data = Ticket::find($id);
-        LogTicket::createLogTicket(Auth::user()->id, 'Mengubah Status',$id);
         $data->update($request->all());
+        if($request->status){
+            LogTicket::createLogTicket(Auth::user()->id, 'Status ' . $data->status,$id);
+        }
 
         return redirect('ticket/'.$id)->with('edit', 'Edit Success !!');
     }

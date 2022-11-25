@@ -31,19 +31,19 @@
                                 <td>
                                     <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Node A</strong>
                                 </td>
-                                <td>{{ $data->customer->center->data_center }}</td>
+                                <td>{{ $data->customer->center_id }}</td>
                             </tr>
                             <tr>
                                 <td>
                                     <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Node B</strong>
                                 </td>
-                                <td>{{ $data->customer->stasiun->nama_stasiun }}</td>
+                                <td>{{ $data->customer->stasiun_id }}</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-end mt-2">
                         <a href="../ticket" class="btn btn-secondary btn-sm me-4">back</a>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalCenter2">
+                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-targ="#modalCenter2">
                             <i class='bx bxs-edit-alt'></i>
                         </button>
                     </div>
@@ -98,7 +98,7 @@
                 </div>
             </form>
             <button class="btn btn-outline-primary" id="btn-komentar"><i class='bx bxs-chat me-2'></i>Komentar</button>
-            <div class="card" style="display: ;" id="komentar-utama">
+            <div class="card" style="display: none;" id="komentar-utama">
                 <div class="card-body bg-default" style="overflow-y: auto; max-height: 500px !important;height: 500px !important; background-color: #f0f2f5;">
                     @foreach ($data->komentar()->where('parent',0)->orderBy('created_at', 'desc')->get() as $komentar)    
                         <div class="card mb-2 shadow">

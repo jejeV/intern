@@ -32,4 +32,12 @@ class Service extends Model
     {
         return $this->belongsTo(Perangkat::class);
     }
+
+    public function detaila(){
+        return $this->hasMany(DetailA::class);
+    }
+
+    public function detailb(){
+        return $this->hasMany(DetailB::class);
+    }
 }
