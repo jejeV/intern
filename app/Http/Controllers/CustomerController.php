@@ -71,6 +71,7 @@ class CustomerController extends Controller
             'center_id' => 'required',
             'stasiun_id' => 'required',
         ]);
+        // dd($request->all());
         $data = Customer::create($request->all());
         Log::createLog(Auth::user()->id, 'Menambah Customer');
         return redirect()->route('customer.index')->with('success', 'Create Success !!');
@@ -145,6 +146,6 @@ class CustomerController extends Controller
                 'status'=>1
             ]);
         }
-        return redirect()->route('customer.index');
+        return redirect()->route('service.index');
     }
 }

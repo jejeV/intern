@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
-
+    @stack('head')
     <!-- Helpers -->
     <script src="../assets/vendor/js/helpers.js"></script>
 
@@ -85,25 +85,11 @@
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
-                  © 2021 PT Integrasi Jaringan Ekosistem
+                  &copy; 2021. PT Integrasi Jaringan Ekosistem
                 </div>
                 <div>
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                  <a
-                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Documentation</a
-                  >
-
-                  <a
-                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                    target="_blank"
-                    class="footer-link me-4"
-                    >Support</a
-                  >
+                  <a href="" class="footer-link me-4" >info@weave.co.id</a>
+                  <a href=""  class="footer-link me-4">021 7823 4567</a>
                 </div>
               </div>
             </footer>
@@ -123,6 +109,26 @@
     <!-- / Layout wrapper -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @stack('scripts')
+    
+    <script>
+      // $.post('/logout',$(window).on('load', function(){
+      //   setTimeout(function(){
+      //     type : 'post',
+      //     window.location.href = '/logout'
+      //   }, 100)
+      // }))
+      $(window).on('load', function(){
+        setTimeout(function(){
+          window.location.href = ''
+        }, 900000)
+        // setTimeout(function(){
+        //   window.location.href = '$.post(/logout)'
+        // }, 200)
+        // $.post(setTimeout(function(){
+        //   window.location.href = '/logout'
+        // }, 200))
+      })
+  </script>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

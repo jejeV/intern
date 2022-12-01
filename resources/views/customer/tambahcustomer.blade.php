@@ -26,7 +26,7 @@
                                     <select class="form-select" id="node_a" aria-label="Default select example" name="center_id">
                                         <option value=""></option>
                                         @foreach ($center as $data1)
-                                        <option value="{{$data1->id}}">{{ $data1->data_center }}</option>
+                                        <option value="{{$data1->data_center}}">{{ $data1->data_center }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -35,7 +35,7 @@
                                     <select class="form-select" id="node_b" aria-label="Default select example" name="stasiun_id">
                                         <option value=""></option>
                                         @foreach ($stasiun as $data2)
-                                        <option value="{{$data2->id}}">{{ $data2->nama_stasiun }}</option>
+                                        <option value="{{$data2->nama_stasiun}}">{{ $data2->nama_stasiun }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -127,16 +127,53 @@
                         </div>
                         <div class="mb-3">
                             <label for="nameLarge" class="form-label">Service</label>
-                            <input type="text" name="service" class="form-control" placeholder="Service">
+                            <select class="form-select select-pilihan" id="service" aria-label="Default select example" name="service">
+                                <option value=""></option>
+                                <option value="Lease Line">Lease Line</option>
+                                <option value="Clear Channel">Clear Channel</option>
+                                <option value="Dark Fiber">Dark Fiber</option>
+                            </select>
                         </div>
+
+                        <div class="mb-3 input-leaseline" style="display: none">
+                            <label for="nameLarge" class="form-label">Bandwidth</label>
+                            <select class="form-select input-leaseline" id="bandwidth" aria-label="Default select example" name="bandwidth">
+                                <option value="" selected></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 input-darkline" style="display: none">
+                            <label for="nameLarge" class="form-label">Jarak</label>
+                            <select class="form-select" id="jarak" aria-label="Default select example" name="bandwidth">
+                                <option value="" selected></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
                         <div class="mb-3">
                             <label for="nameLarge" class="form-label">Project</label>
                             <input type="text" name="project" class="form-control" placeholder="Project">
                         </div>
-                        <div class="mb-3">
-                            <label for="nameLarge" class="form-label">Bandwidth</label>
-                            <input type="text" name="bandwidth" class="form-control" placeholder="Bandwidth">
-                        </div>
+                        
                         <div class="d-flex justify-content-end mt-2">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -156,6 +193,7 @@
         placeholder: "Select a Node A",
         allowClear: true
     });
+
     $("#node_b").select2({
         width: '100%',
         height: '20px',
@@ -163,5 +201,35 @@
         allowClear: true
     });
 
+    $("#service").select2({
+        width: '100%',
+        height: '20px',
+        placeholder: "Select a Service",
+        allowClear: true
+    });
+
+    $("#jarak").select2({
+        width: '100%',
+        height: '20px',
+        placeholder: "Select to Jarak",
+        allowClear: true
+    });
+
+    $("#bandwidth").select2({
+        width: '100%',
+        height: '20px',
+        placeholder: "Select to Bandwidth",
+        allowClear: true
+    });
+
+    $( "#service" ).change(function() {
+        if ($(".select-pilihan").val() == 'Dark Fiber'){
+            $(".input-darkline").removeAttr('style');
+            $('.input-leaseline').attr('style', 'display:none;');
+        }else{
+            $(".input-leaseline").removeAttr('style');
+            $('.input-darkline').attr('style', 'display:none;');
+        }
+    });
 </script>
 @endpush

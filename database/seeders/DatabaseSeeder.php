@@ -33,21 +33,21 @@ class DatabaseSeeder extends Seeder
         	'role' => 'admin',
         ]);
 
-        Center::create([
-            'data_center' => 'jakarta',
-        	'area' => 'jakarta',
-        ]);
+        // Center::create([
+        //     'data_center' => 'jakarta',
+        // 	'area' => 'jakarta',
+        // ]);
 
-        Stasiun::create([
-            'daop' => 'jakarta',
-        	'nama_stasiun' => 'jakarta',
-        	'kodkod' => 'jakarta',
-        	'kmtsta' => 'jakarta',
-        	'line' => 'jakarta',
-        	'remark' => 'jakarta',
-        	'rel_aktif_no_bb' => 'jakarta',
-        	'ring' => 'jakarta',
-        	'segmen' => 'jakarta',
-        ]);
+        // Stasiun::create([
+        //     'daop' => 'jakarta',
+        // 	'nama_stasiun' => 'jakarta',
+        // 	'kodkod' => 'jakarta',
+        // 	'kmtsta' => 'jakarta',
+        // 	'line' => 'jakarta',
+        // 	'remark' => 'jakarta',
+        // 	'rel_aktif_no_bb' => 'jakarta',
+        // 	'ring' => 'jakarta',
+        // 	'segmen' => 'jakarta',
+        // ]);
     }
 }

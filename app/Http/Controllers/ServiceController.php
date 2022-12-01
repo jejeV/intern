@@ -6,10 +6,14 @@ use App\Models\Service;
 use App\Models\Stasiun;
 use App\Models\Center;
 use App\Models\Customer;
+use App\Models\DetailA;
+use App\Models\DetailB;
 use App\Models\Log;
 use App\Models\Perangkat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class ServiceController extends Controller
 {
@@ -24,6 +28,7 @@ class ServiceController extends Controller
             // $data = Service::where('customer_id', 'LIKE', '%' . $request->search . '%')->paginate(25);
             $data = Service::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
+            // $data = Service::orderBy('created_at','desc')->paginate(25);
             $data = Service::paginate(25);
         }
         return view('service.service', compact('data'));
@@ -40,7 +45,20 @@ class ServiceController extends Controller
         $center = Center::all();
         $stasiun = Stasiun::all();
         $perangkat = Perangkat::all();
-        return view('service.tambahservice', compact('center', 'stasiun','customer','perangkat'));
+        $data = Service::all();
+        
+        $ti = DB::table('services')->select(DB::raw('MAX(RIGHT(id,10000)) as kode'));
+        $tt = "";
+        if($ti->count()>0){
+            foreach($ti->get() as $t){
+                $tkt = ((int)$t->kode)+1;
+                $tt = sprintf("%1s", $tkt);
+            }
+        }else{
+            $tt = "10000";
+        }
+
+        return view('service.tambahservice', compact('center', 'stasiun','customer','perangkat', 'tt','data'));
     }
 
     /**
@@ -51,28 +69,30 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'required'=>':attribute wajib di isi!'
+        ];
         $this->validate($request, [
             'customer_id' => 'required',
             'status_node_a' => 'required',
-            'detail_status_node_a' => 'required',
-            'location_node_a' => 'required',
             'rack_node_a' => 'required',
             'swicth_node_a' => 'required',
             'request_number_node_a' => 'required',
             'label_node_a' => 'required',
             'cable_lenght_node_a' => 'required',
             'status_node_b' => 'required',
-            'detail_status_node_b' => 'required',
-            'location_node_b' => 'required',
             'rack_node_b' => 'required',
             'switch_node_b' => 'required',
             'request_number_node_b' => 'required',
             'label_node_b' => 'required',
             'cable_lenght_node_b' => 'required',
-        ]);
+        ], $messages);
+
         Log::createLog(Auth::user()->id, 'Menambah Service');
         $data = Service::create($request->all());
+        $detaila = DetailA::create($request->all());
         return redirect()->route('service.index')->with('success', 'Create Success !!');
+        // dd($request->all());
     }
 
     /**
@@ -83,7 +103,12 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Service::find($id);
+        $detaila = DetailA::where('service_id', $id)->get();
+        $detaila1 = DetailA::where('service_id', $id)->orderBy('created_at','desc')->paginate(1);
+        $detailb = DetailB::where('service_id', $id)->get();
+        $detailb1 = DetailB::where('service_id', $id)->orderBy('created_at', 'desc')->paginate(1);
+        return view('service.showservice', compact('data','detaila','detaila1','detailb','detailb1'));
     }
 
     /**
@@ -111,10 +136,28 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        // $detaila = DetailA::create($request->all());
+        // 
+        $data_old = Service::find($id);
         $data = Service::find($id);
         $data->update($request->all());
-        Log::createLog(Auth::user()->id, 'Mengubah Service');
+        if($data->status_node_a != $data_old->status_node_a){
+            $detaila = DetailA::create($request->all());
+        }
+        if($data->status_node_b != $data_old->status_node_b){
+            $detailb = DetailB::create($request->all());
+        }
         return redirect()->route('service.index')->with('edit', 'Edit Success !!');
+
+        // if($data->status_node_a != $data_old->status_node_a){
+        //     DetailA::createLog($id, 'Mengubah Status A ' . $data->status_node_a);
+        // }
+        
+        // if($data->status_node_b != $data_old->status_node_b){
+        //     DetailB::createLog($id, 'Mengubah Status B ' . $data->status_node_b);
+        // }
+        // dd($request->all());
     }
 
     /**
@@ -129,5 +172,15 @@ class ServiceController extends Controller
         $data->delete();
         Log::createLog(Auth::user()->id, 'Menghapus Service');
         return response()->json(['status' => 'Data Berhasil di hapus!']);
+    }
+
+    // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    // public function posta(Request $request){
+    //     $detaila = DetailA::create($request->all());
+    //     return redirect()->route('service.index');
+    // }
+
+    public function postb1(Request $request){
+        dd($request->all());
     }
 }

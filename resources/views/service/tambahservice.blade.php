@@ -6,6 +6,14 @@
         <div class="card mb-4">
             <div class="card-header">
                 <h5 class="">Create Service</h5>
+                @if (count($errors)>0)
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
             </div>
             <form method="POST" action="{{ url('service') }}">
                 @csrf
@@ -13,10 +21,14 @@
                     <form>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Company Name</label>
-                            <select class="form-select" id="customer_id" aria-label="Default select example" name="customer_id">
-                                <option value=""></option>
-                                @foreach ($customer->where('status',0) as $data2)
-                                <option value="{{$data2->id}}">{{ $data2->companyname }}</option>
+                            <select class="form-select" id="customer_id" aria-label="Default select example" name="customer_id" required>
+                                @foreach ($customer->where('status',0) as $val)
+                                    @if (old('customer_id') == $val->id)
+                                        <option value="{{ $val->id }}" selected>{{ $val->companyname }}</option>
+                                    @else
+                                        <option value=""></option>
+                                        <option value="{{ $val->id }}">{{ $val->companyname }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -24,8 +36,8 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="form-label" for="basic-default-phone">Status Node A</label>
-                                    <select class="form-select" id="status_a" aria-label="Default select example" name="status_node_a">
-                                        <option value=""></option>
+                                    <select class="form-select select-pilihanA" id="status_a" aria-label="Default select example" name="status_node_a" required>
+                                        <option value="">Select Status Node A</option>
                                         <option value="submit interkoneksi diportal apjii">submit interkoneksi diportal apjii</option>
                                         <option value="aproved nni by partner (isp)">aproved nni by partner (isp)</option>
                                         <option value="pre survey by apjii, update cable length">pre survey by apjii, update cable length</option>
@@ -38,8 +50,8 @@
                                 </div>
                                 <div class="col">
                                     <label class="form-label" for="basic-default-phone">Status Node B</label>
-                                    <select class="form-select" id="status_b" aria-label="Default select example" name="status_node_b">
-                                        <option value=""></option>
+                                    <select class="form-select select-pilihanB" id="status_b" aria-label="Default select example" name="status_node_b">
+                                        <option value="">Select Status Node A</option>
                                         <option value="pre survey by isp & ije">pre survey by isp & ije</option>
                                         <option value="penarikan kabel interkoneksi stasiun">penarikan kabel interkoneksi stasiun</option>
                                         <option value="konfirmasi jadwal aktivasi by customer">konfirmasi jadwal aktivasi by customer</option>
@@ -49,27 +61,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="divStatus">
                             <div class="row">
-                                <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Detail Status Node A</label>
-                                    <input type="text" name="detail_status_node_a" class="form-control" placeholder="Detail Status Node A">
+                                <div class="detail_a col-6" style="display: none">
+                                    <div class="divCol" style="display: none">
+                                        <label for="emailBackdrop" class="form-label">Detail Status Node A <br> <p class="mt-1 mb-0">{{ date('D, M Y H:i') }}</p></label>
+                                        <input type="hidden" name="service_id" value="{{ $tt }}" id="nameWithTitle" class="form-control" placeholder="Edit Ticket Trouble" autofocus />
+                                        <input type="text" name="detail_a" class="form-control" placeholder="Detail Status Node A" value="">
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Detail Status Node B</label>
-                                    <input type="text" name="detail_status_node_b" class="form-control" placeholder="Detail Status Node B">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Location Node A</label>
-                                    <input type="text" name="location_node_a" class="form-control" placeholder="Location Node A">
-                                </div>
-                                <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Location Node B</label>
-                                    <input type="text" name="location_node_b" class="form-control" placeholder="Location Node B">
+                                <div class="detail_b col-6" style="display: none">
+                                    <input type="hidden" name="service_id" value="{{ $tt }}" id="nameWithTitle" class="form-control" placeholder="Edit Ticket Trouble" autofocus />
+                                    <label for="emailBackdrop" class="form-label">Detail Status Node B <br> <p class="mt-1 mb-0">{{ date('D, M Y H:i') }}</p></label>
+                                    <input type="text" name="detail_b" class="form-control" placeholder="Detail Status Node B">
                                 </div>
                             </div>
                         </div>
@@ -201,6 +205,20 @@
         placeholder: "Select a Name Company",
         allowClear: true
     });
+
+    $( "#status_a" ).change(function() {
+        $('.divCol').removeAttr('style');
+        $('.detail_a').removeAttr('style');
+        // $('.detail_a').addClass("col-6");
+        $('.divStatus').addClass("mb-3");
+    });
+
+    $("#status_b").change(function(){
+        $('.divColb').removeAttr('style');
+        $('.detail_b').removeAttr('style');
+        $('.detail_a').removeAttr('style');
+        $('.divStatus').addClass("mb-3");
+    })
 
     $("#status_a").select2({
         width: '100%',

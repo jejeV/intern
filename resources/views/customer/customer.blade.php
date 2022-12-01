@@ -48,7 +48,6 @@
                 <tr>
                     <th>No</th>
                     <th>Date</th>
-                    <th>Status</th>
                     <th>Company Name</th>
                     <th>Status</th>
                     {{-- <th>Company Address</th> --}}
@@ -79,14 +78,7 @@
                 <tr>
                     <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
-                    <td>{{ $row->created_at->format('D M Y') }}</td>
-                    <td>
-                        @if ($row->status == 1)
-                            <a href="{{ url('customer/status/'.$row->id) }}" class="btn btn-xs btn-danger">Non-Aktifkan</a>
-                        @else
-                        <a href="{{ url('customer/status/'.$row->id) }}" class="btn btn-xs btn-success">Aktifkan</a>
-                        @endif
-                    </td>
+                    <td>{{ $row->created_at->format('D, M Y') }}</td>
                     <td>{{ $row->companyname }}</td>
                     <td><span class="{{ ($row->status == 1)? 'badge bg-label-success' : 'badge bg-label-danger' }}">{{ ($row->status == 1)? 'Aktif' : 'Tidak Aktif' }}</span></td>
                     {{-- <td>{{ $row->companyaddress }}</td> --}}
@@ -99,8 +91,8 @@
                     <td>{{ $row->service }}</td>
                     <td>{{ $row->project }}</td>
                     <td>{{ $row->bandwidth }}</td> --}}
-                    <td>{{ $row->center->data_center }}</td>
-                    <td>{{ $row->stasiun->nama_stasiun }}</td>
+                    <td>{{ $row->center_id }}</td>
+                    <td>{{ $row->stasiun_id }}</td>
                     <td class="d-flex">
                         <div class="me-2">
                             <!-- Button trigger modal -->
@@ -239,12 +231,12 @@
                         <div class="row g-2">
                             <div class="col mb-3">
                                 <label for="emailBackdrop" class="form-label">Node A</label>
-                                <input type="text" name="center_id" value="{{ $customer->center->data_center }}"
+                                <input type="text" name="center_id" value="{{ $customer->center_id }}"
                                     class="form-control" placeholder="Bandung" disabled>
                             </div>
                             <div class="col mb-3">
                                 <label for="dobBackdrop" class="form-label">Node B</label>
-                                <input type="text" name="stasiun_id" value="{{ $customer->stasiun->nama_stasiun }}"
+                                <input type="text" name="stasiun_id" value="{{ $customer->stasiun_id }}"
                                     class="form-control" placeholder="Jakarta" disabled>
                             </div>
                         </div>
