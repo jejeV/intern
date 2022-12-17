@@ -45,9 +45,8 @@
                         Add
                     </button>
                 </div>
-
                 <!-- Modal -->
-                <form method="POST" action="{{ url('stasiun') }}">
+                <form method="POST" action="{{ url('stasiun') }}" id="formCreate">
                     @csrf
                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -118,7 +117,7 @@
                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                         Close
                                     </button>
-                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -137,9 +136,6 @@
                     <th>Kodkod</th>
                     <th>Kmtsta</th>
                     <th>Line</th>
-                    {{-- <th>Rel aktif no bb</th>
-                        <th>Ring</th>
-                        <th>Segmen</th> --}}
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -153,9 +149,6 @@
                     <td>{{ $row->kodkod }}</td>
                     <td>{{ $row->kmtsta }}</td>
                     <td>{{ $row->line }}</td>
-                    {{-- <td>{{ $row->rel_aktif_no_bb}}</td>
-                    <td>{{ $row->ring}}</td>
-                    <td>{{ $row->segmen}}</td> --}}
                     <td class="d-flex">
                         <div class="me-2">
                             <!-- Button trigger modal -->
@@ -189,7 +182,7 @@
 {{-- Edit --}}
 @foreach ($data as $stasiun)
 <!-- Modal -->
-<form method="POST" action="{{ url('stasiun/'.$stasiun->id) }}">
+<form method="POST" action="{{ url('stasiun/'.$stasiun->id) }}" id="formEdit">
     @csrf
     @method('put')
     <div class="modal fade" id="modalCenter2-{{ $stasiun->id }}" tabindex="-1" aria-hidden="true">
@@ -260,7 +253,7 @@
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
@@ -359,12 +352,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         $('.btndelete').click(function (e) {
             e.preventDefault();
-
             var deleteid = $(this).closest("tr").find('.delete_id').val();
-
             swal({
                     title: "Apakah anda yakin?",
                     text: "Setelah dihapus, Anda tidak dapat memulihkan Data ini lagi!",
@@ -374,7 +364,6 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-
                         var data = {
                             "_token": $('input[name=_token]').val(),
                             'id': deleteid,
@@ -397,8 +386,16 @@
                     }
                 });
         });
-
     });
+
+    $('#formCreate').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
+    });
+
+    $('#formEdit').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
+    });
+
 
 </script>
 @endpush

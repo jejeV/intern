@@ -19,6 +19,14 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+@if (count($errors)>0)
+<div class="alert alert-danger alert-dismissible" role="alert">
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="card">
     <div class="row">
         <div class="col-6">
@@ -44,7 +52,7 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ url('user') }}">
+        <form method="POST" action="{{ url('user') }}" id="formCreate">
             @csrf
             <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -57,19 +65,19 @@
                             <div class="row">
                                 <div class="col mb-lg-2 mb-1">
                                     <label for="nameWithTitle" class="form-label">Name</label>
-                                    <input type="text" name="name" id="nameWithTitle" class="form-control" placeholder="Enter Name" autofocus />
+                                    <input type="text" name="name" id="nameWithTitle" class="form-control" placeholder="Enter Name" autofocus required/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col mb-lg-2 mb-1">
                                     <label for="nameWithTitle" class="form-label">Username</label>
-                                    <input type="text" name="username" id="nameWithTitle" class="form-control" placeholder="Enter Username" autofocus />
+                                    <input type="text" name="username" id="nameWithTitle" class="form-control" placeholder="Enter Username" autofocus required/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col mb-lg-2 mb-1">
                                     <label for="nameWithTitle" class="form-label">Email</label>
-                                    <input type="text" name="email" id="nameWithTitle" class="form-control" placeholder="Enter email" autofocus />
+                                    <input type="text" name="email" id="nameWithTitle" class="form-control" placeholder="Enter email" autofocus required/>
                                 </div>
                             </div>
                             <div class="row">
@@ -88,7 +96,7 @@
                             <div class="row">
                                 <div class="col mb-lg-2 mb-1">
                                     <label for="exampleFormControlSelect1" class="form-label">Role</label>
-                                    <select class="form-select @error('level') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="role">
+                                    <select class="form-select @error('level') is-invalid @enderror" aria-label="Default select example" name="role" id="role">
                                         <option selected>Select</option>
                                         <option value="admin">Admin</option>
                                         <option value="pegawai">Pegawai</option>
@@ -100,7 +108,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 Close
                             </button>
-                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -148,7 +156,7 @@
     {{-- Edit --}}
 @foreach ($data as $user)
 <!-- Modal -->
-<form method="POST" action="{{ url('user/'.$user->id) }}">
+<form method="POST" action="{{ url('user/'.$user->id) }}" id="formEdit">
     @csrf
     @method('put')
     <div class="modal fade" id="modalCenter2-{{ $user->id }}" tabindex="-1" aria-hidden="true">
@@ -180,7 +188,14 @@
                     <div class="row">
                         <div class="col mb-lg-2 mb-1">
                             <label for="nameWithTitle" class="form-label">Password</label>
-                            <input type="text" name="password" value="" id="nameWithTitle" class="form-control" placeholder="Password" autofocus required />
+                            <div class="form-password-toggle">
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password" class="form-control" name="password"
+                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                        aria-describedby="password" required />
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -209,3 +224,21 @@
 </div>
 {{-- End Edit --}}
 @endsection
+@push('scripts')
+<script>
+$("#role").select2({
+    width: '100%',
+    height: '10px',
+    placeholder: "Select a Company",
+    dropdownParent: $("#modalCenter"),
+});
+
+$('#formCreate').submit(function(){
+    $(this).find(':input[type=submit]').prop('disabled', true);
+});
+
+$('#formEdit').submit(function(){
+    $(this).find(':input[type=submit]').prop('disabled', true);
+});
+</script>
+@endpush

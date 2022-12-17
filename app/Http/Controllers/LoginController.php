@@ -25,7 +25,7 @@ class LoginController extends Controller
             // Log::createLog(Auth::user()->id, 'Login');
             return redirect()->intended('/')->with('login', 'Login Success !!');
         }
-        return back()->with('loginError', 'Login Faile!!');
+        return back()->with('loginError', 'Login Failed!!');
     }
 
     public function logout(Request $request)

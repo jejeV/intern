@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('companyname');
-            $table->integer('status')->default('0');
+            $table->string('status')->default('tidak aktif');
             $table->string('companyaddress');
             $table->string('phone');
             $table->string('npwp');
@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('phone_picf');
             $table->string('email_picf');
             $table->string('service');
-            $table->string('project');
             $table->string('bandwidth');
             $table->string('center_id');
             $table->string('stasiun_id');

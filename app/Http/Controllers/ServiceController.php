@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-
 class ServiceController extends Controller
 {
     /**
@@ -24,14 +23,16 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->search;
         if ($request->has('search')) {
-            // $data = Service::where('customer_id', 'LIKE', '%' . $request->search . '%')->paginate(25);
-            $data = Service::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $data1 = Service::join('customers', 'services.customer_id', '=', 'customers.id')
+            ->where('companyname', 'LIKE' , '%' . $keyword . '%')
+            ->paginate(25);
         } else {
             // $data = Service::orderBy('created_at','desc')->paginate(25);
-            $data = Service::paginate(25);
+            $data1 = Service::paginate(25);
         }
-        return view('service.service', compact('data'));
+        return view('service.service', compact('data1'));
     }
 
     /**
@@ -72,6 +73,7 @@ class ServiceController extends Controller
         $messages = [
             'required'=>':attribute wajib di isi!'
         ];
+
         $this->validate($request, [
             'customer_id' => 'required',
             'status_node_a' => 'required',
@@ -91,6 +93,7 @@ class ServiceController extends Controller
         Log::createLog(Auth::user()->id, 'Menambah Service');
         $data = Service::create($request->all());
         $detaila = DetailA::create($request->all());
+        $detailb = DetailB::create($request->all());
         return redirect()->route('service.index')->with('success', 'Create Success !!');
         // dd($request->all());
     }
@@ -136,8 +139,6 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        // $detaila = DetailA::create($request->all());
         // 
         $data_old = Service::find($id);
         $data = Service::find($id);
@@ -174,13 +175,9 @@ class ServiceController extends Controller
         return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 
-    // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    // public function posta(Request $request){
-    //     $detaila = DetailA::create($request->all());
-    //     return redirect()->route('service.index');
+    // public function search(Request $request){
+    //     $filter = request()->query();
+    //     return Service::where('customer_id', 'like', "%{$filter['search']}%")->get();
     // }
 
-    public function postb1(Request $request){
-        dd($request->all());
-    }
 }

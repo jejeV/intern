@@ -40,8 +40,7 @@ Route::resource('/customer', CustomerController::class)->except('show')->middlew
 Route::get('customer/status/{id}', [CustomerController::class, 'status']);
 
 Route::resource('/service', ServiceController::class);
-
-Route::resource('/detaila', DetailAController::class);
+// route::get('/search', [ServiceController::class,'search'])->name('search');
 
 Route::post('/posta', [ServiceController::class, 'posta']);
 
