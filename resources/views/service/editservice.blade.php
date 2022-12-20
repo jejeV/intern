@@ -8,16 +8,16 @@
                 <h5 class="mb-0">Edit Service</h5>
             </div>
                 <div class="card-body">
-                    <form name="form1" method="POST" action="{{ url('service/'.$data->id) }}" id="form1">
+                    <form name="form1" method="POST" action="{{ url('service/'.$data->id) }}" id="form">
                         @csrf
                         @method('put')
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Company Name</label>
                             <select class="form-select" id="customer_id" aria-label="Default select example" name="customer_id">
                                 <option value="{{ $data->customer_id }}">{{ $data->customer->companyname }}</option>
-                                {{-- @foreach ($customer as $data2)
+                                @foreach ($customer as $data2)
                                 <option value="{{$data2->id}}">{{ $data2->companyname }}</option>
-                                @endforeach --}}
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
@@ -211,33 +211,8 @@
 </div>
 @endsection
 
-{{-- @push('head')
-<script language="javascript">
-    // submitForms = function{
-    // // document.form1.submit();
-    //     // document.getElementById("form1").submit();
-    //     document.getElementById("form1").submit();
-    //     document.getElementById("form2").submit();
-
-    // }
-
-    function submit_form(){
-        document.form1.submit();
-        document.form2.submit();
-        // document.form3.submit();
-    }
-    </script>
-@endpush --}}
-
 @push('scripts')
 <script type="text/javascript">
-
-    // $('#btn1').click(function(){
-    //     $('#form1').attr('action', '{{ url('service/'.$data->id) }}');
-    //     $('#form1').submit();
-    //     $('#form2').attr('action', '{{ url('detaila') }}');
-    //     $('#form2').submit();
-    // });
 
     $("#node_a").select2({
         width: '100%',
@@ -306,5 +281,8 @@
         allowClear: true
     });
     
+    $('#form').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
+    });
 </script>
 @endpush

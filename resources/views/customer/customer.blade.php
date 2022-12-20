@@ -50,24 +50,7 @@
                     <th>Date</th>
                     <th>Company Name</th>
                     <th>Status</th>
-                    {{-- <th>Company Address</th> --}}
                     <th>Phone</th>
-                    {{-- <th>NPWP</th> --}}
-                    {{-- <th>Deal Name</th>
-                    <th>Position</th>
-                    <th>No Handphone</th>
-                    <th>Email Deal Name</th>
-                    <th>Pic Technical Name</th>
-                    <th>Positon PICT</th>
-                    <th>Phone PICT</th>
-                    <th>Email PICT</th>
-                    <th>Pic Finance Name</th>
-                    <th>Position PICF</th>
-                    <th>Phone PICF</th>
-                    <th>Email PICF </th>
-                    <th>Service</th>
-                    <th>Project</th>
-                    <th>Bandwidth</th> --}}
                     <th>Node A</th>
                     <th>Node B</th>
                     <th>Aksi</th>
@@ -80,17 +63,8 @@
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
                     <td>{{ $row->created_at->format('D, M Y') }}</td>
                     <td>{{ $row->companyname }}</td>
-                    <td><span class="{{ ($row->status == 1)? 'badge bg-label-success' : 'badge bg-label-danger' }}">{{ ($row->status == 1)? 'Aktif' : 'Tidak Aktif' }}</span></td>
-                    {{-- <td>{{ $row->companyaddress }}</td> --}}
+                    <td><span class="{{ ($row->status == 'aktif')? 'badge bg-label-success' : 'badge bg-label-danger' }}">{{ ($row->status == 'aktif')? 'Aktif' : 'Tidak Aktif' }}</span></td>
                     <td>{{ $row->phone }}</td>
-                    {{-- <td>{{ $row->npwp }}</td> --}}
-                    {{-- <td>{{ $row->dealname }}</td>
-                    <td>{{ $row->position }}</td>
-                    <td>{{ $row->nohandphone }}</td>
-                    <td>{{ $row->emaildealname }}</td>
-                    <td>{{ $row->service }}</td>
-                    <td>{{ $row->project }}</td>
-                    <td>{{ $row->bandwidth }}</td> --}}
                     <td>{{ $row->center_id }}</td>
                     <td>{{ $row->stasiun_id }}</td>
                     <td class="d-flex">
@@ -245,13 +219,6 @@
                                 <label for="nameLarge" class="form-label">Service</label>
                                 <input type="text" name="service" value="{{ $customer->service }}" class="form-control"
                                     placeholder="Service" disabled>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col mb-3">
-                                <label for="nameLarge" class="form-label">Project</label>
-                                <input type="text" name="project" value="{{ $customer->project }}" class="form-control"
-                                    placeholder="Project" disabled>
                             </div>
                         </div>
                         <div class="row">

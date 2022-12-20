@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ url('perangkat') }}">
+        <form method="POST" action="{{ url('perangkat') }}" id="form Create">
             @csrf
             <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -73,7 +73,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 Close
                             </button>
-                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
 
 @foreach ($data as $perangkat)
 <!-- Modal -->
-<form method="POST" action="{{ url('perangkat/'.$perangkat->id) }}">
+<form method="POST" action="{{ url('perangkat/'.$perangkat->id) }}" id="formEdit">
     @csrf
     @method('put')
     <div class="modal fade" id="modalCenter2-{{ $perangkat->id }}" tabindex="-1" aria-hidden="true">
@@ -154,7 +154,7 @@
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" class="btn btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
@@ -212,6 +212,14 @@
                 });
         });
 
+    });
+
+    $('#formCreate').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
+    });
+
+    $('#formEdit').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
     });
 
 </script>

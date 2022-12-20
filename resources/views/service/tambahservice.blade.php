@@ -15,14 +15,14 @@
                 </div>
                 @endif
             </div>
-            <form method="POST" action="{{ url('service') }}">
+            <form method="POST" action="{{ url('service') }}" id="form">
                 @csrf
                 <div class="card-body">
                     <form>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Company Name</label>
                             <select class="form-select" id="customer_id" aria-label="Default select example" name="customer_id" required>
-                                @foreach ($customer->where('status',0) as $val)
+                                @foreach ($customer->where('status','tidak aktif') as $val)
                                     @if (old('customer_id') == $val->id)
                                         <option value="{{ $val->id }}" selected>{{ $val->companyname }}</option>
                                     @else
@@ -71,8 +71,8 @@
                                     </div>
                                 </div>
                                 <div class="detail_b col-6" style="display: none">
-                                    <input type="hidden" name="service_id" value="{{ $tt }}" id="nameWithTitle" class="form-control" placeholder="Edit Ticket Trouble" autofocus />
                                     <label for="emailBackdrop" class="form-label">Detail Status Node B <br> <p class="mt-1 mb-0">{{ date('D, M Y H:i') }}</p></label>
+                                    <input type="hidden" name="service_id" value="{{ $tt }}" id="nameWithTitle" class="form-control" placeholder="Edit Ticket Trouble" autofocus />
                                     <input type="text" name="detail_b" class="form-control" placeholder="Detail Status Node B">
                                 </div>
                             </div>
@@ -262,5 +262,8 @@
         allowClear: true
     });
 
+    $('#form').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
+    });
 </script>
 @endpush

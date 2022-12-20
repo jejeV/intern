@@ -66,7 +66,6 @@ class CustomerController extends Controller
             'phone_picf' => 'required',
             'email_picf' => 'required',
             'service' => 'required',
-            'project' => 'required',
             'bandwidth' => 'required',
             'center_id' => 'required',
             'stasiun_id' => 'required',
@@ -137,13 +136,13 @@ class CustomerController extends Controller
 
         $status_sekarang = $data->status;
 
-        if($status_sekarang == 1){
+        if($status_sekarang == 'aktif'){
             Customer::where('id',$id)->update([
-                'status'=>0
+                'status'=>'tidak aktif'
             ]);
         }else{
             Customer::where('id',$id)->update([
-                'status'=>1
+                'status'=>'aktif'
             ]);
         }
         return redirect()->route('service.index');

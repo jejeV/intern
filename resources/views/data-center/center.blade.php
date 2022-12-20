@@ -47,7 +47,7 @@
                 </div>
 
                 <!-- Modal -->
-                <form method="POST" action="{{ url('data-center') }}">
+                <form method="POST" action="{{ url('data-center') }}" id="formCreate">
                     @csrf
                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -77,7 +77,7 @@
                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                         Close
                                     </button>
-                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
 {{-- Edit --}}
 @foreach ($data as $center)
 <!-- Modal -->
-<form method="POST" action="{{ url('data-center/'.$center->id) }}">
+<form method="POST" action="{{ url('data-center/'.$center->id) }}" id="formEdit">
     @csrf
     @method('put')
     <div class="modal fade" id="modalCenter2-{{ $center->id }}" tabindex="-1" aria-hidden="true">
@@ -160,7 +160,7 @@
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
@@ -219,6 +219,14 @@
                 });
         });
 
+    });
+
+    $('#formCreate').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
+    });
+
+    $('#formEdit').submit(function(){
+        $(this).find(':input[type=submit]').prop('disabled', true);
     });
 
 </script>

@@ -48,7 +48,7 @@
                 </div>
 
                 <!-- Modal -->
-                <form method="POST" action="{{ url('ticket') }}">
+                <form method="POST" action="{{ url('ticket') }}" id="form">
                     @csrf
                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -75,7 +75,7 @@
                                             <label for="nameWithTitle" class="form-label">Customer</label>
                                             <select class="form-select" id="status" aria-label="Default select example" name="customer_id">
                                                 <option value=""></option>
-                                                @foreach ($customer->where('status',1) as $data2)
+                                                @foreach ($customer->where('status','aktif') as $data2)
                                                 <option value="{{$data2->id}}">{{ $data2->companyname }}</option>
                                                 @endforeach
                                             </select>
@@ -86,7 +86,7 @@
                                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                         Close
                                     </button>
-                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +220,6 @@ $(document).ready(function () {
             })
             .then((willDelete) => {
                 if (willDelete) {
-
                     var data = {
                         "_token": $('input[name=_token]').val(),
                         'id': deleteid,
@@ -246,5 +245,8 @@ $(document).ready(function () {
 
 });
 
+$('#form').submit(function(){
+    $(this).find(':input[type=submit]').prop('disabled', true);
+});
 </script>
 @endpush

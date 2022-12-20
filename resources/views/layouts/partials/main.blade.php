@@ -25,10 +25,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
@@ -51,7 +48,8 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- Swett Alert --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   </head>
@@ -85,7 +83,7 @@
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                 <div class="mb-2 mb-md-0">
-                  &copy; 2021. PT Integrasi Jaringan Ekosistem
+                  &copy; 2022. PT Integrasi Jaringan Ekosistem
                 </div>
                 <div>
                   <a href="" class="footer-link me-4" >info@weave.co.id</a>
@@ -108,25 +106,14 @@
     
     <!-- / Layout wrapper -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
     @stack('scripts')
     
     <script>
-      // $.post('/logout',$(window).on('load', function(){
-      //   setTimeout(function(){
-      //     type : 'post',
-      //     window.location.href = '/logout'
-      //   }, 100)
-      // }))
       $(window).on('load', function(){
         setTimeout(function(){
           window.location.href = ''
         }, 900000)
-        // setTimeout(function(){
-        //   window.location.href = '$.post(/logout)'
-        // }, 200)
-        // $.post(setTimeout(function(){
-        //   window.location.href = '/logout'
-        // }, 200))
       })
   </script>
 
