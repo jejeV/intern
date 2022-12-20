@@ -22,10 +22,10 @@ class TicketController extends Controller
     {
         if ($request->has('search')) {
             $data = Ticket::where('customer', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $customer = Customer::all();
         } else {
             $data = Ticket::orderBy('created_at','desc')->paginate(25);
             $customer = Customer::all();
-
             $ti = DB::table('tickets')->select(DB::raw('MAX(RIGHT(t_ticket,7)) as kode'));
             $tt = "";
             if($ti->count()>0){

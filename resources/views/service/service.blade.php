@@ -57,48 +57,48 @@
             </thead>
             <tbody class="table-border-bottom-0" id="result">
                 @foreach ($data1 as $index => $row)
-                @if ($row->customer->status == 'tidak aktif')
-                    <tr>
-                        <input type="hidden" class="delete_id" value="{{ $row->id }}">
-                        <th scope="row">{{ $index + $data1->firstItem() }}</th>
-                        <td>{{ $row->created_at->format('D, d M Y') }}</td>
-                        <td>
-                            @if ($row->customer->status == 'aktif')
-                                @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
-                                <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
-                                @else
-                                    {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
+                    @if ($row->customer->status == 'tidak aktif')
+                        <tr>
+                            <input type="hidden" class="delete_id" value="{{ $row->id }}">
+                            <th scope="row">{{ $index + $data1->firstItem() }}</th>
+                            <td>{{ $row->created_at->format('D, d M Y') }}</td>
+                            <td>
+                                @if ($row->customer->status == 'aktif')
+                                    @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
                                     <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
-                                @endif
-                            @else
-                                @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
-                                <a href="{{ url('customer/status/'.$row->customer_id) }}" class="btn btn-xs btn-success">Aktifkan</a>
+                                    @else
+                                        {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
+                                        <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
+                                    @endif
                                 @else
-                                    {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
-                                    <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
+                                    @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
+                                    <a href="{{ url('customer/status/'.$row->customer_id) }}" class="btn btn-xs btn-success">Aktifkan</a>
+                                    @else
+                                        {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
+                                        <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
+                                    @endif
                                 @endif
-                            @endif
-                        </td>
-                        <td>{{ $row->customer->companyname }}</td>
-                        <td>{{ $row->customer->center_id }}</td>
-                        <td>{{ $row->status_node_a }}</td>
-                        <td>{{ $row->customer->stasiun_id }}</td>
-                        <td>{{ $row->status_node_b }}</td>
-                        <td class="d-flex">
-                            <div class="me-2">
-                                <a href="{{ ('service/'.$row->id) }}" class="btn btn-primary btn-sm"><i class='bx bxs-show'></i></a>
-                            </div>
-                            <div class="me-2">
-                                <a href="{{ ('service/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
-                            </div>
-                            <form method="POST" action="{{ url('service/'.$row->id) }}">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                @endif
+                            </td>
+                            <td>{{ $row->customer->companyname }}</td>
+                            <td>{{ $row->customer->center_id }}</td>
+                            <td>{{ $row->status_node_a }}</td>
+                            <td>{{ $row->customer->stasiun_id }}</td>
+                            <td>{{ $row->status_node_b }}</td>
+                            <td class="d-flex">
+                                <div class="me-2">
+                                    <a href="{{ ('service/'.$row->id) }}" class="btn btn-primary btn-sm"><i class='bx bxs-show'></i></a>
+                                </div>
+                                <div class="me-2">
+                                    <a href="{{ ('service/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
+                                </div>
+                                <form method="POST" action="{{ url('service/'.$row->id) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
