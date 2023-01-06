@@ -16,14 +16,14 @@
                             <input type="text" name="companyname" class="form-control" placeholder="Company Name" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-company">Company Address</label>
-                            <input type="text" name="companyaddress" class="form-control" placeholder="Company Address" required>
+                            <label class="form-label" for="basic-default-company">Sales Name</label>
+                            <input type="text" name="salesname" class="form-control" placeholder="Company Address" required>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
                                     <label for="exampleFormControlSelect1" class="form-label">Node A</label>
-                                    <select class="form-select" id="node_a" aria-label="Default select example" name="center_id" required>
+                                    <select class="form-select" id="node_a" aria-label="Default select example" name="node_a" required>
                                         <option value=""></option>
                                         @foreach ($center as $data1)
                                         <option value="{{$data1->data_center}}">{{ $data1->data_center }}</option>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="exampleFormControlSelect1" class="form-label">Node B</label>
-                                    <select class="form-select" id="node_b" aria-label="Default select example" name="stasiun_id" required>
+                                    <select class="form-select" id="node_b" aria-label="Default select example" name="node_b" required>
                                         <option value=""></option>
                                         @foreach ($stasiun as $data2)
                                         <option value="{{$data2->nama_stasiun}}">{{ $data2->nama_stasiun }}</option>
@@ -44,90 +44,90 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label class="form-label" for="basic-default-phone">Phone</label>
-                                    <input type="text" name="phone" class="form-control" placeholder="081234567" required>
+                                    <label class="form-label" for="basic-default-phone">Ring</label>
+                                    <input type="text" name="ring" class="form-control" placeholder="Ring" required>
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">NPWP</label>
-                                    <input type="text" name="npwp" class="form-control" placeholder="NPWP" required>
+                                    <label for="dobBackdrop" class="form-label">Pair</label>
+                                    <input type="text" name="pair" class="form-control" placeholder="Pair" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Deal Name</label>
-                                    <input type="text" name="dealname" class="form-control" placeholder="Deal Name" required>
+                                    <label for="emailBackdrop" class="form-label">KM</label>
+                                    <input type="text" name="km" class="form-control" placeholder="KM" required>
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Position</label>
-                                    <input type="text" name="position" class="form-control" placeholder="Position" required>
+                                    <label for="dobBackdrop" class="form-label">SO</label>
+                                    <input type="text" name="so" class="form-control" placeholder="SO" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">No Handphone</label>
-                                    <input type="text" name="nohandphone" class="form-control" placeholder="081234567" required>
+                                    <label for="emailBackdrop" class="form-label">CID</label>
+                                    <input type="text" name="cid" class="form-control" placeholder="CID" required>
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Email Deal Name</label>
-                                    <input type="text" name="emaildealname" class="form-control" placeholder="dealname@gmail.com" required>
+                                    <label for="dobBackdrop" class="form-label">SID</label>
+                                    <input type="text" name="sid" class="form-control" placeholder="SID" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Pic Technical Name</label>
-                                    <input type="text" name="pictechnicalname" class="form-control" placeholder="Pict Name" required>
+                                    <label for="emailBackdrop" class="form-label">Net Active</label>
+                                    <input type="text" name="net_active" class="form-control" placeholder="Net Active" required>
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Pic Finace Name</label>
-                                    <input type="text" name="picfinacename" class="form-control" placeholder="Picf Name" required>
+                                    <label for="dobBackdrop" class="form-label">Active Date</label>
+                                    <input type="date" name="active_date" class="form-control"required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Position PICT</label>
-                                    <input type="text" name="position_pict" class="form-control" placeholder="Position Pict" required>
+                                    <label for="emailBackdrop" class="form-label">HH Access</label>
+                                    <input type="text" name="hh_access" class="form-control" placeholder="HH Access" required>
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Position PICF</label>
-                                    <input type="text" name="position_picf" class="form-control" placeholder="Position Picf" required>
+                                    <label for="dobBackdrop" class="form-label">Backbone</label>
+                                    <input type="text" name="backbone" class="form-control" placeholder="Backbone" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Phone PICT</label>
-                                    <input type="text" name="phone_pict" class="form-control" placeholder="081234567" required>
+                                    <label for="emailBackdrop" class="form-label">Update Node A</label>
+                                    <input type="text" name="update_node_a" class="form-control" placeholder="Update Node A" required>
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Phone PICF</label>
-                                    <input type="text" name="phone_picf" class="form-control" placeholder="081234567" required>
+                                    <label for="dobBackdrop" class="form-label">Update Node B</label>
+                                    <input type="text" name="update_node_b" class="form-control" placeholder="Update Node B" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Email PICT</label>
-                                    <input type="text" name="email_pict" class="form-control" placeholder="pict@gmail.com" required>
+                                    <label for="emailBackdrop" class="form-label">Port Node A</label>
+                                    <input type="text" name="port_node_a" class="form-control" placeholder="Port Node A" required>
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Email PICF</label>
-                                    <input type="text" name="email_picf" class="form-control" placeholder="picf@gmail.com" required>
+                                    <label for="dobBackdrop" class="form-label">Port Node B</label>
+                                    <input type="text" name="port_node_b" class="form-control" placeholder="Port Node B" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="nameLarge" class="form-label">Service</label>
-                            <select class="form-select select-pilihan" id="service" aria-label="Default select example" name="service"  required>
+                            <label for="nameLarge" class="form-label">Product</label>
+                            <select class="form-select select-pilihan" id="service" aria-label="Default select example" name="product" required>
                                 <option value=""></option>
                                 <option value="Lease Line">Lease Line</option>
                                 <option value="Clear Channel">Clear Channel</option>

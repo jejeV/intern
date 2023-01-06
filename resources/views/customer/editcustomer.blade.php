@@ -17,106 +17,106 @@
                             <input type="text" name="companyname" class="form-control" placeholder="Company Name" value="{{ $data->companyname }}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-company">Company Address</label>
-                            <input type="text" name="companyaddress" class="form-control" placeholder="Company Address" value="{{ $data->companyaddress }}">
+                            <label class="form-label" for="basic-default-company">Sales Name</label>
+                            <input type="text" name="salesname" class="form-control" placeholder="Company Address" value="{{ $data->salesname }}">
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label class="form-label" for="basic-default-phone">Phone</label>
-                                    <input type="text" name="phone" class="form-control" placeholder="081234567" value="{{ $data->phone }}">
+                                    <label class="form-label" for="basic-default-phone">Ring</label>
+                                    <input type="text" name="ring" class="form-control" placeholder="081234567" value="{{ $data->ring }}">
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">NPWP</label>
-                                    <input type="text" name="npwp" class="form-control" placeholder="NPWP" value="{{ $data->npwp }}">
+                                    <label for="dobBackdrop" class="form-label">Pair</label>
+                                    <input type="text" name="pair" class="form-control" placeholder="NPWP" value="{{ $data->pair }}">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Deal Name</label>
-                                    <input type="text" name="dealname" class="form-control" placeholder="Deal Name" value="{{ $data->dealname }}">
+                                    <label for="emailBackdrop" class="form-label">KM</label>
+                                    <input type="text" name="km" class="form-control" placeholder="Deal Name" value="{{ $data->km }}">
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Position</label>
-                                    <input type="text" name="position" class="form-control" placeholder="Position" value="{{ $data->position }}">
+                                    <label for="dobBackdrop" class="form-label">SO</label>
+                                    <input type="text" name="so" class="form-control" placeholder="Position" value="{{ $data->so }}">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">No Handphone</label>
-                                    <input type="text" name="nohandphone" class="form-control" placeholder="081234567" value="{{ $data->nohandphone }}">
+                                    <label for="emailBackdrop" class="form-label">CID</label>
+                                    <input type="text" name="cid" class="form-control" placeholder="081234567" value="{{ $data->cid }}">
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Email Deal Name</label>
-                                    <input type="text" name="emaildealname" class="form-control" placeholder="dealname@gmail.com" value="{{ $data->emaildealname }}">
+                                    <label for="dobBackdrop" class="form-label">SID</label>
+                                    <input type="text" name="sid" class="form-control" placeholder="dealname@gmail.com" value="{{ $data->sid }}">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Pic Technical Name</label>
-                                    <input type="text" name="pictechnicalname" class="form-control" placeholder="Pict Name" value="{{ $data->pictechnicalname }}">
+                                    <label for="emailBackdrop" class="form-label">Net Active</label>
+                                    <input type="text" name="net_active" class="form-control" placeholder="Pict Name" value="{{ $data->net_active }}">
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Pic Finace Name</label>
-                                    <input type="text" name="picfinacename" class="form-control" placeholder="Picf Name" value="{{ $data->picfinacename }}">
+                                    <label for="dobBackdrop" class="form-label">Active Date</label>
+                                    <input type="date" name="active_date" class="form-control" placeholder="Picf Name" value="{{ $data->active_date }}">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Position PICT</label>
-                                    <input type="text" name="position_pict" class="form-control" placeholder="Position Pict" value="{{ $data->position_pict }}">
+                                    <label for="emailBackdrop" class="form-label">HH Access</label>
+                                    <input type="text" name="hh_access" class="form-control" placeholder="Position Pict" value="{{ $data->hh_access }}">
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Position PICF</label>
-                                    <input type="text" name="position_picf" class="form-control" placeholder="Position Picf" value="{{ $data->position_picf }}">
+                                    <label for="dobBackdrop" class="form-label">Backbone</label>
+                                    <input type="text" name="backbone" class="form-control" placeholder="Position Picf" value="{{ $data->backbone }}">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Phone PICT</label>
-                                    <input type="text" name="phone_pict" class="form-control" placeholder="081234567" value="{{ $data->phone_pict }}">
+                                    <label for="emailBackdrop" class="form-label">Update Node A</label>
+                                    <input type="text" name="update_node_a" class="form-control" placeholder="081234567" value="{{ $data->update_node_a }}">
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Phone PICF</label>
-                                    <input type="text" name="phone_picf" class="form-control" placeholder="081234567" value="{{ $data->phone_picf }}">
+                                    <label for="dobBackdrop" class="form-label">Update Node B</label>
+                                    <input type="text" name="update_node_b" class="form-control" placeholder="081234567" value="{{ $data->update_node_b }}">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Email PICT</label>
-                                    <input type="text" name="email_pict" class="form-control" placeholder="pict@gmail.com" value="{{ $data->email_pict }}">
+                                    <label for="emailBackdrop" class="form-label">Port Node A</label>
+                                    <input type="text" name="port_node_a" class="form-control" placeholder="pict@gmail.com" value="{{ $data->port_node_a }}">
                                 </div>
                                 <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Email PICF</label>
-                                    <input type="text" name="email_picf" class="form-control" placeholder="picf@gmail.com" value="{{ $data->email_picf }}">
+                                    <label for="dobBackdrop" class="form-label">Port Node B</label>
+                                    <input type="text" name="port_node_b" class="form-control" placeholder="picf@gmail.com" value="{{ $data->port_node_b}}">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="nameLarge" class="form-label">Service</label>
-                            <select class="form-select select-pilihan" id="service" aria-label="Default select example" name="service"  required>
-                                @if ( $data->service  == 'Lease Line')
-                                    <option value="{{ $data->service }}" selected>{{ $data->service }}</option>
+                            <label for="nameLarge" class="form-label">Product</label>
+                            <select class="form-select select-pilihan" id="service" aria-label="Default select example" name="product"  required>
+                                @if ( $data->product  == 'Lease Line')
+                                    <option value="{{ $data->product }}" selected>{{ $data->product }}</option>
                                     <option value="Clear Channel">Clear Channel</option>
                                     <option value="Dark Fiber">Dark Fiber</option>
-                                @elseif( $data->service  == 'Clear Channel')
-                                    <option value="{{ $data->service }}" selected>{{ $data->service }}</option>
+                                @elseif( $data->product  == 'Clear Channel')
+                                    <option value="{{ $data->product }}" selected>{{ $data->product }}</option>
                                     <option value="Lease Line">Lease Line</option>
                                     <option value="Dark Fiber">Dark Fiber</option>
-                                @elseif( $data->service == 'Dark Fiber' )
-                                    <option value="{{ $data->service }}" selected>{{ $data->service }}</option>
+                                @elseif( $data->product == 'Dark Fiber' )
+                                    <option value="{{ $data->product }}" selected>{{ $data->product }}</option>
                                     <option value="Lease Line">Lease Line</option>
                                     <option value="Clear Channel">Clear Channel</option>
                                 @endif
@@ -138,10 +138,6 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nameLarge" class="form-label">Project</label>
-                            <input type="text" name="project" class="form-control" placeholder="Project" value="{{ $data->project }}">
                         </div>
                         <div class="d-flex justify-content-end mt-2">
                             <button type="submit" class="btn btn-primary">Submit</button>

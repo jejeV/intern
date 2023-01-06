@@ -47,10 +47,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Date</th>
                     <th>Company Name</th>
                     <th>Status</th>
-                    <th>Phone</th>
                     <th>Node A</th>
                     <th>Node B</th>
                     <th>Aksi</th>
@@ -61,12 +59,11 @@
                 <tr>
                     <input type="hidden" class="delete_id" value="{{ $row->id }}">
                     <th scope="row">{{ $index + $data->firstItem() }}</th>
-                    <td>{{ $row->created_at->format('D, M Y') }}</td>
+                    {{-- <td>{{ $row->created_at->format('D, M Y') }}</td> --}}
                     <td>{{ $row->companyname }}</td>
                     <td><span class="{{ ($row->status == 'aktif')? 'badge bg-label-success' : 'badge bg-label-danger' }}">{{ ($row->status == 'aktif')? 'Aktif' : 'Tidak Aktif' }}</span></td>
-                    <td>{{ $row->phone }}</td>
-                    <td>{{ $row->center_id }}</td>
-                    <td>{{ $row->stasiun_id }}</td>
+                    <td>{{ $row->node_a }}</td>
+                    <td>{{ $row->node_b }}</td>
                     <td class="d-flex">
                         <div class="me-2">
                             <!-- Button trigger modal -->
@@ -113,111 +110,111 @@
                         </div>
                         <div class="row">
                             <div class="col mb-3">
-                                <label for="nameLarge" class="form-label">Company Address</label>
-                                <input type="text" name="companyaddress" value="{{ $customer->companyaddress }}"
+                                <label for="nameLarge" class="form-label">Sales Name</label>
+                                <input type="text" name="salesname" value="{{ $customer->salesname }}"
                                     class="form-control" placeholder="Company Address" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">Phone</label>
-                                <input type="text" name="phone" value="{{ $customer->phone }}" class="form-control"
+                                <label for="emailBackdrop" class="form-label">Node A</label>
+                                <input type="text" name="node_a" value="{{ $customer->node_a }}" class="form-control"
                                     placeholder="081234567" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">NPWP</label>
-                                <input type="text" name="npwp" value="{{ $customer->npwp }}" class="form-control"
+                                <label for="dobBackdrop" class="form-label">Node B</label>
+                                <input type="text" name="node_b" value="{{ $customer->node_b }}" class="form-control"
                                     placeholder="NPWP" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">Deal Name</label>
-                                <input type="text" name="dealname" value="{{ $customer->dealname }}"
+                                <label for="emailBackdrop" class="form-label">Ring</label>
+                                <input type="text" name="ring" value="{{ $customer->ring }}"
                                     class="form-control" placeholder="Deal Name" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">Position</label>
-                                <input type="text" name="position" value="{{ $customer->position }}"
+                                <label for="dobBackdrop" class="form-label">Pair</label>
+                                <input type="text" name="pair" value="{{ $customer->pair }}"
                                     class="form-control" placeholder="Position" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">No Handphone</label>
-                                <input type="text" name="nohandphone" value="{{ $customer->nohandphone }}"
+                                <label for="emailBackdrop" class="form-label">KM</label>
+                                <input type="text" name="km" value="{{ $customer->km }}"
                                     class="form-control" placeholder="081234567" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">Email Deal Name</label>
-                                <input type="text" name="emaildealname" value="{{ $customer->emaildealname }}"
+                                <label for="dobBackdrop" class="form-label">SO</label>
+                                <input type="text" name="so" value="{{ $customer->so }}"
                                     class="form-control" placeholder="dealname@gmail.com" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">Pic Technical Name</label>
-                                <input type="text" name="pictechnicalname" value="{{ $customer->pictechnicalname }}"
+                                <label for="emailBackdrop" class="form-label">CID</label>
+                                <input type="text" name="cid" value="{{ $customer->cid }}"
                                     class="form-control" placeholder="Pict Name" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">Pic Finace Name</label>
-                                <input type="text" name="picfinacename" value="{{ $customer->picfinacename }}"
+                                <label for="dobBackdrop" class="form-label">SID</label>
+                                <input type="text" name="sid" value="{{ $customer->sid }}"
                                     class="form-control" placeholder="Picf Name" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">Position PICT</label>
-                                <input type="text" name="position_pict" value="{{ $customer->position_pict }}"
+                                <label for="emailBackdrop" class="form-label">Net Active</label>
+                                <input type="text" name="net_active" value="{{ $customer->net_active }}"
                                     class="form-control" placeholder="Position Pict" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">Position PICF</label>
-                                <input type="text" name="position_picf" value="{{ $customer->position_picf }}"
+                                <label for="dobBackdrop" class="form-label">Active Date</label>
+                                <input type="date" name="active_date" value="{{ $customer->active_date }}"
                                     class="form-control" placeholder="Position Picf" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">Phone PICT</label>
-                                <input type="text" name="phone_pict" value="{{ $customer->phone_pict }}"
+                                <label for="emailBackdrop" class="form-label">HH Access</label>
+                                <input type="text" name="hh_access" value="{{ $customer->hh_access }}"
                                     class="form-control" placeholder="081234567" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">Phone PICF</label>
-                                <input type="text" name="phone_picf" value="{{ $customer->phone_picf }}"
+                                <label for="dobBackdrop" class="form-label">Backbone</label>
+                                <input type="text" name="backbone" value="{{ $customer->backbone }}"
                                     class="form-control" placeholder="081234567" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">Email PICT</label>
-                                <input type="text" name="email_pict" value="{{ $customer->email_pict }}"
+                                <label for="emailBackdrop" class="form-label">Update Node A</label>
+                                <input type="text" name="update_node_a" value="{{ $customer->update_node_a }}"
                                     class="form-control" placeholder="pict@gmail.com" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">Email PICF</label>
-                                <input type="text" name="email_picf" value="{{ $customer->email_picf }}"
+                                <label for="dobBackdrop" class="form-label">Update Node B</label>
+                                <input type="text" name="update_node_b" value="{{ $customer->update_node_b }}"
                                     class="form-control" placeholder="picf@gmail.com" disabled>
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-3">
-                                <label for="emailBackdrop" class="form-label">Node A</label>
-                                <input type="text" name="center_id" value="{{ $customer->center_id }}"
+                                <label for="emailBackdrop" class="form-label">Port Node A</label>
+                                <input type="text" name="port_node_a" value="{{ $customer->port_node_a }}"
                                     class="form-control" placeholder="Bandung" disabled>
                             </div>
                             <div class="col mb-3">
-                                <label for="dobBackdrop" class="form-label">Node B</label>
-                                <input type="text" name="stasiun_id" value="{{ $customer->stasiun_id }}"
+                                <label for="dobBackdrop" class="form-label">Port Node B</label>
+                                <input type="text" name="port_node_b" value="{{ $customer->port_node_b }}"
                                     class="form-control" placeholder="Jakarta" disabled>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
-                                <label for="nameLarge" class="form-label">Service</label>
-                                <input type="text" name="service" value="{{ $customer->service }}" class="form-control"
+                                <label for="nameLarge" class="form-label">Product</label>
+                                <input type="text" name="product" value="{{ $customer->product }}" class="form-control"
                                     placeholder="Service" disabled>
                             </div>
                         </div>
