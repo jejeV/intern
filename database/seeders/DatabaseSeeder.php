@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Center;
+use App\Models\Customer;
 use App\Models\Stasiun;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -33,21 +34,69 @@ class DatabaseSeeder extends Seeder
         	'role' => 'admin',
         ]);
 
-        // Center::create([
-        //     'data_center' => 'jakarta',
-        // 	'area' => 'jakarta',
-        // ]);
+        Customer::create([
+            'companyname' => 'mnc',
+            'salesname' => '-',
+            'node_a' => '-',
+            'node_b' => '-',
+            'product' => '-',
+            'ring' => '-',
+            'bandwidth' => '-',
+            'pair' => '-',
+            'km' => '-',
+            'so' => '-',
+            'cid' => '-',
+            'sid' => '-',
+            'net_active' => '-',
+            'active_date' => '2023-01-05',
+            'hh_access' => '-',
+            'backbone' => '-',
+            'update_node_a' => '-',
+            'update_node_b' => '-',
+            'port_node_a' => '-',
+            'port_node_b' => '-',
+            'status' => 'tidak aktif'
+        ]);
 
-        // Stasiun::create([
-        //     'daop' => 'jakarta',
-        // 	'nama_stasiun' => 'jakarta',
-        // 	'kodkod' => 'jakarta',
-        // 	'kmtsta' => 'jakarta',
-        // 	'line' => 'jakarta',
-        // 	'remark' => 'jakarta',
-        // 	'rel_aktif_no_bb' => 'jakarta',
-        // 	'ring' => 'jakarta',
-        // 	'segmen' => 'jakarta',
-        // ]);
+        Customer::create([
+            'companyname' => 'kompas',
+            'salesname' => '-',
+            'node_a' => '-',
+            'node_b' => '-',
+            'product' => '-',
+            'ring' => '-',
+            'bandwidth' => '-',
+            'pair' => '-',
+            'km' => '-',
+            'so' => '-',
+            'cid' => '-',
+            'sid' => '-',
+            'net_active' => '-',
+            'active_date' => '2023-01-05',
+            'hh_access' => '-',
+            'backbone' => '-',
+            'update_node_a' => '-',
+            'update_node_b' => '-',
+            'port_node_a' => '-',
+            'port_node_b' => '-',
+            'status' => 'tidak aktif'
+        ]);
+
+        Center::create([
+            'data_center' => 'jakarta',
+        	'area' => 'jakarta',
+        ]);
+
+        Stasiun::create([
+            'daop' => 'jakarta',
+        	'nama_stasiun' => 'jakarta',
+        	'kodkod' => 'jakarta',
+        	'kmtsta' => 'jakarta',
+        	'line' => 'jakarta',
+        	'remark' => 'jakarta',
+        	'rel_aktif_no_bb' => 'jakarta',
+        	'ring' => 'jakarta',
+        	'segmen' => 'jakarta',
+        ]);
     }
 }

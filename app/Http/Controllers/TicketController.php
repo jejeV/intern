@@ -20,8 +20,21 @@ class TicketController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->search;
         if ($request->has('search')) {
-            $data = Ticket::where('customer', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $data = Ticket::join('customers', 'tickets.customer_id', '=', 'customers.id')
+            ->where('companyname', 'LIKE' , '%' . $keyword . '%')
+            ->paginate(25);
+            $ti = DB::table('tickets')->select(DB::raw('MAX(RIGHT(t_ticket,7)) as kode'));
+            $tt = "";
+            if($ti->count()>0){
+                foreach($ti->get() as $t){
+                    $tkt = ((int)$t->kode)+1;
+                    $tt = sprintf("%07s", $tkt);
+                }
+            }else{
+                $tt = "0000001";
+            }
             $customer = Customer::all();
         } else {
             $data = Ticket::orderBy('created_at','desc')->paginate(25);
@@ -137,5 +150,14 @@ class TicketController extends Controller
         $komentar = Komentar::create($request->all());
         return redirect()->back()->with('success', 'Create Success !!');
         // dd($request->all());
+    }
+
+    // Buat Api
+    public function message($ticket_id){
+        $komentar = Komentar::with('user')->get();
+
+        return response()->json([
+            'data' => $komentar
+        ]);
     }
 }
