@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customer;
-use App\Http\Requests\StorecustomerRequest;
-use App\Http\Requests\UpdatecustomerRequest;
+use App\Models\Customer;
+use App\Models\Center;
+use App\Models\Log;
+use App\Models\Stasiun;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -13,9 +16,16 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('customer.customer');
+        if ($request->has('search')) {
+            $data = Customer::where('companyname', 'LIKE', '%' . $request->search . '%')->paginate(25);
+        } else {
+            $center = Center::all();
+            $stasiun = Stasiun::all();
+            $data = Customer::paginate(25);
+        }
+        return view('customer.customer', compact('data'));
     }
 
     /**
@@ -25,7 +35,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $center = Center::all();
+        $stasiun = Stasiun::all();
+        return view('customer.tambahcustomer', compact('center', 'stasiun'));
     }
 
     /**
@@ -34,9 +46,34 @@ class CustomerController extends Controller
      * @param  \App\Http\Requests\StorecustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorecustomerRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'companyname' => 'required',
+            'companyaddress' => 'required',
+            'phone' => 'required',
+            'npwp' => 'required',
+            'dealname' => 'required',
+            'position' => 'required',
+            'nohandphone' => 'required',
+            'emaildealname' => 'required',
+            'pictechnicalname' => 'required',
+            'position_pict' => 'required',
+            'phone_pict' => 'required',
+            'email_pict' => 'required',
+            'picfinacename' => 'required',
+            'position_picf' => 'required',
+            'phone_picf' => 'required',
+            'email_picf' => 'required',
+            'service' => 'required',
+            'bandwidth' => 'required',
+            'center_id' => 'required',
+            'stasiun_id' => 'required',
+        ]);
+        // dd($request->all());
+        $data = Customer::create($request->all());
+        Log::createLog(Auth::user()->id, 'Menambah Customer');
+        return redirect()->route('customer.index')->with('success', 'Create Success !!');
     }
 
     /**
@@ -56,9 +93,12 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(customer $customer)
+    public function edit($id)
     {
-        //
+        $data = Customer::find($id);
+        $center = Center::all();
+        $stasiun = Stasiun::all();
+        return view('customer.editcustomer', compact('data','center','stasiun'));
     }
 
     /**
@@ -68,9 +108,12 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatecustomerRequest $request, customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+        $data = Customer::find($id);
+        $data->update($request->all());
+        Log::createLog(Auth::user()->id, 'Mengubah Customer');
+        return redirect()->route('customer.index')->with('edit', 'Edit Success !!');
     }
 
     /**
@@ -79,8 +122,29 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer $customer)
+    public function destroy($id)
     {
-        //
+        $data = Customer::find($id);
+        $data->delete();
+        Log::createLog(Auth::user()->id, 'Menghapus Customer');
+        return response()->json(['status' => 'Data Berhasil di hapus!']);
+    }
+
+    public function status($id)
+    {
+        $data = Customer::where('id',$id)->first();
+
+        $status_sekarang = $data->status;
+
+        if($status_sekarang == 'aktif'){
+            Customer::where('id',$id)->update([
+                'status'=>'tidak aktif'
+            ]);
+        }else{
+            Customer::where('id',$id)->update([
+                'status'=>'aktif'
+            ]);
+        }
+        return redirect()->route('service.index');
     }
 }

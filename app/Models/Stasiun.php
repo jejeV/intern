@@ -12,4 +12,14 @@ class Stasiun extends Model
     protected $table = 'stasiuns';
 
     protected $guarded = ['id',];
+
+    public function customer()
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    public function service()
+    {
+        return $this->hasMany(Service::class);
+    }
 }
