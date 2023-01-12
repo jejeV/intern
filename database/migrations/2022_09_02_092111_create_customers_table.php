@@ -15,27 +15,27 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->string('salesname');
             $table->string('companyname');
+            $table->string('node_a');
+            $table->string('node_b');
+            $table->string('product');
+            $table->string('ring');
+            $table->string('bandwidth'); 
+            $table->string('pair'); 
+            $table->string('km'); 
+            $table->string('so'); 
+            $table->string('cid'); 
+            $table->string('sid'); 
+            $table->string('net_active'); 
+            $table->date('active_date'); 
+            $table->string('hh_access'); 
+            $table->string('backbone'); 
+            $table->string('update_node_a'); 
+            $table->string('update_node_b'); 
+            $table->string('port_node_a'); 
+            $table->string('port_node_b'); 
             $table->string('status')->default('tidak aktif');
-            $table->string('companyaddress');
-            $table->string('phone');
-            $table->string('npwp');
-            $table->string('dealname');
-            $table->string('position');
-            $table->string('nohandphone');
-            $table->string('emaildealname');
-            $table->string('pictechnicalname');
-            $table->string('position_pict');
-            $table->string('phone_pict');
-            $table->string('email_pict');
-            $table->string('picfinacename');
-            $table->string('position_picf');
-            $table->string('phone_picf');
-            $table->string('email_picf');
-            $table->string('service');
-            $table->string('bandwidth');
-            $table->string('center_id');
-            $table->string('stasiun_id');
             $table->timestamps();
         });
     }
