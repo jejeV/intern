@@ -8,7 +8,6 @@ use App\Models\Center;
 use App\Models\Customer;
 use App\Models\DetailA;
 use App\Models\DetailB;
-use App\Models\Log;
 use App\Models\Perangkat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,14 +24,22 @@ class ServiceController extends Controller
     {
         $keyword = $request->search;
         if ($request->has('search')) {
-            $data1 = Service::join('customers', 'services.customer_id', '=', 'customers.id')
-            ->where('companyname', 'LIKE' , '%' . $keyword . '%')
-            ->paginate(25);
+            $data1 = Service::with(['customer'])
+                            ->join('customers', 'services.customer_id', '=', 'customers.id')
+                            ->where('companyname', 'LIKE' , '%' . $keyword . '%')
+                            ->paginate(25);
+            $count = Service::join('customers', 'services.customer_id', '=', 'customers.id')
+            ->where('status', 'tidak aktif')
+            ->count();
         } else {
+            $count = Service::join('customers', 'services.customer_id', '=', 'customers.id')
+            ->where('status', 'tidak aktif')
+            ->count();
             // $data = Service::orderBy('created_at','desc')->paginate(25);
-            $data1 = Service::paginate(25);
+            $data1 = Service::with(['customer'])->paginate(25);
         }
-        return view('service.service', compact('data1'));
+        return view('service.service', compact('data1','count'));
+        // dd($count);
     }
 
     /**
@@ -43,8 +50,6 @@ class ServiceController extends Controller
     public function create()
     {
         $customer = Customer::all();
-        $center = Center::all();
-        $stasiun = Stasiun::all();
         $perangkat = Perangkat::all();
         $data = Service::all();
         
@@ -59,7 +64,7 @@ class ServiceController extends Controller
             $tt = "10000";
         }
 
-        return view('service.tambahservice', compact('center', 'stasiun','customer','perangkat', 'tt','data'));
+        return view('service.tambahservice', compact('customer','perangkat', 'tt','data'));
     }
 
     /**
@@ -90,7 +95,6 @@ class ServiceController extends Controller
             'cable_lenght_node_b' => 'required',
         ], $messages);
 
-        Log::createLog(Auth::user()->id, 'Menambah Service');
         $data = Service::create($request->all());
         $detaila = DetailA::create($request->all());
         $detailb = DetailB::create($request->all());
@@ -122,12 +126,10 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $data = Service::find($id);
-        $center = Center::all();
-        $stasiun = Stasiun::all();
+        $data = Service::findOrFail($id);
         $customer = Customer::all();
         $perangkat = Perangkat::all();
-        return view('service.editservice', compact('data', 'center', 'stasiun', 'customer','perangkat'));
+        return view('service.editservice', compact('data','customer','perangkat'));
     }
 
     /**
@@ -171,13 +173,6 @@ class ServiceController extends Controller
     {
         $data = Service::find($id);
         $data->delete();
-        Log::createLog(Auth::user()->id, 'Menghapus Service');
         return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
-
-    // public function search(Request $request){
-    //     $filter = request()->query();
-    //     return Service::where('customer_id', 'like', "%{$filter['search']}%")->get();
-    // }
-
 }

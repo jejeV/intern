@@ -4,81 +4,85 @@
 ******************************************************************************/
 
 .menu .app-brand.demo {
-  height: 64px;
-  margin-top: 12px;
+    height: 64px;
+    margin-top: 12px;
 }
 
 .app-brand-logo.demo svg {
-  width: 22px;
-  height: 38px;
+    width: 22px;
+    height: 38px;
 }
 
 .app-brand-text.demo {
-  font-size: 1.75rem;
-  letter-spacing: -0.5px;
-  text-transform: lowercase;
+    font-size: 1.75rem;
+    letter-spacing: -0.5px;
+    text-transform: lowercase;
 }
 
 /* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
 /* Detached navbar */
 .layout-navbar-fixed .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu) .layout-page {
-  padding-top: 76px !important;
+    padding-top: 76px !important;
 }
+
 /* Default navbar */
 .layout-navbar-fixed .layout-wrapper:not(.layout-without-menu) .layout-page {
-  padding-top: 64px !important;
+    padding-top: 64px !important;
 }
 
 /* Navbar page z-index issue solution */
 .content-wrapper .navbar {
-  z-index: auto;
+    z-index: auto;
 }
 
 /*
 * Content
 ******************************************************************************/
 
-.demo-blocks > * {
-  display: block !important;
+.demo-blocks>* {
+    display: block !important;
 }
 
-.demo-inline-spacing > * {
-  margin: 1rem 0.375rem 0 0 !important;
+.demo-inline-spacing>* {
+    margin: 1rem 0.375rem 0 0 !important;
 }
 
 /* ? .demo-vertical-spacing class is used to have vertical margins between elements. To remove margin-top from the first-child, use .demo-only-element class with .demo-vertical-spacing class. For example, we have used this class in forms-input-groups.html file. */
-.demo-vertical-spacing > * {
-  margin-top: 1rem !important;
-  margin-bottom: 0 !important;
-}
-.demo-vertical-spacing.demo-only-element > :first-child {
-  margin-top: 0 !important;
+.demo-vertical-spacing>* {
+    margin-top: 1rem !important;
+    margin-bottom: 0 !important;
 }
 
-.demo-vertical-spacing-lg > * {
-  margin-top: 1.875rem !important;
-  margin-bottom: 0 !important;
-}
-.demo-vertical-spacing-lg.demo-only-element > :first-child {
-  margin-top: 0 !important;
+.demo-vertical-spacing.demo-only-element> :first-child {
+    margin-top: 0 !important;
 }
 
-.demo-vertical-spacing-xl > * {
-  margin-top: 5rem !important;
-  margin-bottom: 0 !important;
+.demo-vertical-spacing-lg>* {
+    margin-top: 1.875rem !important;
+    margin-bottom: 0 !important;
 }
-.demo-vertical-spacing-xl.demo-only-element > :first-child {
-  margin-top: 0 !important;
+
+.demo-vertical-spacing-lg.demo-only-element> :first-child {
+    margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-xl>* {
+    margin-top: 5rem !important;
+    margin-bottom: 0 !important;
+}
+
+.demo-vertical-spacing-xl.demo-only-element> :first-child {
+    margin-top: 0 !important;
 }
 
 .rtl-only {
-  display: none !important;
-  text-align: left !important;
-  direction: ltr !important;
+    display: none !important;
+    text-align: left !important;
+    direction: ltr !important;
 }
 
 [dir='rtl'] .rtl-only {
-  display: block !important;
+    display: block !important;
 }
 
 /*
@@ -86,22 +90,345 @@
 ******************************************************************************/
 
 .layout-demo-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin-top: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 1rem;
 }
+
 .layout-demo-placeholder img {
-  width: 900px;
+    width: 900px;
 }
+
 .layout-demo-info {
-  text-align: center;
-  margin-top: 1rem;
+    text-align: center;
+    margin-top: 1rem;
 }
+
+/* CHAT BOX CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Style Chats Box */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* GLOBAL STYLES */
+:root {
+    --blue: #335DFF;
+    --grey: #F5F5F5;
+    --grey-d-1: #EEE;
+    --grey-d-2: #DDD;
+    --grey-d-3: #888;
+    --white: #FFF;
+    --dark: #222;
+}
+
+/* GLOBAL STYLES */
+
+/* CHATBOX */
+.chatbox-wrapper {
+    position: fixed;
+    bottom: 3rem;
+    right: 2rem;
+    width: 4rem;
+    height: 4rem;
+    z-index: 9999;
+}
+
+#app {
+    height: 100%;
+}
+
+.chatbox-toggle {
+    width: 100%;
+    height: 100%;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 2rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s;
+    transform: scale(1);
+}
+
+.chatbox-toggle.show {
+    transform: scale(0);
+}
+
+.chatbox-toggle .bx {
+    font-size: 2rem !important;
+}
+
+.chatbox-toggle:active {
+    transform: scale(.9);
+}
+
+.chatbox-message-wrapper {
+    position: absolute;
+    bottom: calc(100% + 1rem);
+    right: -0.36rem;
+    bottom: 1.3rem;
+    width: 350px;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, .1);
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: .2s;
+}
+
+.chatbox-message-wrapper.show {
+    transform: scale(1);
+}
+
+.chatbox-message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    padding: .75rem 1.5rem;
+}
+
+.chatbox-message-profile {
+    display: flex;
+    align-items: center;
+    grid-gap: .5rem;
+}
+
+.chatbox-message-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.chatbox-message-status {
+    font-size: .875rem;
+    color: var(--grey-d-3);
+    text-transform: capitalize;
+}
+
+.chatbox-x .bx {
+    font-size: 1.7rem !important;
+}
+
+.chatbox-message-content {
+    background: linear-gradient(90deg, var(--grey) 31px, transparent 1px) 50%, linear-gradient(180deg, var(--grey) 31px, var(--blue) 1px) 50%;
+    background-size: 32px 32px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 1rem;
+    max-height: 300px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.chatbox-message {
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbox-message-item-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.20rem;
+}
+
+.chatbox-message-item-icon {
+    font-size: 0.90rem;
+}
+
+.chatbox-message-item-name {
+    font-size: 0.75rem;
+    margin-left: 0.50rem;
+}
+
+.chatbox-message-item-text p {
+    font-size: .690rem;
+}
+
+.chatbox-message-item {
+    width: 85%;
+    padding: 0.80rem;
+}
+
+.chatbox-message-item.sent {
+    align-self: flex-end;
+    background: var(--blue);
+    color: var(--white);
+    border-radius: .75rem 0 .75rem .75rem;
+}
+
+.chatbox-message-item.received {
+    background: var(--white);
+    border-radius: 0 .75rem .75rem .75rem;
+    box-shadow: .25rem .25rem 1.5rem rgba(0, 0, 0, .05);
+    color: var(--dark);
+}
+
+.chatbox-message-item-time {
+    float: right;
+    font-size: 0.650rem;
+    margin-top: -.10rem;
+    display: inline-block;
+}
+
+.chatbox-message-item-time p {
+    font-size: 12px;
+}
+
+.chatbox-message-bottom {
+    background: var(--white);
+    padding: .50rem .50rem;
+}
+
+.chatbox-message-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.chatbox-message-background {
+    width: 100%;
+    border-radius: .5rem;
+    padding: .5rem .70rem;
+    background: var(--grey);
+}
+
+.chatbox-message-input {
+    background: transparent;
+    width: 100%;
+    outline: none;
+    border: none;
+    resize: none;
+    scrollbar-width: none;
+}
+
+.chatbox-message-input::-webkit-scrollbar {
+    display: none;
+}
+
+.chatbox-message-submit {
+    font-size: 1.25rem;
+    color: var(--blue);
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+
+.chatbox-message-submit:active {
+    transform: scale(0.85);
+}
+
+.chatbox-message-no-message {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.chatbox-message-item-0 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 264px;
+    text-align: center;
+}
+
+.chatbox-message-item-0 .bx {
+    font-size: 2rem !important;
+    color: #000;
+    opacity: 30%;
+}
+
+.chatbox-message-item-0 span {
+    font-size: 1rem;
+    opacity: 30%;
+    color: #000;
+}
+
+/* CHATBOX */
+
+/* BREAKPOINTS 576px*/
+@media screen and (max-width: 576px) {
+    .chatbox-message-wrapper {
+        width: calc(90vw - 1rem);
+    }
+
+    .chatbox-wrapper {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .chatbox-message-wrapper {
+        bottom: 3.4rem;
+        right: 0rem;
+    }
+}
+
+/* End BREAKPOINTS 576px*/

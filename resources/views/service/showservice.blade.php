@@ -56,18 +56,6 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Location Node A</label>
-                                    <input type="text" name="location_node_a" class="form-control" placeholder="Location Node A" value="{{ $data->customer->center_id }}" readonly>
-                                </div>
-                                <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Location Node B</label>
-                                    <input type="text" name="location_node_b" class="form-control" placeholder="Location Node B" value="{{ $data->customer->stasiun_id }}" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
                                     <label for="emailBackdrop" class="form-label">Rack Node A</label>
                                     <input type="text" name="rack_node_a" class="form-control" placeholder="Rack Node A" value="{{ $data->rack_node_a }}" readonly>
                                 </div>

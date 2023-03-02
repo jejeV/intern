@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @charset "UTF-8";
 :root {
   --bs-blue: #007bff;
@@ -66,7 +68,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  font-family: 'Poppins';
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -10103,6 +10105,11 @@ button.list-group-item-gray.active {
   background-color: rgba(var(--bs-black-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-blue {
+  --bs-bg-opacity: 1;
+  background-color: var(--bs-blue) !important;
+}
+
 .bg-white {
   --bs-bg-opacity: 1;
   background-color: #fff !important;
@@ -15360,9 +15367,9 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
   }
   .layout-navbar .navbar-nav .nav-item.dropdown .dropdown-menu {
     position: absolute;
-    left: 0.9rem;
+    /* left: 0.9rem;
     min-width: auto;
-    width: 92%;
+    width: 92%; */
   }
 }
 

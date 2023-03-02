@@ -1,7 +1,7 @@
 @extends('layouts.partials.main')
 
 @push('head')
-    @vite('resources/js/app.js')
+    @vite('resources/js/app.js')    
 @endpush
 
 @section('container')
@@ -35,19 +35,19 @@
                                 <td>
                                     <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Node A</strong>
                                 </td>
-                                <td>{{ $data->customer->center_id }}</td>
+                                <td>{{ $data->customer->node_a }}</td>
                             </tr>
                             <tr>
                                 <td>
                                     <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Node B</strong>
                                 </td>
-                                <td>{{ $data->customer->stasiun_id }}</td>
+                                <td>{{ $data->customer->node_b }}</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-end mt-2">
                         <a href="../ticket" class="btn btn-secondary btn-sm me-4">back</a>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-targ="#modalCenter2">
+                        <button type="button" class="btn btn-warning btn-sm text-uppercase" data-bs-toggle="modal" data-bs-target="#modalCenter">
                             <i class='bx bxs-edit-alt'></i>
                         </button>
                     </div>
@@ -60,7 +60,7 @@
             <div class="card-header bg-primary" style="">
                 <ul class="nav nav-pills">
                     <li class="nav-item d-flex">
-                        <i class='bx bxs-user text-white align-self-center'></i>
+                        <i class='bx bx-credit-card-front text-white align-self-center'></i>
                         <a class="nav-link text-white text-uppercase">Log Ticket</a>
                     </li>
                 </ul>
@@ -68,12 +68,21 @@
             <div class="card-body" style="overflow-y: auto; max-height: 261px !important;height: 261px !important;">
                 <div class="tab-content p-0">
                     <div class="tab-pane active">
-                            @foreach ($logs as $log)
+                            {{-- @foreach ($logs as $log)
                                 <div class="callout callout-info mt-2">
                                     <p style="margin: 0 !important;">{{ $log['keterangan'] }}</p>
                                     <small>No Ticket : {{ $log['t_ticket'] }}</small>
                                     <br>
                                     <small>Name : {{ $log['name'] }}<br>{{ $log['created_at'] }}</small>
+                                    <hr>
+                                </div>
+                            @endforeach --}}
+                            @foreach ($logQuery as $log)
+                                <div class="callout callout-info mt-2">
+                                    <p style="margin: 0 !important;">{{ $log->keterangan }}</p>
+                                    <small>No Ticket : {{ $log->ticket->t_ticket }}</small>
+                                    <br>
+                                    <small>Name : {{ $log->user->name }}<br>{{ $log->created_at->format('d M Y, H:i:s' ) }}</small>
                                     <hr>
                                 </div>
                             @endforeach
@@ -83,16 +92,22 @@
         </div>
     </div>
 </div>
-<div class="row mt-lg-3 mt-4 mt-lg-0" id="app">
-    <messages></messages>
+
+<div class="chatbox-wrapper">
+    <div id="app">
+        <messages :user="{{ auth()->user() }}"></messages>
+    </div>
 </div>
+
+{{-- <div class="row mt-lg-3 mt-4 mt-lg-0" id="app">
+</div> --}}
 
 @foreach ($data as $ticket)
 <!-- Modal -->
-<form method="POST" action="{{ url('ticket/'.$data->id) }}">
+<form method="POST" action="{{ url('ticket/'.$data->id) }}" id="form">
     @csrf
     @method('put')
-    <div class="modal fade" id="modalCenter2" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -107,9 +122,13 @@
                             <label for="nameWithTitle" class="form-label">Ticket Status</label>
                             <select class="form-select" id="status_a" aria-label="Default select example" name="status">
                                 <option value="{{ $data->status }}">{{ $data->status }}</option>
-                                <option value="open">Open</option>
-                                <option value="hold">Hold</option>
-                                <option value="close">Close</option>
+                                @if ($data->status == 'open')
+                                    <option value="hold">Hold</option>
+                                    <option value="close">Close</option>
+                                @elseif($data->status == 'hold')
+                                    <option value="open">Open</option>
+                                    <option value="close">Close</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -129,16 +148,11 @@
 @endsection
 
 @push('scripts')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#btn-komentar').click(function(){
-                $('#komentar-utama').toggle('slide');
-            });
+    <script type="text/javascript">        
+        // Button Submit
+        $('#form').submit(function(){
+            $(this).find(':input[type=submit]').prop('disabled', true);
         });
-        $(document).ready(function() {
-            $('#btn-balas').click(function(){
-                $('#btn-kedua').toggle('slide');
-            });
-        });
+        // End Button Submit
     </script>
 @endpush

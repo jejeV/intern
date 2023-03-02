@@ -17,8 +17,16 @@
                             <input type="text" name="companyname" class="form-control" placeholder="Company Name" value="{{ $data->companyname }}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-company">Sales Name</label>
-                            <input type="text" name="salesname" class="form-control" placeholder="Company Address" value="{{ $data->salesname }}">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label" for="basic-default-company">Sales Name</label>
+                                    <input type="text" name="salesname" class="form-control" placeholder="Company Address" value="{{ $data->salesname }}">
+                                </div>
+                                <div class="col">
+                                    <label for="emailBackdrop" class="form-label">Net Active</label>
+                                    <input type="text" name="net_active" class="form-control" placeholder="Pict Name" value="{{ $data->net_active }}">
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
@@ -53,18 +61,6 @@
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">SID</label>
                                     <input type="text" name="sid" class="form-control" placeholder="dealname@gmail.com" value="{{ $data->sid }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Net Active</label>
-                                    <input type="text" name="net_active" class="form-control" placeholder="Pict Name" value="{{ $data->net_active }}">
-                                </div>
-                                <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Active Date</label>
-                                    <input type="date" name="active_date" class="form-control" placeholder="Picf Name" value="{{ $data->active_date }}">
                                 </div>
                             </div>
                         </div>

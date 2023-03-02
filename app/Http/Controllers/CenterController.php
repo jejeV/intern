@@ -6,7 +6,6 @@ use App\Models\Center;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCenterRequest;
 use App\Http\Requests\UpdateCenterRequest;
-use App\Models\Log;
 use Illuminate\Support\Facades\Auth;
 
 class CenterController extends Controller
@@ -19,7 +18,8 @@ class CenterController extends Controller
     public function index(Request $request)
     {
         if ($request->has('search')) {
-            $data = Center::where('data_center', 'LIKE', '%' . $request->search . '%')->orWhere('area', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $data = Center::where('data_center', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('area', 'LIKE', '%' . $request->search . '%')->paginate(25);
         } else {
             $data = Center::paginate(25);
         }
@@ -48,7 +48,6 @@ class CenterController extends Controller
             'data_center' => 'required',
             'area' => 'required',
         ]);
-        Log::createLog(Auth::user()->id, 'Menambah data Center');
         $data = Center::create($request->all());
         return redirect()->route('data-center.index')->with('success', 'Create Success !!');
     }
@@ -86,8 +85,6 @@ class CenterController extends Controller
     {
         $data = Center::find($id);
         $data->update($request->all());
-
-        Log::createLog(Auth::user()->id, 'Mengubah data Center');
         return redirect()->route('data-center.index')->with('edit', 'Edit Success !!');
     }
 
@@ -101,7 +98,6 @@ class CenterController extends Controller
     {
         $data = Center::find($id);
         $data->delete();
-        Log::createLog(Auth::user()->id, 'Menghapus data Center');
         return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }

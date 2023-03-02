@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('log_tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id');
+            $table->foreignId('user_id');
             $table->integer('ticket_id');
             $table->string('keterangan');
             $table->timestamps();

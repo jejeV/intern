@@ -38,7 +38,6 @@ Route::resource('/customer', CustomerController::class)->except('show')->middlew
 Route::get('customer/status/{id}', [CustomerController::class, 'status']);
 
 Route::resource('/service', ServiceController::class);
-// route::get('/search', [ServiceController::class,'search'])->name('search');
 
 Route::post('/posta', [ServiceController::class, 'posta']);
 
@@ -46,13 +45,17 @@ Route::post('/postb1', [ServiceController::class, 'postb1']);
 
 Route::resource('/perangkat', PerangkatController::class)->except('create', 'show', 'edit')->middleware('auth');
 
-Route::resource('/user', UserController::class)->except('create', 'show', 'edit')->middleware('admin');
+Route::resource('/user', UserController::class)->middleware('admin');
+Route::put('/changepassword/{id}', [UserController::class,'resetPassword']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Api Vue
-Route::get('/ticketapi', [MessageController::class,'index']);
+// Api Vue message
+Route::get('/ticketapi/{id}', [MessageController::class,'index']);
 Route::get('/ticket/{ticket_id}/message/',[MessageController::class,'message']);
 Route::post('/ticket/{ticket_id}/message/',[MessageController::class,'store']);
+
+// Api Vue user
+Route::get('/userapi', [MessageController::class, 'user']);

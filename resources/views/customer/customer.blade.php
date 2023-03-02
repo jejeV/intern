@@ -1,5 +1,40 @@
 @extends('layouts.partials.main')
 
+[[@push('head')
+<style>
+#searchIcon{
+background: transparent;
+border: none;
+outline: none;
+margin: 0 !important;
+}
+
+@media (max-width: 789px){
+#btn{
+margin-top: 0.5rem;
+}
+}
+
+@media (max-width: 576px){
+#btn{
+width: 48.3833px !important;
+height: 27.7px !important;
+padding: 4px 11px;           
+font-size: 10px;
+}
+}
+
+/* #formSearch input{
+width: 150px;
+transition: width 200ms;
+}
+
+#formSearch input:focus{
+width: 200px !important;
+} */
+</style>
+@endpush]]
+
 @section('container')
 @if (session()->has('success'))
 <div class="alert alert-success alert-dismissible" role="alert">
@@ -21,24 +56,26 @@
 @endif
 
 <div class="card">
-    <div class="row">
+    <div class="row align-items-center">
         <div class="col-6">
             <h5 class="card-header">Customer</h5>
         </div>
         <div class="col-6 p-3 d-flex justify-content-end">
-            <div class="d-flex me-2">
-                {{-- Search --}}
-                <form action="{{ url('/customer') }}" method="GET" class="me-2 me-lg-3">
-                    <div class="input-group input-group-merge">
-                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-                        <input type="search" name="search" class="form-control" placeholder="Search..."
-                            aria-label="Search..." aria-describedby="basic-addon-search31"
-                            value="{{ request('search') }}" />
-                    </div>
-                </form>
-                {{-- End Search --}}
-                <!-- Button  create -->
-                <a href="{{ url('customer/create') }}" class="btn btn-primary text-uppercase">ADD</a>
+            <div class="me-2">
+                <div class="d-flex flex-wrap me-2 justify-content-end">
+                    {{-- Search --}}
+                    <form action="{{ url('/customer') }}" method="GET" class="me-2 me-lg-3" id="formSearch">
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text" id="basic-addon-search31">
+                                <button type="submit" id="searchIcon"><i class="bx bx-search text-primary"></i></button>
+                            </span>
+                            <input type="search" name="search" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" value="{{ request('search') }}" id="inputSearch" />
+                        </div>
+                    </form>
+                    {{-- End Search --}}
+                    <!-- Button  create -->
+                    <a href="{{ url('customer/create') }}" class="btn btn-primary text-uppercase mt-lg-0 me-2 me-md-2 me-lg-0" id="btn">ADD</a>
+                </div>
             </div>
         </div>
     </div>
@@ -55,35 +92,39 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                @foreach ($data as $index => $row)
-                <tr>
-                    <input type="hidden" class="delete_id" value="{{ $row->id }}">
-                    <th scope="row">{{ $index + $data->firstItem() }}</th>
-                    {{-- <td>{{ $row->created_at->format('D, M Y') }}</td> --}}
-                    <td>{{ $row->companyname }}</td>
-                    <td><span class="{{ ($row->status == 'aktif')? 'badge bg-label-success' : 'badge bg-label-danger' }}">{{ ($row->status == 'aktif')? 'Aktif' : 'Tidak Aktif' }}</span></td>
-                    <td>{{ $row->node_a }}</td>
-                    <td>{{ $row->node_b }}</td>
-                    <td class="d-flex">
-                        <div class="me-2">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalCenter3-{{ $row->id }}">
-                                <i class='bx bxs-show'></i>
-                            </button>
-                        </div>
-                        <div class="me-2">
-                            <!-- Button trigger modal -->
-                            <a href="{{ ('customer/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
-                        </div>
-                        <form method="POST" action="{{ url('customer/'.$row->id) }}">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+                @forelse ($data as $index => $row)
+                    <tr>
+                        <input type="hidden" class="delete_id" value="{{ $row->id }}">
+                        <th scope="row">{{ $index + $data->firstItem() }}</th>
+                        {{-- <td>{{ $row->created_at->format('D, M Y') }}</td> --}}
+                        <td>{{ $row->companyname }}</td>
+                        <td><span class="{{ ($row->status == 'aktif')? 'badge bg-label-success' : 'badge bg-label-danger' }}">{{ ($row->status == 'aktif')? 'Aktif' : 'Tidak Aktif' }}</span></td>
+                        <td>{{ $row->node_a }}</td>
+                        <td>{{ $row->node_b }}</td>
+                        <td class="d-flex">
+                            <div class="me-2">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#modalCenter3-{{ $row->id }}">
+                                    <i class='bx bxs-show'></i>
+                                </button>
+                            </div>
+                            <div class="me-2">
+                                <!-- Button trigger modal -->
+                                <a href="{{ ('customer/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
+                            </div>
+                            <form method="POST" action="{{ url('customer/'.$row->id) }}">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <th colspan="9" class="text-center">Result not found.</th>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
         <div class="d-flex justify-content-end mt-2 me-lg-3 me-2">
@@ -171,8 +212,11 @@
                             </div>
                             <div class="col mb-3">
                                 <label for="dobBackdrop" class="form-label">Active Date</label>
-                                <input type="date" name="active_date" value="{{ $customer->active_date }}"
-                                    class="form-control" placeholder="Position Picf" disabled>
+                                @if ($customer->active_date == "")
+                                    <input type="text" name="active_date" value="Customer belum Active" class="form-control" placeholder="Position Picf" disabled>
+                                @else
+                                    <input type="text" name="active_date" value="{{ $customer->active_date->format('d M Y') }}" class="form-control" placeholder="Position Picf" disabled>
+                                @endif
                             </div>
                         </div>
                         <div class="row g-2">
@@ -286,6 +330,5 @@
         });
 
     });
-
 </script>
 @endpush

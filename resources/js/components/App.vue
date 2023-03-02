@@ -1,120 +1,156 @@
 <template>
-    <div class="col-lg-7">
-        <div class="card">
-            <div class="d-flex">
-                <h5 class="card-header flex-fill" style="margin-bottom: -1.2rem !important; padding: -1.5rem !important;">Message</h5>
+    <div class="chatbox-toggle" @click="scrollToElement">
+        <i class='bx bx-message-dots'></i>
+    </div>
+    <div class="chatbox-message-wrapper">
+        <div class="chatbox-message-header">
+            <div class="chatbox-message-profile">
+                <div>
+                    <h4 class="chatbox-message-name text-dark">{{ Ticket.t_ticket }}</h4>
+                    <p class="chatbox-message-status">{{ Ticket.status }}</p>
+                </div>
             </div>
-            <hr>
-            <form method="POST" >
-                <div class="card-body " style="margin-top: -1.2rem !important; margin-bottom: -1.2rem !important">
-                    <textarea style="" class="form-control mb-2" rows="3" name="komentar" v-model="newMessage"></textarea>
-                    <div class="d-flex justify-content-end mt-2">
-                        <button type="submit" class="btn btn-primary mb-3">Kirim</button>
+            <div class="chatbox-x">
+                <i class='bx bx-x'></i>
+            </div>
+        </div>
+        <div class="chatbox-message-content" ref="scrollToMe">
+            <div class="chatbox-message" v-for="message in Messages" v-if="Messages.length > 0">
+                <div class="chatbox-message-item sent" v-if = "User == message.user_id">
+                    <div class="chatbox-message-item-header">
+                        <i class='bx bxs-user text-white chatbox-message-item-icon'></i>
+                        <p class="chatbox-message-item-name">{{ message.user.name }}</p>
+                    </div>
+                    <span class="chatbox-message-item-text">
+                        <p>
+                            {{ message.komentar }}
+                        </p>
+                    </span>
+                    <span class="chatbox-message-item-time">{{ moment(message.created_at).format("h:mm:ss a") }}</span>
+                </div>
+                <div class="chatbox-message-item received" v-if = "User != message.user_id">
+                    <div class="chatbox-message-item-header">
+                        <i class='bx bxs-user chatbox-message-item-icon'></i>
+                        <p class="chatbox-message-item-name text-dark">{{ message.user.name }}</p>
+                    </div>
+                    <span class="chatbox-message-item-text">
+                        <p>
+                            {{ message.komentar }}
+                        </p>
+                    </span>
+                    <span class="chatbox-message-item-time">{{ moment(message.created_at).format("h:mm:ss a") }}</span>
+                </div>
+            </div>
+            <div class="chatbox-message" v-else>
+                <div class="chatbox-message-item-0">
+                    <div class="chatbox-message-item-content-0">
+                        <i class='bx bxs-chat'></i>
+                        <br>
+                        <span>Obrolan belum ada, silahkan memulai obrolan</span>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="chatbox-message-bottom">
+            <form action="" class="chatbox-message-form" @submit.prevent="store">
+                <div class="chatbox-message-background">
+                    <textarea name="" id="" rows="1" placeholder="Type message..." class="chatbox-message-input" v-model="newMessage"></textarea>
+                </div>
+                <button type="submit" class="chatbox-message-submit"><i class='bx bx-send' ></i></button>
             </form>
-            <button class="btn btn-outline-primary" id="btn-komentar"><i class='bx bxs-chat me-2'></i>Komentar</button>
-            <div class="card" id="komentar-utama">
-                <div class="card-body bg-default" style="overflow-y: auto; max-height: 500px !important;height: 500px !important; background-color: #f0f2f5;">    
-                    <div class="card mb-2 shadow" v-for="message in Messages">
-                            <div class="card-body" v-if="user.id == message.id">
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex flex-row align-items-center">
-                                        <i class='bx bxs-user'></i>
-                                        <p class="small mb-0 ms-2 text-primary">{{ message.user.name }}</p>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <p class="small text-muted mb-0">{{ moment(message.created_at).format("h:mm:ss a") }}</p>
-                                    </div>
-                                </div>
-                                <p class="mt-2">{{ message.komentar }}</p>
-                                <!-- <div class="d-flex justify-content-end mt-2">
-                                    <button class="btn btn-primary btn-xs" id="btn-balas">Balas</button>
-                                </div> -->
-                                <!-- <form action="" method="POST" class="mt-2" style="display: none;" id="btn-kedua">
-                                    @csrf
-                                    <input type="hidden" name="ticket_id" value="{{ $data->id }}">
-                                    <input type="hidden" name="parent" value="{{ $komentar->id }}">
-                                    <input type="text" name="komentar" class="form-control">
-                                    <button type="submit" class="btn btn-primary btn-xs mt-1">Kirim</button>
-                                </form> -->
-                                <hr>
-                                <!-- @foreach ($komentar->childs()->orderBy('created_at', 'desc')->get() as $child)
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex flex-row align-items-center">
-                                            <i class='bx bxs-user'></i>
-                                            <p class="small mb-0 ms-2 text-primary">{{ $komentar->user->name }}</p>
-                                        </div>
-                                        <div class="d-flex flex-row align-items-center">
-                                            <p class="small text-muted d-flex justify-content-end">{{ $child->created_at->diffForHumans() }}</p>
-                                        </div>
-                                    </div>
-                                    <p class="">{{ $child->komentar }}</p>
-                                @endforeach -->
-                            </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import axios from 'axios';
 import moment from "moment";
 var id = window.location.href.split('/').pop();
 
     export default{
-        computed: {
-            ...mapGetters({
-                user: 'auth/user'
-            })
-        },
+
+        props: ['user'],
+
         data(){
             return{
                 moment: moment,
-                Ticket: [],
+                Ticket: '',
                 Messages: [],
+                Users: '',
+                User: this.user.id,
 
-                newMessage: [],
+                newMessage: '',
             }
         },
 
         methods: {
+            scrollToElement() {
+                
+                setTimeout(() => {
+                    const container = this.$refs.scrollToMe;
+                    container.lastElementChild.scrollIntoView({behaviour:'smooth'})
+                }, 50);
+            },
             async getTicket(){
-                await axios.get(`/ticketapi/`)
-                    .then(response => {
-                        this.Ticket = response.data.data;
-                        // const e = response.data.data.map(val => val.id);
-                        // console.log(response.data.data);
-                    }).catch( error => {
-                        console.log(error)
-                    })
+                await axios.get(`/ticketapi/${id}`)
+                .then(response => {
+                    this.Ticket = response.data.data;
+                }).catch( error => {
+                    console.log(error)
+                })
             },
             async getMessage(){
                 await axios.get(`/ticket/${id}/message/`)
                 .then(response => {
+                    // console.log(response)
                     this.Messages = response.data.data;
-                    // console.log(response.data)
+                }).catch( error => {
+                    console.log(error)
                 })
             },
-            store(){
+            async getUser(){
+                await axios.get(`/userapi`)
+                .then(response => {
+                    this.Users = response.data.data
+                }).catch( error => {
+                    console.log(error)
+                })
+            },
+            async store(){
                 if(this.newMessage == ''){
                     alert('Input Your Message...')
+                }else{
+                    axios({
+                        method: 'post',
+                        url: `/ticket/${id}/message/`,
+                        data:{
+                            komentar: this.newMessage,
+                        },
+                        headers:{
+                            'X-Socket-Id': window.Echo.socketId()
+                        }
+                    });
+                    this.newMessage = ''
+                    await this.getMessage();
+                    this.scrollToElement();
                 }
-                axios.post(`/ticket/${id}/message/`,{
-                    komentar: this.newMessage,
-                })
-                this.newMessage = ''
-                this.getMessage();
             }
         },
 
         mounted(){
-            this.getTicket()
-            this.getMessage()
-        },
+            this.getTicket();
+            this.getMessage();
+            window.Echo.channel('message').listen('MessageCreated', (event) => {
+                // console.log(event);
+                this.Messages.push({
+                    user: event.message.user,
+                    komentar: event.message.komentar
+                });
+                this.scrollToElement();
+            });           
+            this.getUser();
+            this.scrollToElement();
+        }
     }
 
 </script>

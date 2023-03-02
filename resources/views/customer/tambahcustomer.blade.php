@@ -1,5 +1,18 @@
 @extends('layouts.partials.main')
 
+@push('head')
+    <style>
+        .card-header{
+            padding-bottom: 0.80rem !important;
+            margin-bottom: 0 !important;
+        }
+
+        .card-body{
+            padding-top: 0.80rem !important;
+        }
+    </style>
+@endpush
+
 @section('container')
 <div class="row">
     <div class="col-xl">
@@ -16,12 +29,20 @@
                             <input type="text" name="companyname" class="form-control" placeholder="Company Name" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-company">Sales Name</label>
-                            <input type="text" name="salesname" class="form-control" placeholder="Company Address" required>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label" for="basic-default-company">Sales Name</label>
+                                    <input type="text" name="salesname" class="form-control" placeholder="Company Address" required>
+                                </div>
+                                <div class="col">
+                                    <label for="emailBackdrop" class="form-label">Net Active</label>
+                                    <input type="text" name="net_active" class="form-control" placeholder="Net Active" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <label for="exampleFormControlSelect1" class="form-label">Node A</label>
                                     <select class="form-select" id="node_a" aria-label="Default select example" name="node_a" required>
                                         <option value=""></option>
@@ -30,7 +51,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <label for="exampleFormControlSelect1" class="form-label">Node B</label>
                                     <select class="form-select" id="node_b" aria-label="Default select example" name="node_b" required>
                                         <option value=""></option>
@@ -74,18 +95,6 @@
                                 <div class="col">
                                     <label for="dobBackdrop" class="form-label">SID</label>
                                     <input type="text" name="sid" class="form-control" placeholder="SID" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="emailBackdrop" class="form-label">Net Active</label>
-                                    <input type="text" name="net_active" class="form-control" placeholder="Net Active" required>
-                                </div>
-                                <div class="col">
-                                    <label for="dobBackdrop" class="form-label">Active Date</label>
-                                    <input type="date" name="active_date" class="form-control"required>
                                 </div>
                             </div>
                         </div>
@@ -151,9 +160,9 @@
                                 <option value="10">10</option>
                             </select>
                         </div>
-                        <div class="d-flex justify-content-end mt-2">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                            <div class="d-flex justify-content-end mt-2">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                     </form>
                 </div>
             </form>

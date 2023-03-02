@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Center;
-use App\Models\Log;
 use App\Models\Stasiun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -62,7 +62,6 @@ class CustomerController extends Controller
             'cid' => 'required',
             'sid' => 'required',
             'net_active' => 'required',
-            'active_date' => 'required',
             'hh_access' => 'required',
             'backbone' => 'required',
             'update_node_a' => 'required',
@@ -72,7 +71,6 @@ class CustomerController extends Controller
         ]);
         // dd($request->all());
         $data = Customer::create($request->all());
-        Log::createLog(Auth::user()->id, 'Menambah Customer');
         return redirect()->route('customer.index')->with('success', 'Create Success !!');
     }
 
@@ -112,7 +110,6 @@ class CustomerController extends Controller
     {
         $data = Customer::find($id);
         $data->update($request->all());
-        Log::createLog(Auth::user()->id, 'Mengubah Customer');
         return redirect()->route('customer.index')->with('edit', 'Edit Success !!');
     }
 
@@ -126,7 +123,6 @@ class CustomerController extends Controller
     {
         $data = Customer::find($id);
         $data->delete();
-        Log::createLog(Auth::user()->id, 'Menghapus Customer');
         return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 
@@ -142,7 +138,8 @@ class CustomerController extends Controller
             ]);
         }else{
             Customer::where('id',$id)->update([
-                'status'=>'aktif'
+                'status'=>'aktif',
+                'active_date' => Carbon::now()
             ]);
         }
         return redirect()->route('service.index');

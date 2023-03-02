@@ -1,42 +1,76 @@
 @extends('layouts.partials.main')
 
+@push('head')
+    <style>
+        #searchIcon{
+            background: transparent;
+            border: none;
+            outline: none;
+            margin: 0 !important;
+        }
+
+        @media (max-width: 789px){
+            #btn{
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 576px){
+            #btn{
+                width: 48.3833px !important;
+                height: 27.7px !important;
+                padding: 4px 11px;           
+                font-size: 10px;
+            }
+        }
+    </style>
+@endpush
+
 @section('container')
 @if (session()->has('success'))
-<div class="alert alert-success alert-dismissible" role="alert">
-    {{ session('success') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 @endif
+
 @if (session()->has('edit'))
-<div class="alert alert-warning alert-dismissible" role="alert">
-    {{ session('edit') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        {{ session('edit') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 @endif
+
 @if (session()->has('delete'))
-<div class="alert alert-danger alert-dismissible" role="alert">
-    {{ session('delete') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        {{ session('delete') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 @endif
+
 <div class="card">
-    <div class="row">
+    <div class="row align-items-center">
         <div class="col-6">
             <h5 class="card-header">Service</h5>
         </div>
+        
         <div class="col-6 p-3 d-flex justify-content-end">
-            <div class="d-flex me-2">
-                <form action="{{ url('/service') }}" method="GET" class="me-2 me-lg-3">
-                    <div class="input-group input-group-merge">
-                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-                        <input type="search" name="search" class="form-control" placeholder="Search..."
-                            aria-label="Search..." aria-describedby="basic-addon-search31"
-                            value="{{ request('search') }}" />
-                    </div>
-                </form>
-                {{-- End Search --}}
-                <!-- Button  create -->
-                <a href="{{ url('service/create') }}" class="btn btn-primary text-uppercase">ADD</a>
+            <div class="me-2">
+                <div class="d-flex flex-wrap me-2 justify-content-end">
+                    {{-- Search --}}
+                    <form action="{{ url('/stasiun') }}" method="GET" class="me-2 me-lg-3" id="formSearch">
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text" id="basic-addon-search31">
+                                <button type="submit" id="searchIcon"><i class="bx bx-search text-primary"></i></button>
+                            </span>
+                            <input type="search" name="search" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" value="{{ request('search') }}" id="inputSearch" />
+                        </div>
+                    </form>
+                    {{-- End Search --}}
+
+                    <!-- Button  create -->
+                    <a href="{{ url('service/create') }}" class="btn btn-primary text-uppercase mt-2 mt-lg-0 me-2 me-md-0" id="btn">ADD</a>
+                </div>
             </div>
         </div>
     </div>
@@ -56,50 +90,60 @@
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0" id="result">
-                @foreach ($data1 as $index => $row)
-                    @if ($row->customer->status == 'tidak aktif')
+                @if ($count > 0)
+                    @forelse ($data1 as $index => $row)
+                        @if ($row->customer->status == 'tidak aktif')
+                            <tr>
+                                <input type="hidden" class="delete_id" value="{{ $row->id }}">
+                                <th scope="row">{{ $index + $data1->firstItem() }}</th>
+                                <td>{{ $row->created_at->format('D, d M Y') }}</td>
+                                <td>
+                                    @if ($row->customer->status == 'aktif')
+                                        @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
+                                        <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
+                                        @else
+                                            {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
+                                            <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
+                                        @endif
+                                    @else
+                                        @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
+                                        <a href="{{ url('customer/status/'.$row->customer_id) }}" class="btn btn-xs btn-success">Aktifkan</a>
+                                        @else
+                                            {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
+                                            <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>{{ $row->customer->companyname }}</td>
+                                <td>{{ $row->customer->center_id }}</td>
+                                <td>{{ $row->status_node_a }}</td>
+                                <td>{{ $row->customer->stasiun_id }}</td>
+                                <td>{{ $row->status_node_b }}</td>
+                                <td class="d-flex">
+                                    <div class="me-2">
+                                        <a href="{{ ('service/'.$row->id) }}" class="btn btn-primary btn-sm"><i class='bx bxs-show'></i></a>
+                                    </div>
+                                    <div class="me-2">
+                                        <a href="{{ ('service/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
+                                    </div>
+                                    <form method="POST" action="{{ url('service/'.$row->id) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
+                    @empty
                         <tr>
-                            <input type="hidden" class="delete_id" value="{{ $row->id }}">
-                            <th scope="row">{{ $index + $data1->firstItem() }}</th>
-                            <td>{{ $row->created_at->format('D, d M Y') }}</td>
-                            <td>
-                                @if ($row->customer->status == 'aktif')
-                                    @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
-                                    <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
-                                    @else
-                                        {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
-                                        <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
-                                    @endif
-                                @else
-                                    @if ($row->status_node_a == 'node a aktif' && $row->status_node_b == 'node b aktif')
-                                    <a href="{{ url('customer/status/'.$row->customer_id) }}" class="btn btn-xs btn-success">Aktifkan</a>
-                                    @else
-                                        {{-- <a href="" class="btn btn-xs btn-second">Aktifkan</a> --}}
-                                        <button disabled="disabled" class="btn btn-xs btn-secondary">Aktifkan</button>
-                                    @endif
-                                @endif
-                            </td>
-                            <td>{{ $row->customer->companyname }}</td>
-                            <td>{{ $row->customer->center_id }}</td>
-                            <td>{{ $row->status_node_a }}</td>
-                            <td>{{ $row->customer->stasiun_id }}</td>
-                            <td>{{ $row->status_node_b }}</td>
-                            <td class="d-flex">
-                                <div class="me-2">
-                                    <a href="{{ ('service/'.$row->id) }}" class="btn btn-primary btn-sm"><i class='bx bxs-show'></i></a>
-                                </div>
-                                <div class="me-2">
-                                    <a href="{{ ('service/'.$row->id.'/edit') }}" class="btn btn-warning btn-sm"><i class='bx bxs-edit-alt'></i></a>
-                                </div>
-                                <form method="POST" action="{{ url('service/'.$row->id) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm btndelete"><i class='bx bx-trash'></i></button>
-                                </form>
-                            </td>
+                            <th colspan="9" class="text-center">Result not found.</th>
                         </tr>
-                    @endif
-                @endforeach
+                    @endforelse
+                @else
+                    <tr>
+                        <th colspan="9" class="text-center">all active customer status.</th>
+                    </tr>
+                @endif
             </tbody>
         </table>
         <div class="d-flex justify-content-end mt-2 me-lg-3 me-2">

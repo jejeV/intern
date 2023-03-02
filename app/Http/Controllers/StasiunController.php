@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Log;
 use App\Models\Stasiun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +16,8 @@ class StasiunController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data = Stasiun::where('nama_stasiun','LIKE', '%' . $request->search. '%')->orWhere('kodkod', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $data = Stasiun::where('nama_stasiun','LIKE', '%' . $request->search. '%')
+                            ->orWhere('kodkod', 'LIKE', '%' . $request->search . '%')->paginate(25);
         }else{
             $data = Stasiun::paginate(25);
         }
@@ -53,7 +53,6 @@ class StasiunController extends Controller
             'ring' => 'required',
             'segmen' => 'required',
         ]);
-        Log::createLog(Auth::user()->id, 'Menambah Stasiun');
         $data = Stasiun::create($request->all());
         return redirect()->route('stasiun.index')->with('success', 'Create Success !!');
     }
@@ -91,7 +90,6 @@ class StasiunController extends Controller
     {
         $data = Stasiun::find($id);
         $data->update($request->all());
-        Log::createLog(Auth::user()->id, 'Mengubah Stasiun');
         return redirect()->route('stasiun.index')->with('edit', 'Edit Success !!');
     }
 
@@ -105,7 +103,6 @@ class StasiunController extends Controller
     {
         $data = Stasiun::find($id);
         $data->delete();
-        Log::createLog(Auth::user()->id, 'Menghapus Stasiun');
         return response()->json(['status' => 'Data Berhasil di hapus!']);
     }
 }
