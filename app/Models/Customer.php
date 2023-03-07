@@ -9,7 +9,29 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $table = 'customer';
+    protected $table = 'customers';
 
     protected $guarded = ['id'];
+
+    // protected $date = ['create_id'];
+
+    public function center()
+    {
+        return $this->belongsTo(Center::class);
+    }
+
+    public function stasiun()
+    {
+        return $this->belongsTo(Stasiun::class);
+    }
+
+    public function service()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function ticket()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
