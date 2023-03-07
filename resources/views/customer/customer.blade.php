@@ -1,39 +1,30 @@
 @extends('layouts.partials.main')
 
-[[@push('head')
-<style>
-#searchIcon{
-background: transparent;
-border: none;
-outline: none;
-margin: 0 !important;
-}
+@push('head')
+    <style>
+        #searchIcon{
+            background: transparent;
+            border: none;
+            outline: none;
+            margin: 0 !important;
+        }
 
-@media (max-width: 789px){
-#btn{
-margin-top: 0.5rem;
-}
-}
+        @media (max-width: 789px){
+            #btn{
+                margin-top: 0.5rem;
+            }
+        }
 
-@media (max-width: 576px){
-#btn{
-width: 48.3833px !important;
-height: 27.7px !important;
-padding: 4px 11px;           
-font-size: 10px;
-}
-}
-
-/* #formSearch input{
-width: 150px;
-transition: width 200ms;
-}
-
-#formSearch input:focus{
-width: 200px !important;
-} */
-</style>
-@endpush]]
+        @media (max-width: 576px){
+            #btn{
+                width: 48.3833px !important;
+                height: 27.7px !important;
+                padding: 4px 11px;           
+                font-size: 10px;
+            }
+        }
+    </style>
+@endpush
 
 @section('container')
 @if (session()->has('success'))
