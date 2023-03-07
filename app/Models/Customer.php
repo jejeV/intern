@@ -13,7 +13,7 @@ class Customer extends Model
 
     protected $guarded = ['id'];
 
-    // protected $date = ['create_id'];
+    protected $dates = ['active_date'];
 
     public function center()
     {

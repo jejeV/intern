@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('cid'); 
             $table->string('sid'); 
             $table->string('net_active'); 
-            $table->date('active_date'); 
+            $table->date('active_date')->nullable(); 
             $table->string('hh_access'); 
             $table->string('backbone'); 
             $table->string('update_node_a'); 

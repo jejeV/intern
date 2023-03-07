@@ -28,7 +28,7 @@ class Service extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function pernagkat()
+    public function perangkat()
     {
         return $this->belongsTo(Perangkat::class);
     }

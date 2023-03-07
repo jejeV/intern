@@ -12,7 +12,7 @@ class LogTicket extends Model
     protected $guarded = ['id'];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function ticket(){
@@ -22,7 +22,7 @@ class LogTicket extends Model
     public static function createLogTicket($user_id, $keterangan, $ticket_id)
     {
         LogTicket::create([
-            'users_id' => $user_id,
+            'user_id' => $user_id,
             'keterangan' => $keterangan,
             'ticket_id' => $ticket_id,
         ]);

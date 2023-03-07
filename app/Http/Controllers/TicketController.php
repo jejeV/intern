@@ -20,11 +20,26 @@ class TicketController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->search;
         if ($request->has('search')) {
-            $data = Ticket::where('customer', 'LIKE', '%' . $request->search . '%')->paginate(25);
+            $data = Ticket::select('tickets.*','customers.companyname')
+                            ->with(['customer'])
+                            ->join('customers', 'tickets.customer_id', '=', 'customers.id')
+                            ->where('companyname', 'LIKE' , '%' . $keyword . '%')
+                            ->paginate(25);
+            $ti = DB::table('tickets')->select(DB::raw('MAX(RIGHT(t_ticket,7)) as kode'));
+            $tt = "";
+            if($ti->count()>0){
+                foreach($ti->get() as $t){
+                    $tkt = ((int)$t->kode)+1;
+                    $tt = sprintf("%07s", $tkt);
+                }
+            }else{
+                $tt = "0000001";
+            }
             $customer = Customer::all();
         } else {
-            $data = Ticket::orderBy('created_at','desc')->paginate(25);
+            $data = Ticket::with(['customer'])->orderBy('created_at','desc')->paginate(25);
             $customer = Customer::all();
             $ti = DB::table('tickets')->select(DB::raw('MAX(RIGHT(t_ticket,7)) as kode'));
             $tt = "";
@@ -38,6 +53,7 @@ class TicketController extends Controller
             }
         }
         return view('ticket.ticket', compact('data','tt','customer'));
+        // dd($data);
     }
 
     /**
@@ -77,17 +93,19 @@ class TicketController extends Controller
     {
         $data = Ticket::find($id);
         $logs = [];
-        $logQuery = LogTicket::where('ticket_id', $id)->get();
+        // $logQuery = LogTicket::where('ticket_id', $id)->get();
+        $logQuery = LogTicket::where('ticket_id', $id)->with(['user','ticket'])->get();
 
-        foreach ($logQuery as $key => $log) {
-            $logs[] = [
-                'name' => User::where('id', $log->users_id)->get()[0]->name,
-                'keterangan' => $log->keterangan,
-                't_ticket' => Ticket::where('id', $log->ticket_id)->get()[0]->t_ticket,
-                'created_at' => $log->created_at
-            ];
-        }
-        return view('ticket.showticket', compact('data','logs'));
+        // foreach ($logQuery as $key => $log) {
+        //     $logs[] = [
+        //         'name' => User::where('id', $log->users_id)->get()[0]->name,
+        //         'keterangan' => $log->keterangan,
+        //         't_ticket' => Ticket::where('id', $log->ticket_id)->get()[0]->t_ticket,
+        //         'created_at' => $log->created_at
+        //     ];
+        // }
+        // dd($logQuery);
+        return view('ticket.showticket', compact('data','logs','logQuery'));
     }
 
     /**
@@ -110,10 +128,13 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data_old = Ticket::find($id);
         $data = Ticket::find($id);
         $data->update($request->all());
         if($request->status){
-            LogTicket::createLogTicket(Auth::user()->id, 'Status ' . $data->status,$id);
+            if($data_old->status != $data->status){
+                LogTicket::createLogTicket(Auth::user()->id, 'Status diubah menjadi '. $data->status,$id);
+            }
         }
 
         return redirect('ticket/'.$id)->with('edit', 'Edit Success !!');
@@ -137,5 +158,14 @@ class TicketController extends Controller
         $komentar = Komentar::create($request->all());
         return redirect()->back()->with('success', 'Create Success !!');
         // dd($request->all());
+    }
+
+    // Buat Api
+    public function message($ticket_id){
+        $komentar = Komentar::with('user')->get();
+
+        return response()->json([
+            'data' => $komentar
+        ]);
     }
 }

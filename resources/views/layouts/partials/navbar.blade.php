@@ -14,13 +14,13 @@
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
                       <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <i class='bx bx-user-circle fs-4'></i>
+                        <div class="d-flex align-content-center">
+                          <div class="me-3">
+                            <i class='bx bx-user-circle fs-4 text-primary'></i>
                           </div>
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
-                            <small class="text-muted">{{ auth()->user()->role }}</small>
+                            <small class="text-muted">Role : {{ auth()->user()->role }}</small>
                           </div>
                         </div>
                       </a>

@@ -1,5 +1,18 @@
 @extends('layouts.partials.main')
 
+@push('head')
+    <style>
+        .card-header{
+            padding-bottom: 0.80rem !important;
+            margin-bottom: 0 !important;
+        }
+
+        .card-body{
+            padding-top: 0.80rem !important;
+        }
+    </style>
+@endpush
+
 @section('container')
 <div class="row">
     <div class="col-xl">
@@ -34,7 +47,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <label class="form-label" for="basic-default-phone">Status Node A</label>
                                     <select class="form-select select-pilihanA" id="status_a" aria-label="Default select example" name="status_node_a" required>
                                         <option value="">Select Status Node A</option>
@@ -48,7 +61,7 @@
                                         <option value="node a aktif">node a aktif</option>
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <label class="form-label" for="basic-default-phone">Status Node B</label>
                                     <select class="form-select select-pilihanB" id="status_b" aria-label="Default select example" name="status_node_b">
                                         <option value="">Select Status Node A</option>
@@ -91,7 +104,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <label for="exampleFormControlSelect1" class="form-label">Swicth Node A</label>
                                     <select class="form-select" id="swicth_a" aria-label="Default select example" name="swicth_node_a">
                                         <option value=""></option>
@@ -100,7 +113,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <div class="col">
                                     <label for="dobBackdrop" class="form-label">Swicth Node B</label>
                                     <select class="form-select" id="swicth_b" aria-label="Default select example" name="switch_node_b">
@@ -139,7 +152,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     <label for="emailBackdrop" class="form-label">Cable Lenght Node A</label>
                                     <select class="form-select" id="cable_a" aria-label="Default select example" name="cable_lenght_node_a">
                                         <option value=""></option>
@@ -155,7 +168,7 @@
                                         <option value="50">50</option>
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <label for="dobBackdrop" class="form-label">Cable Lenght Node B</label>
                                     <select class="form-select" id="cable_b" aria-label="Default select example" name="cable_lenght_node_b">
                                         <option value=""></option>
